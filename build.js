@@ -1,4 +1,3 @@
-// Build script to generate all-in-one files
 const fs = require('fs');
 const path = require('path');
 
@@ -10,7 +9,7 @@ const cssPath = path.join(__dirname, 'scrollcue.css');
 const js = fs.readFileSync(jsPath, 'utf8');
 let css = fs.readFileSync(cssPath, 'utf8');
 
-// Minify CSS (basic inline minification)
+// Minify CSS
 console.log('Minifying CSS...');
 css = css
   .replace(/\/\*[\s\S]*?\*\//g, '') // Remove comments
@@ -22,7 +21,7 @@ css = css
   .replace(/\s*,\s*/g, ',')
   .trim();
 
-// Create the all-in-one file with CSS injected
+// All-in-one file with CSS injected
 console.log('Generating all-in-one file...');
 const allInOne = js.replace(
   "'use strict';", 
@@ -42,7 +41,4 @@ fs.writeFileSync(
 );
 
 console.log('scrollcue.all-in-one.js generated successfully!');
-
-// Note: For a proper production build, you would want to use proper minification tools
-// This is just a basic implementation to demonstrate the process
 console.log('Build completed successfully!');

@@ -23,9 +23,6 @@ See all the features here! https://demo-index.tiiny.site
 The simplest way to use ScrollCue.js is with the all-in-one version that includes both JS and CSS in a single file:
 
 ```html
-<!-- From GitHub (available now) -->
-<script src="https://cdn.jsdelivr.net/gh/PerseusKyogre09/ScrollCue.js@latest/scrollcue.all-in-one.min.js"></script>
-
 <!-- From npm -->
 <script src="https://cdn.jsdelivr.net/npm/scrollcue.js@latest/scrollcue.all-in-one.min.js"></script>
 <!-- Or -->

@@ -119,3 +119,9 @@ ScrollCue.js works in all modern browsers that support the Intersection Observer
 ## License
 
 MIT License
+
+## Contributing
+
+If you're interested in contributing to ScrollCue.js, please check out the [CONTRIBUTING.md](CONTRIBUTING.md) file for guidelines.
+
+**Important:** Don't edit the all-in-one files directly. Make changes to the separate `scrollcue.js` and `scrollcue.css` files, then generate the combined version as described in the contributing guide.

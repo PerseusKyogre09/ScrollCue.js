@@ -33,39 +33,26 @@ ScrollCue.js/
 
 ### Generating the All-in-One Files
 
-The all-in-one files are built from the separate JS and CSS files. Here's how to generate them:
+The all-in-one files are built from the separate JS and CSS files. To generate them:
 
-1. For the unminified version:
-   ```javascript
-   // Read the separate files
-   const fs = require('fs');
-   const js = fs.readFileSync('scrollcue.js', 'utf8');
-   let css = fs.readFileSync('scrollcue.css', 'utf8');
-   
-   // Minify CSS (basic inline minification)
-   css = css.replace(/\s+/g, ' ')
-            .replace(/\s*{\s*/g, '{')
-            .replace(/\s*}\s*/g, '}')
-            .replace(/\s*:\s*/g, ':')
-            .replace(/\s*;\s*/g, ';')
-            .replace(/\s*,\s*/g, ',');
-   
-   // Create the all-in-one file with CSS injected
-   const allInOne = js.replace(
-     "'use strict';", 
-     `'use strict';
-  
-  const styleElement = document.createElement('style');
-  styleElement.textContent = \`
-  ${css}
-  \`;  document.head.appendChild(styleElement);`
-   );
-   
-   // Write the all-in-one file
-   fs.writeFileSync('scrollcue.all-in-one.js', allInOne);
+1. Run the build script included in the project:
+   ```bash
+   node build.js
    ```
+   
+   This will:
+   - Read the separate JS and CSS files
+   - Minify the CSS
+   - Create the all-in-one file with the CSS injected
 
-2. For the minified version, you can use tools like Terser (for JS) and a proper CSS minifier before combining.
+2. **Important**: After generating the all-in-one file, you should use an external minification tool to convert it to a single line format. This prevents potential errors that can occur with multi-line JavaScript files. There are several excellent online tools available for this purpose, such as:
+   - [UglifyJS](https://github.com/mishoo/UglifyJS)
+   - [Terser](https://terser.org/docs/cli-usage)
+   - [Online JavaScript/CSS Minifier](https://www.toptal.com/developers/javascript-minifier)
+
+   This step is crucial as it ensures that the all-in-one file works correctly in all environments.
+
+3.  Paste the generated one-line code to `scrollcue.all-in-one.min.js` and test if it is working.
 
 ### Working with the CSS
 

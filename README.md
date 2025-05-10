@@ -37,8 +37,7 @@ The simplest way to use ScrollCue.js is with the all-in-one version that include
 Or download the files from this repository and include them in your project:
 
 ```html
-<link rel="stylesheet" href="path/to/scrollcue.css">
-<script src="path/to/scrollcue.js"></script>
+<script src="path/to/scrollcue.all-in-one.js"></script>
 ```
 
 That's it! No initialization code needed. ScrollCue.js automatically detects elements with the `scrollcue` class and sets up animations when the page loads.

@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ScrollCue.js Demo</title>
-  <style>
+  <link rel="stylesheet" href="style.css">
+  <!-- <style>
     * {
       box-sizing: border-box;
       margin: 0;
@@ -116,7 +117,7 @@
         max-width: 300px;
       }
     }
-  </style>
+  </style> -->
 </head>
 <body>
 
@@ -130,7 +131,21 @@
 
   <div class="container">
     <p class="scroll-info">👇 Scroll down to see the animations in action! 👇</p>
-    
+    <button id="theme-toggle" style="
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.5rem 1rem;
+    background: white;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    ">
+    🌙 Dark Mode
+    </button>
     <section class="section">
       <h2 class="section-title">Fade & Slide Animations</h2>
       
@@ -275,5 +290,14 @@
 
   
   <script src="https://unpkg.com/scrollcue.js@latest/scrollcue.all-in-one.min.js"></script>
+  <script>
+    const toggleBtn = document.getElementById('theme-toggle');
+    const body = document.body;
+  
+    toggleBtn.addEventListener('click', () => {
+      body.classList.toggle('dark-mode');
+      toggleBtn.textContent = body.classList.contains('dark-mode') ? '☀️ Light Mode' : '🌙 Dark Mode';
+    });
+  </script>
 </body>
 </html>

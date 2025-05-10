@@ -1,0 +1,200 @@
+:root {
+    --bg-color: linear-gradient(135deg, #ffe4e1, #e0f0ff);
+    --text-color: #2e2e2e;
+    --header-bg: linear-gradient(to right, #ff758c, #4a6cf7);
+    --section-bg: #ffffff;
+    --card-bg: #fef3f3;
+    --card-text: #444;
+    --demo-bg: #4a6cf7;
+    --footer-bg: #fafafa;
+    --footer-border: #dee2e6;
+    --footer-text: #495057;
+    --scroll-info: #ff758c;
+    --shadow: rgba(0, 0, 0, 0.15);
+  }
+  
+  body.dark-mode {
+    --bg-color: linear-gradient(135deg, #1e1e2f, #2a2a3b);
+    --text-color: #f0f0f0;
+    --header-bg: linear-gradient(to right, #33334d, #55556e);
+    --section-bg: #2d2d3f;
+    --card-bg: #3a3a4f;
+    --card-text: #e0e0e0;
+    --demo-bg: #55556e;
+    --footer-bg: #1e1e2f;
+    --footer-border: #444;
+    --footer-text: #ccc;
+    --scroll-info: #4a6cf7;
+    --shadow: rgba(255, 255, 255, 0.1);
+  }
+  
+  /* Reset and Base */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    background: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    scroll-behavior: smooth;
+    transition: background 0.3s, color 0.3s;
+  }
+  
+  header {
+    background: var(--header-bg);
+    color: white;
+    text-align: center;
+    padding: 3rem 1rem;
+    box-shadow: 0 8px 16px var(--shadow);
+    border-radius: 0 0 20px 20px;
+    position: relative;
+  }
+  
+  header h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+  }
+  
+  header p {
+    font-size: 1.2rem;
+    opacity: 0.95;
+  }
+  
+  .container {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+  
+  .scroll-info {
+    text-align: center;
+    font-size: 1.2rem;
+    color: var(--scroll-info);
+    margin: 2rem 0;
+    animation: pulse 1.5s infinite;
+  }
+  
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.05); }
+  }
+  
+  .section {
+    padding: 3rem 2rem;
+    background: var(--section-bg);
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    margin-bottom: 3rem;
+    transition: all 0.3s ease;
+  }
+  
+  .section-title {
+    font-size: 2.5rem;
+    color: var(--scroll-info);
+    margin-bottom: 2rem;
+    text-align: center;
+    border-bottom: 2px solid var(--scroll-info);
+    padding-bottom: 0.5rem;
+  }
+  
+  .animation-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+  }
+  
+  .animation-card {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: 0 4px 10px var(--shadow);
+    padding: 1.5rem;
+    text-align: center;
+    flex: 1 1 calc(30% - 1rem);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .animation-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 20px var(--shadow);
+  }
+  
+  .animation-card h3 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    color: var(--card-text);
+  }
+  
+  .demo-block {
+    background-color: var(--demo-bg);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 120px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 1rem;
+    box-shadow: 0 4px 10px var(--shadow);
+    transition: transform 0.3s ease;
+  }
+  
+  .demo-block:hover {
+    transform: scale(1.03);
+  }
+  
+  footer {
+    text-align: center;
+    padding: 2.5rem 1rem;
+    color: var(--footer-text);
+    font-size: 1rem;
+    background: var(--footer-bg);
+    border-top: 2px solid var(--footer-border);
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.05);
+  }
+  
+  footer p:first-child {
+    font-weight: bold;
+    font-size: 1.1rem;
+  }
+  
+  .toggle-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: white;
+    color: black;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.3s;
+  }
+  
+  body.dark-mode .toggle-btn {
+    background: #444;
+    color: white;
+  }
+  
+  @media (max-width: 768px) {
+    .animation-card {
+      flex: 1 1 100%;
+    }
+  
+    header h1 {
+      font-size: 2.5rem;
+    }
+  
+    .section-title {
+      font-size: 2rem;
+    }
+  }
+  

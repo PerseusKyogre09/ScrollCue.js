@@ -120,3 +120,8 @@ If you're interested in contributing to ScrollCue.js, please check out the [CONT
 
 Star this repository if you found it helpful! It'd help me a lot.
 
+### Contributors ✨
+
+<a href="https://github.com/PerseusKyogre09/ScrollCue.js/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=PerseusKyogre09/ScrollCue.js" />
+</a>

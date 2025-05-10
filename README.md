@@ -32,15 +32,6 @@ The simplest way to use ScrollCue.js is with the all-in-one version that include
 <script src="https://unpkg.com/scrollcue.js@latest/scrollcue.all-in-one.min.js"></script>
 ```
 
-### Standard CDN Implementation
-
-Alternatively, you can use the separate JS and CSS files:
-
-```html
-<script src="https://cdn.jsdelivr.net/gh/username/ScrollCue.js@latest/scrollcue.min.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/username/ScrollCue.js@latest/scrollcue.min.css">
-```
-
 ### Direct Download
 
 Or download the files from this repository and include them in your project:

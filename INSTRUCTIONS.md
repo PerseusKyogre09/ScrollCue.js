@@ -28,6 +28,7 @@
 - `zoom-out`: Scale down
 - `rotate-in`: Rotate while fading in
 - `flip-in`: 3D flip effect
+- `bounce-in`: Bounce in with elastic effect
 
 ## Custom Timing
 

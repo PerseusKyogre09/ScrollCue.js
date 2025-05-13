@@ -66,6 +66,7 @@ That's it! No initialization code needed. ScrollCue.js automatically detects ele
 - `zoom-out`: Scales down from larger size
 - `rotate-in`: Rotates and fades in
 - `flip-in`: Flips in with 3D effect
+- `bounce-in`: Bounces in with an elastic effect
 
 ### JavaScript API
 

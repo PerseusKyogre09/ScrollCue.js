@@ -5,7 +5,7 @@ A lightweight JavaScript scroll animation library using the Intersection Observe
 ## Features
 
 - Dependency-free (no jQuery required)
-- Lightweight (<5KB minified)
+- Lightweight
 - Uses modern Intersection Observer API
 - Multiple animation types
 - Customizable timing and easing

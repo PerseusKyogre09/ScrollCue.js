@@ -230,7 +230,7 @@
   }
 }
 
-/* Wave animation - Improved with smoother motion */
+/* Wave animation */
 .scrollcue.wave.is-inactive {
   transform: translateY(0);
   opacity: 0;
@@ -264,26 +264,7 @@
   100% { transform: translateY(0px); }
 }
 
-/* Rain effect animation */
-.scrollcue.rain.is-inactive {
-  position: relative;
-  overflow: hidden;
-}
-.scrollcue.rain.cue-in::before {
-  content: "";
-  position: absolute;
-  top: -100%;
-  left: 0;
-  width: 100%;
-  height: 200%;
-  background: linear-gradient(to bottom, transparent 0%, rgba(255, 255, 255, 0.3) 40%, rgba(255, 255, 255, 0.3) 50%, transparent 100%);
-  background-size: 10px 20px;
-  animation: rain-animation 1s linear infinite;
-}
-@keyframes rain-animation {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(20px); }
-}
+
 
 /* Typing effect */
 .scrollcue.typing.is-inactive {
@@ -342,7 +323,7 @@
     85% { opacity: 0.7; filter: brightness(0.9) contrast(0.8); transform: scale(0.96) rotate(0.5deg); }
 }
 
-/* Boat rocking animation - Improved with more natural motion */
+/* Boat rocking animation */
 .scrollcue.boat-rock.is-inactive {
   transform-origin: center bottom;
   opacity: 0;
@@ -367,6 +348,7 @@
   position: relative;
   overflow: hidden;
 }
+.scrollcue.ripple.cue-in::before,
 .scrollcue.ripple.cue-in::after {
   content: '';
   position: absolute;
@@ -375,9 +357,24 @@
   width: 0;
   height: 0;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.4);
   transform: translate(-50%, -50%);
-  animation: ripple-animation 2s ease-out infinite;
+}
+.scrollcue.ripple.cue-in::before {
+  background: radial-gradient(circle, 
+    rgba(255, 255, 255, 0.3) 0%,
+    rgba(255, 255, 255, 0.2) 45%,
+    rgba(255, 255, 255, 0.1) 65%,
+    transparent 100%);
+  animation: ripple-animation 3s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+}
+.scrollcue.ripple.cue-in::after {
+  background: radial-gradient(circle, 
+    rgba(255, 255, 255, 0.25) 0%,
+    rgba(255, 255, 255, 0.15) 45%,
+    rgba(255, 255, 255, 0.05) 65%,
+    transparent 100%);
+  animation: ripple-animation 3s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+  animation-delay: -1.5s;
 }
 @keyframes ripple-animation {
   0% {
@@ -385,9 +382,12 @@
     height: 0;
     opacity: 1;
   }
+  50% {
+    opacity: 0.5;
+  }
   100% {
-    width: 200%;
-    height: 200%;
+    width: 250%;
+    height: 250%;
     opacity: 0;
   }
 }
@@ -397,22 +397,41 @@
   overflow: hidden;
   position: relative;
 }
-.scrollcue.wind.cue-in::before {
+.scrollcue.wind.cue-in::before,
+.scrollcue.wind.cue-in::after {
   content: "";
   position: absolute;
   top: 0;
   left: -100%;
   width: 200%;
   height: 100%;
-  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.2) 50%, transparent 100%);
-  animation: wind-animation 3s ease-in-out infinite;
+  animation: wind-animation 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+.scrollcue.wind.cue-in::before {
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(255,255,255,0.05) 45%,
+    rgba(255,255,255,0.1) 50%,
+    rgba(255,255,255,0.05) 55%,
+    transparent 100%);
+}
+.scrollcue.wind.cue-in::after {
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(255,255,255,0.08) 48%,
+    rgba(255,255,255,0.15) 50%,
+    rgba(255,255,255,0.08) 52%,
+    transparent 100%);
+  animation-delay: -2s;
 }
 @keyframes wind-animation {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(100%); }
+  0% { transform: translateX(0) skewX(0deg); }
+  25% { transform: translateX(25%) skewX(-2deg); }
+  75% { transform: translateX(75%) skewX(2deg); }
+  100% { transform: translateX(100%) skewX(0deg); }
 }
 
-/* Storm effect - Simplified to focus on element motion */
+/* Storm effect */
 .scrollcue.storm.is-inactive {
   transform: scale(0.95);
   opacity: 0;
@@ -426,7 +445,7 @@
   100% { transform: translateX(3px) rotate(1deg) scale(0.98); }
 }
 
-/* Breaking wave effect - Simplified to element motion only */
+/* Breaking wave effect */
 .scrollcue.breaking-wave.is-inactive {
     transform: translateY(20px) scale(0.95);
     opacity: 0;
@@ -443,7 +462,7 @@
     100% { transform: translateY(0) rotate(0); }
 }
 
-/* Sequential fade in for children */
+/* Sequential fade in */
 .scrollcue.sequential.is-inactive > * {
   opacity: 0;
   transform: translateY(20px);

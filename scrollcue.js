@@ -22,7 +22,6 @@
     init() {
       if (this.initialized) return;
       
-      // If IntersectionObserver is supported or not
       if (!('IntersectionObserver' in window)) {
         console.warn('ScrollCue.js: IntersectionObserver is not supported in this browser.');
         this.showAllElements();

@@ -8,11 +8,10 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
   <header>
     <div class="container">
-      <h1>ScrollCue.js</h1>
-      <p>A lightweight scroll animation library using Intersection Observer API</p>
+      <h1 class="scrollcue" data-cue="fade-down" data-duration="1200">ScrollCue.js</h1>
+      <p class="scrollcue" data-cue="fade-up" data-delay="300">A lightweight scroll animation library using Intersection Observer API</p>
     </div>
   </header>
 
@@ -33,6 +32,7 @@
     ">
     🌙 Dark Mode
     </button>
+
     <section class="section">
       <h2 class="section-title">Fade & Slide Animations</h2>
       
@@ -136,6 +136,135 @@
     </section>
     
     <section class="section">
+      <h2 class="section-title">Dynamic Effects</h2>
+      
+      <div class="animation-container">
+        <div class="animation-card">
+          <h3>Wave</h3>
+          <div class="card-wrapper">
+            <div class="demo-block scrollcue" data-cue="wave">
+              wave
+            </div>
+          </div>
+        </div>
+
+        <div class="animation-card">
+          <h3>Float</h3>
+          <div class="card-wrapper">
+            <div class="demo-block scrollcue" data-cue="float">
+              float
+            </div>
+          </div>
+        </div>
+
+        <div class="animation-card">
+          <h3>Flicker</h3>
+          <div class="card-wrapper">
+            <div class="demo-block scrollcue" data-cue="flicker">
+              flicker
+            </div>
+          </div>
+        </div>
+
+        <div class="animation-card">
+          <h3>Shake</h3>
+          <div class="card-wrapper">
+            <div class="demo-block scrollcue" data-cue="shake">
+              shake
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">Text Effects</h2>
+      
+      <div class="animation-container">
+        <div class="animation-card">
+          <h3>Typing</h3>
+          <div class="card-wrapper">
+            <div class="demo-block scrollcue" data-cue="typing">
+              This text will be typed out...
+            </div>
+          </div>
+        </div>
+
+        <div class="animation-card">
+          <h3>Sequential</h3>
+          <div class="card-wrapper">
+            <div class="demo-block scrollcue" data-cue="sequential" style="height: auto; display: flex; flex-direction: column; gap: 10px;">
+              <div>First item</div>
+              <div>Second item</div>
+              <div>Third item</div>
+              <div>Fourth item</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ocean-section">
+      <h2 class="section-title scrollcue" data-cue="fade">Ocean-Inspired Effects</h2>
+      
+      <div class="animation-container">
+        <div class="animation-card">
+          <h3>Boat Rock</h3>
+          <div class="card-wrapper">
+            <div class="demo-block scrollcue" data-cue="boat-rock">
+              ⛵
+            </div>
+          </div>
+        </div>
+
+        <div class="animation-card">
+          <h3>Rain Effect</h3>
+          <div class="card-wrapper">
+            <div class="demo-block scrollcue" data-cue="rain">
+              🌧️
+            </div>
+          </div>
+        </div>
+
+        <div class="animation-card">
+          <h3>Wind Effect</h3>
+          <div class="card-wrapper">
+            <div class="demo-block scrollcue" data-cue="wind">
+              💨
+            </div>
+          </div>
+        </div>
+
+        <div class="animation-card">
+          <h3>Storm Effect</h3>
+          <div class="card-wrapper">
+            <div class="demo-block scrollcue" data-cue="storm">
+              ⛈️
+            </div>
+          </div>
+        </div>
+
+        <div class="animation-card">
+          <h3>Ripple Effect</h3>
+          <div class="card-wrapper">
+            <div class="demo-block scrollcue" data-cue="ripple">
+              💧
+            </div>
+          </div>
+        </div>
+
+        <div class="animation-card">
+          <h3>Breaking Wave</h3>
+          <div class="card-wrapper">
+            <div class="demo-block scrollcue" data-cue="breaking-wave">
+              🌊
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section class="section">
       <h2 class="section-title">Delays & Durations</h2>
       
       <div class="animation-container">
@@ -179,8 +308,8 @@
   </div>
   <footer>
     <div class="container">
-      <p>ScrollCue.js - A lightweight scroll animation library</p>
-      <p>Created for animation enthusiasts</p>
+      <p class="scrollcue" data-cue="fade">ScrollCue.js - A lightweight scroll animation library</p>
+      <p class="scrollcue" data-cue="fade-up" data-delay="300">Created for animation enthusiasts</p>
     </div>
   </footer>
 

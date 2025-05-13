@@ -1,0 +1,376 @@
+/**
+ * ScrollMagic.css - Companion CSS file for ScrollMagic.js
+ * Provides additional styling options and animations
+ * Version 1.0.0
+ */
+
+/* Base styles for all animated elements */
+[data-scroll] {
+  visibility: visible;
+  opacity: 0;
+  transition-property: transform, opacity, filter;
+  transition-duration: 800ms;
+  transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1.0);
+  will-change: transform, opacity, filter;
+}
+
+[data-scroll].visible {
+  opacity: 1;
+}
+
+/* Basic fade in animation */
+[data-scroll="fade"] {
+  opacity: 0;
+}
+
+/* Fade with directional movement */
+[data-scroll="fade-up"] {
+  transform: translateY(50px);
+}
+[data-scroll="fade-up"].visible {
+  transform: translateY(0);
+}
+
+[data-scroll="fade-down"] {
+  transform: translateY(-50px);
+}
+[data-scroll="fade-down"].visible {
+  transform: translateY(0);
+}
+
+[data-scroll="fade-left"] {
+  transform: translateX(50px);
+}
+[data-scroll="fade-left"].visible {
+  transform: translateX(0);
+}
+
+[data-scroll="fade-right"] {
+  transform: translateX(-50px);
+}
+[data-scroll="fade-right"].visible {
+  transform: translateX(0);
+}
+
+/* Zoom animations */
+[data-scroll="zoom-in"] {
+  transform: scale(0.8);
+}
+[data-scroll="zoom-in"].visible {
+  transform: scale(1);
+}
+
+[data-scroll="zoom-out"] {
+  transform: scale(1.2);
+}
+[data-scroll="zoom-out"].visible {
+  transform: scale(1);
+}
+
+/* Rotate animation */
+[data-scroll="rotate"] {
+  transform: rotate(-15deg);
+}
+[data-scroll="rotate"].visible {
+  transform: rotate(0);
+}
+
+/* Blur animation */
+[data-scroll="blur"] {
+  filter: blur(10px);
+}
+[data-scroll="blur"].visible {
+  filter: blur(0);
+}
+
+/* Wave animation */
+[data-scroll="wave"] {
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+[data-scroll="wave"].visible {
+  animation-name: wave-animation;
+}
+@keyframes wave-animation {
+  0% { transform: translateY(0); }
+  25% { transform: translateY(-10px); }
+  50% { transform: translateY(0); }
+  75% { transform: translateY(10px); }
+  100% { transform: translateY(0); }
+}
+
+/* Float animation */
+[data-scroll="float"] {
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+[data-scroll="float"].visible {
+  animation-name: float-animation;
+}
+@keyframes float-animation {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0px); }
+}
+
+/* Rain effect animation */
+[data-scroll="rain"] {
+  position: relative;
+  overflow: hidden;
+}
+[data-scroll="rain"].visible::before {
+  content: "";
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 200%;
+  background: linear-gradient(to bottom, transparent 0%, rgba(255, 255, 255, 0.3) 40%, rgba(255, 255, 255, 0.3) 50%, transparent 100%);
+  background-size: 10px 20px;
+  animation: rain-animation 1s linear infinite;
+}
+@keyframes rain-animation {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(20px); }
+}
+
+/* Typing effect */
+[data-scroll="typing"] {
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 0;
+  border-right: 2px solid;
+}
+[data-scroll="typing"].visible {
+  animation: typing-animation 3.5s steps(40, end) forwards,
+            blink-caret 0.75s step-end infinite;
+}
+@keyframes typing-animation {
+  0% { width: 0 }
+  100% { width: 100% }
+}
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: currentColor }
+}
+
+/* Shake animation */
+[data-scroll="shake"] {
+  transform: translateX(0);
+}
+[data-scroll="shake"].visible {
+  animation: shake-animation 0.82s cubic-bezier(.36,.07,.19,.97) forwards;
+}
+@keyframes shake-animation {
+  10%, 90% { transform: translateX(-1px); }
+  20%, 80% { transform: translateX(2px); }
+  30%, 50%, 70% { transform: translateX(-4px); }
+  40%, 60% { transform: translateX(4px); }
+}
+
+/* Flicker animation (like candle flame) */
+[data-scroll="flicker"] {
+    opacity: 0;
+    transform: scale(1);
+    filter: brightness(1);
+}
+[data-scroll="flicker"].visible {
+    opacity: 1;
+    animation: flicker-animation 3s infinite alternate;
+    transform-origin: center center;
+}
+@keyframes flicker-animation {
+    0%, 100% { opacity: 1; filter: brightness(1) contrast(1); transform: scale(1) rotate(0deg); }
+    10% { opacity: 0.8; filter: brightness(1.2) contrast(1.2); transform: scale(1.05) rotate(1deg); }
+    15% { opacity: 0.3; filter: brightness(0.9) contrast(0.8); transform: scale(0.97) rotate(-1deg); }
+    20% { opacity: 0.9; filter: brightness(1.3) contrast(1.4); transform: scale(1.08) rotate(2deg); }
+    25% { opacity: 0.6; filter: brightness(0.8) contrast(0.9); transform: scale(0.95) rotate(-2deg); }
+    30% { opacity: 1; filter: brightness(1.1) contrast(1.1); transform: scale(1.03) rotate(0deg); }
+    50% { opacity: 0.4; filter: brightness(0.7) contrast(0.7); transform: scale(0.98) rotate(-1deg); }
+    55% { opacity: 0.9; filter: brightness(1.4) contrast(1.3); transform: scale(1.06) rotate(1deg); }
+    70% { opacity: 1; filter: brightness(1.2) contrast(1.2); transform: scale(1.04) rotate(-0.5deg); }
+    85% { opacity: 0.7; filter: brightness(0.9) contrast(0.8); transform: scale(0.96) rotate(0.5deg); }
+}
+
+/* Perspective animation */
+[data-scroll="perspective"] {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  transform: rotateX(30deg);
+  opacity: 0;
+}
+[data-scroll="perspective"].visible {
+  transform: rotateX(0);
+  opacity: 1;
+}
+
+/* Flip animations */
+[data-scroll="flip-x"] {
+  transform: rotateX(90deg);
+  backface-visibility: hidden;
+}
+[data-scroll="flip-x"].visible {
+  transform: rotateX(0);
+}
+
+[data-scroll="flip-y"] {
+  transform: rotateY(90deg);
+  backface-visibility: hidden;
+}
+[data-scroll="flip-y"].visible {
+  transform: rotateY(0);
+}
+
+/* Boat rocking animation (like a boat on waves) */
+[data-scroll="boat-rock"] {
+  transform-origin: center bottom;
+}
+[data-scroll="boat-rock"].visible {
+  animation: boat-rock-animation 5s ease-in-out infinite;
+}
+@keyframes boat-rock-animation {
+  0% { transform: rotate(0); }
+  25% { transform: rotate(5deg); }
+  50% { transform: rotate(0); }
+  75% { transform: rotate(-5deg); }
+  100% { transform: rotate(0); }
+}
+
+/* The Boat specific animations */
+
+/* Water ripple effect */
+[data-scroll="ripple"] {
+  position: relative;
+  overflow: hidden;
+}
+[data-scroll="ripple"].visible::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  transform: translate(-50%, -50%);
+  animation: ripple-animation 2s ease-out infinite;
+}
+@keyframes ripple-animation {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    width: 200%;
+    height: 200%;
+    opacity: 0;
+  }
+}
+
+/* Wind effect */
+[data-scroll="wind"] {
+  overflow: hidden;
+  position: relative;
+}
+[data-scroll="wind"].visible::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.2) 50%, transparent 100%);
+  animation: wind-animation 3s ease-in-out infinite;
+}
+@keyframes wind-animation {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(100%); }
+}
+
+/* Storm effect - combines multiple animations */
+[data-scroll="storm"] {
+  position: relative;
+}
+[data-scroll="storm"].visible {
+  animation: storm-shake 0.5s ease-in-out infinite alternate;
+}
+[data-scroll="storm"].visible::before {
+  content: "";
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 200%;
+  background: linear-gradient(to bottom, transparent 0%, rgba(255, 255, 255, 0.2) 40%, rgba(255, 255, 255, 0.2) 50%, transparent 100%);
+  background-size: 5px 10px;
+  animation: storm-rain 0.5s linear infinite;
+}
+@keyframes storm-shake {
+  0% { transform: translateX(-3px) rotate(-1deg); }
+  100% { transform: translateX(3px) rotate(1deg); }
+}
+@keyframes storm-rain {
+  0% { transform: translateY(0) rotate(15deg); }
+  100% { transform: translateY(20px) rotate(15deg); }
+}
+
+/* Breaking wave effect */
+[data-scroll="breaking-wave"] {
+    position: relative;
+    overflow: hidden;
+}
+[data-scroll="breaking-wave"].visible::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 200%;
+    height: 60%;
+    background: linear-gradient(to top, 
+        rgba(255,255,255,0.8) 10%, 
+        rgba(173,216,230,0.6) 30%,
+        rgba(135,206,235,0.4) 60%,
+        transparent 100%);
+    border-radius: 50% 50% 0 0;
+    animation: wave-break-animation 4s infinite ease-in-out;
+    transform-origin: center bottom;
+}
+@keyframes wave-break-animation {
+    0% { transform: translateX(-50%) scaleY(0.2); }
+    30% { transform: translateX(-30%) scaleY(0.8); }
+    50% { transform: translateX(-25%) scaleY(1) rotate(2deg); }
+    70% { transform: translateX(-15%) scaleY(0.8) rotate(-1deg); }
+    100% { transform: translateX(0%) scaleY(0.2); }
+}
+}
+
+/* Parallax effect */
+[data-scroll="parallax"] {
+  transition-property: transform;
+  will-change: transform;
+}
+
+/* Sequential fade in for children */
+[data-scroll="sequential"] > * {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+[data-scroll="sequential"].visible > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+[data-scroll="sequential"].visible > *:nth-child(1) { transition-delay: 0.1s; }
+[data-scroll="sequential"].visible > *:nth-child(2) { transition-delay: 0.2s; }
+[data-scroll="sequential"].visible > *:nth-child(3) { transition-delay: 0.3s; }
+[data-scroll="sequential"].visible > *:nth-child(4) { transition-delay: 0.4s; }
+[data-scroll="sequential"].visible > *:nth-child(5) { transition-delay: 0.5s; }
+[data-scroll="sequential"].visible > *:nth-child(6) { transition-delay: 0.6s; }
+[data-scroll="sequential"].visible > *:nth-child(7) { transition-delay: 0.7s; }
+[data-scroll="sequential"].visible > *:nth-child(8) { transition-delay: 0.8s; }
+[data-scroll="sequential"].visible > *:nth-child(9) { transition-delay: 0.9s; }
+[data-scroll="sequential"].visible > *:nth-child(10) { transition-delay: 1.0s; }

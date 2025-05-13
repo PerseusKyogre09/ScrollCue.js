@@ -229,3 +229,237 @@
     opacity: 1;
   }
 }
+
+/* Wave animation - Improved with smoother motion */
+.scrollcue.wave.is-inactive {
+  transform: translateY(0);
+  opacity: 0;
+}
+.scrollcue.wave.cue-in {
+  opacity: 1;
+  animation: wave-animation 4s ease-in-out infinite;
+}
+@keyframes wave-animation {
+  0% { transform: translateY(0); }
+  20% { transform: translateY(-8px) rotate(0.5deg); }
+  40% { transform: translateY(0) rotate(-0.25deg); }
+  60% { transform: translateY(5px) rotate(0.5deg); }
+  80% { transform: translateY(-3px) rotate(-0.25deg); }
+  100% { transform: translateY(0); }
+}
+
+/* Float animation */
+.scrollcue.float.is-inactive {
+  transform: translateY(0);
+}
+.scrollcue.float.cue-in {
+  animation-name: float-animation;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+@keyframes float-animation {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0px); }
+}
+
+/* Rain effect animation */
+.scrollcue.rain.is-inactive {
+  position: relative;
+  overflow: hidden;
+}
+.scrollcue.rain.cue-in::before {
+  content: "";
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 200%;
+  background: linear-gradient(to bottom, transparent 0%, rgba(255, 255, 255, 0.3) 40%, rgba(255, 255, 255, 0.3) 50%, transparent 100%);
+  background-size: 10px 20px;
+  animation: rain-animation 1s linear infinite;
+}
+@keyframes rain-animation {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(20px); }
+}
+
+/* Typing effect */
+.scrollcue.typing.is-inactive {
+  width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 2px solid;
+}
+.scrollcue.typing.cue-in {
+  animation: typing-animation 3.5s steps(40, end) forwards,
+            blink-caret 0.75s step-end infinite;
+}
+@keyframes typing-animation {
+  0% { width: 0 }
+  100% { width: 100% }
+}
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: currentColor }
+}
+
+/* Shake animation */
+.scrollcue.shake.is-inactive {
+  transform: translateX(0);
+}
+.scrollcue.shake.cue-in {
+  animation: shake-animation 0.82s cubic-bezier(.36,.07,.19,.97) forwards;
+}
+@keyframes shake-animation {
+  10%, 90% { transform: translateX(-1px); }
+  20%, 80% { transform: translateX(2px); }
+  30%, 50%, 70% { transform: translateX(-4px); }
+  40%, 60% { transform: translateX(4px); }
+}
+
+/* Flicker animation */
+.scrollcue.flicker.is-inactive {
+    opacity: 0;
+    transform: scale(1);
+    filter: brightness(1);
+}
+.scrollcue.flicker.cue-in {
+    animation: flicker-animation 3s infinite alternate;
+    transform-origin: center center;
+}
+@keyframes flicker-animation {
+    0%, 100% { opacity: 1; filter: brightness(1) contrast(1); transform: scale(1) rotate(0deg); }
+    10% { opacity: 0.8; filter: brightness(1.2) contrast(1.2); transform: scale(1.05) rotate(1deg); }
+    15% { opacity: 0.3; filter: brightness(0.9) contrast(0.8); transform: scale(0.97) rotate(-1deg); }
+    20% { opacity: 0.9; filter: brightness(1.3) contrast(1.4); transform: scale(1.08) rotate(2deg); }
+    25% { opacity: 0.6; filter: brightness(0.8) contrast(0.9); transform: scale(0.95) rotate(-2deg); }
+    30% { opacity: 1; filter: brightness(1.1) contrast(1.1); transform: scale(1.03) rotate(0deg); }
+    50% { opacity: 0.4; filter: brightness(0.7) contrast(0.7); transform: scale(0.98) rotate(-1deg); }
+    55% { opacity: 0.9; filter: brightness(1.4) contrast(1.3); transform: scale(1.06) rotate(1deg); }
+    70% { opacity: 1; filter: brightness(1.2) contrast(1.2); transform: scale(1.04) rotate(-0.5deg); }
+    85% { opacity: 0.7; filter: brightness(0.9) contrast(0.8); transform: scale(0.96) rotate(0.5deg); }
+}
+
+/* Boat rocking animation - Improved with more natural motion */
+.scrollcue.boat-rock.is-inactive {
+  transform-origin: center bottom;
+  opacity: 0;
+}
+.scrollcue.boat-rock.cue-in {
+  opacity: 1;
+  animation: boat-rock-animation 6s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite;
+}
+@keyframes boat-rock-animation {
+  0% { transform: rotate(0); }
+  15% { transform: rotate(3deg) translateY(-2px); }
+  30% { transform: rotate(-1deg) translateY(1px); }
+  45% { transform: rotate(2deg) translateY(-1px); }
+  60% { transform: rotate(-2deg) translateY(2px); }
+  75% { transform: rotate(1deg) translateY(-1px); }
+  90% { transform: rotate(-0.5deg) translateY(1px); }
+  100% { transform: rotate(0) translateY(0); }
+}
+
+/* Water ripple effect */
+.scrollcue.ripple.is-inactive {
+  position: relative;
+  overflow: hidden;
+}
+.scrollcue.ripple.cue-in::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  transform: translate(-50%, -50%);
+  animation: ripple-animation 2s ease-out infinite;
+}
+@keyframes ripple-animation {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    width: 200%;
+    height: 200%;
+    opacity: 0;
+  }
+}
+
+/* Wind effect */
+.scrollcue.wind.is-inactive {
+  overflow: hidden;
+  position: relative;
+}
+.scrollcue.wind.cue-in::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.2) 50%, transparent 100%);
+  animation: wind-animation 3s ease-in-out infinite;
+}
+@keyframes wind-animation {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(100%); }
+}
+
+/* Storm effect - Simplified to focus on element motion */
+.scrollcue.storm.is-inactive {
+  transform: scale(0.95);
+  opacity: 0;
+}
+.scrollcue.storm.cue-in {
+  animation: storm-shake 0.5s ease-in-out infinite alternate;
+  opacity: 1;
+}
+@keyframes storm-shake {
+  0% { transform: translateX(-3px) rotate(-1deg) scale(1); }
+  100% { transform: translateX(3px) rotate(1deg) scale(0.98); }
+}
+
+/* Breaking wave effect - Simplified to element motion only */
+.scrollcue.breaking-wave.is-inactive {
+    transform: translateY(20px) scale(0.95);
+    opacity: 0;
+}
+.scrollcue.breaking-wave.cue-in {
+    animation: wave-motion 3s ease-in-out infinite;
+    opacity: 1;
+}
+@keyframes wave-motion {
+    0% { transform: translateY(0) rotate(0); }
+    25% { transform: translateY(-10px) rotate(2deg); }
+    50% { transform: translateY(0) rotate(0); }
+    75% { transform: translateY(-5px) rotate(-1deg); }
+    100% { transform: translateY(0) rotate(0); }
+}
+
+/* Sequential fade in for children */
+.scrollcue.sequential.is-inactive > * {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.scrollcue.sequential.cue-in > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+.scrollcue.sequential.cue-in > *:nth-child(1) { transition-delay: 0.1s; }
+.scrollcue.sequential.cue-in > *:nth-child(2) { transition-delay: 0.2s; }
+.scrollcue.sequential.cue-in > *:nth-child(3) { transition-delay: 0.3s; }
+.scrollcue.sequential.cue-in > *:nth-child(4) { transition-delay: 0.4s; }
+.scrollcue.sequential.cue-in > *:nth-child(5) { transition-delay: 0.5s; }
+.scrollcue.sequential.cue-in > *:nth-child(6) { transition-delay: 0.6s; }
+.scrollcue.sequential.cue-in > *:nth-child(7) { transition-delay: 0.7s; }
+.scrollcue.sequential.cue-in > *:nth-child(8) { transition-delay: 0.8s; }
+.scrollcue.sequential.cue-in > *:nth-child(9) { transition-delay: 0.9s; }
+.scrollcue.sequential.cue-in > *:nth-child(10) { transition-delay: 1.0s; }

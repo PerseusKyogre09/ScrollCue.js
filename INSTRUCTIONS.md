@@ -19,6 +19,7 @@
 
 ## Available Animations
 
+### Basic Animations
 - `fade-in`: Fade in
 - `slide-up`: Slide up from below
 - `slide-down`: Slide down from above
@@ -29,6 +30,56 @@
 - `rotate-in`: Rotate while fading in
 - `flip-in`: 3D flip effect
 - `bounce-in`: Bounce in with elastic effect
+
+### Special Effects
+- `wave`: Gentle wave-like motion
+- `float`: Smooth floating animation
+- `wind`: Wind sweeping effect
+- `ripple`: Water ripple effect
+- `boat-rock`: Boat rocking motion
+- `storm`: Storm-like shaking effect
+- `breaking-wave`: Wave breaking motion
+- `typing`: Type text with cursor blink
+- `shake`: Quick shake animation
+- `flicker`: Light flickering effect
+- `sequential`: Animate children sequentially
+
+## Example Effects
+
+### Ocean Effects
+
+```html
+<!-- Wave motion -->
+<div class="scrollcue" data-cue="wave">
+  🌊 Wave animation
+</div>
+
+<!-- Boat rocking -->
+<div class="scrollcue" data-cue="boat-rock" data-duration="6000">
+  ⛵ Rocking boat
+</div>
+
+<!-- Water ripple -->
+<div class="scrollcue" data-cue="ripple">
+  💧 Ripple effect
+</div>
+
+<!-- Wind effect -->
+<div class="scrollcue" data-cue="wind">
+  💨 Wind animation
+</div>
+```
+
+### Sequential Animation
+
+```html
+<div class="scrollcue" data-cue="sequential">
+  <!-- Each child will animate in sequence -->
+  <div>First item (100ms delay)</div>
+  <div>Second item (200ms delay)</div>
+  <div>Third item (300ms delay)</div>
+</div>
+```
 
 ## Custom Timing
 

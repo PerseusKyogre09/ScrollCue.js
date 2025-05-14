@@ -14,7 +14,7 @@ A lightweight JavaScript scroll animation library using the Intersection Observe
 - **Can be used directly from CDN - no downloads needed**
 - **One-line implementation available (JS + CSS together)**
 
-See all the features here! https://demo-index.tiiny.site
+[See all the features here!](https://perseuskyogre09.github.io/ScrollCue.js/demo/index-cdn.html)
 
 ## Installation
 

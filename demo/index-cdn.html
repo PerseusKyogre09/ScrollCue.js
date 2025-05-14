@@ -5,126 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ScrollCue.js Demo</title>
   <link rel="stylesheet" href="style.css">
-  <!-- <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-    
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-      line-height: 1.6;
-      color: #333;
-      background-color: #f8f9fa;
-    }
-    
-    header {
-      background-color: #4a6cf7;
-      color: white;
-      text-align: center;
-      padding: 3rem 1rem;
-      margin-bottom: 2rem;
-    }
-    
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-    }
-    
-    .container {
-      max-width: 1140px;
-      margin: 0 auto;
-      padding: 0 1rem;
-    }
-    
-    .section {
-      padding: 4rem 0;
-      border-bottom: 1px solid #e9ecef;
-    }
-    
-    .section-title {
-      text-align: center;
-      margin-bottom: 2rem;
-      font-size: 1.8rem;
-      color: #4a6cf7;
-    }
-    
-    .animation-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1rem;
-    }
-    
-    .animation-card {
-      background-color: white;
-      border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      padding: 1.5rem;
-      text-align: center;
-      width: 240px;
-      margin-bottom: 1.5rem;
-    }
-    
-    .animation-card h3 {
-      margin-bottom: 1rem;
-      color: #4a6cf7;
-    }
-    
-    .card-wrapper {
-      min-height: 200px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    
-    .demo-block {
-      width: 100%;
-      height: 120px;
-      background-color: #4a6cf7;
-      color: white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-weight: bold;
-      border-radius: 4px;
-    }
-    
-    footer {
-      text-align: center;
-      padding: 2rem;
-      color: #6c757d;
-      font-size: 0.9rem;
-    }
-    
-    .scroll-info {
-      text-align: center;
-      padding: 1rem;
-      background-color: #e9ecef;
-      margin: 2rem 0;
-      border-radius: 4px;
-    }
-    
-    @media (max-width: 768px) {
-      .animation-container {
-        flex-direction: column;
-        align-items: center;
-      }
-      
-      .animation-card {
-        width: 100%;
-        max-width: 300px;
-      }
-    }
-  </style> -->
 </head>
 <body>
 
   <header>
     <div class="container">
-      <h1>ScrollCue.js</h1>
-      <p>A lightweight scroll animation library using Intersection Observer API</p>
+      <h1 class="scrollcue" data-cue="fade-down" data-duration="1200">ScrollCue.js</h1>
+      <p class="scrollcue" data-cue="fade-up" data-delay="300">A lightweight scroll animation library using Intersection Observer API</p>
       <p><small>CDN Example</small></p>
     </div>
   </header>
@@ -202,6 +89,15 @@
       
       <div class="animation-container">
         <div class="animation-card">
+          <h3>Bounce In</h3>
+          <div class="card-wrapper">
+            <div class="demo-block scrollcue" data-cue="bounce-in">
+              bounce-in
+            </div>
+          </div>
+        </div>
+
+        <div class="animation-card">
           <h3>Zoom In</h3>
           <div class="card-wrapper">
             <div class="demo-block scrollcue" data-cue="zoom-in">
@@ -239,6 +135,124 @@
       </div>
     </section>
     
+    <section class="section">
+      <h2 class="section-title">Dynamic Effects</h2>
+      
+      <div class="animation-container">
+        <div class="animation-card">
+          <h3>Wave</h3>
+          <div class="card-wrapper">
+            <div class="demo-block scrollcue" data-cue="wave">
+              wave
+            </div>
+          </div>
+        </div>
+
+        <div class="animation-card">
+          <h3>Float</h3>
+          <div class="card-wrapper">
+            <div class="demo-block scrollcue" data-cue="float">
+              float
+            </div>
+          </div>
+        </div>
+
+        <div class="animation-card">
+          <h3>Flicker</h3>
+          <div class="card-wrapper">
+            <div class="demo-block scrollcue" data-cue="flicker">
+              flicker
+            </div>
+          </div>
+        </div>
+
+        <div class="animation-card">
+          <h3>Shake</h3>
+          <div class="card-wrapper">
+            <div class="demo-block scrollcue" data-cue="shake">
+              shake
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">Text Effects</h2>
+      
+      <div class="animation-container">
+        <div class="animation-card">
+          <h3>Typing</h3>
+          <div class="card-wrapper">
+            <div class="demo-block scrollcue" data-cue="typing">
+              This text will be typed out...
+            </div>
+          </div>
+        </div>
+
+        <div class="animation-card">
+          <h3>Sequential</h3>
+          <div class="card-wrapper">
+            <div class="demo-block scrollcue" data-cue="sequential" style="height: auto; display: flex; flex-direction: column; gap: 10px;">
+              <div>First item</div>
+              <div>Second item</div>
+              <div>Third item</div>
+              <div>Fourth item</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ocean-section">
+      <h2 class="section-title scrollcue" data-cue="fade">Ocean-Inspired Effects</h2>
+      
+      <div class="animation-container">
+        <div class="animation-card">
+          <h3>Boat Rock</h3>
+          <div class="card-wrapper">
+            <div class="demo-block scrollcue" data-cue="boat-rock">
+              ⛵
+            </div>
+          </div>
+        </div>        <div class="animation-card">
+          <h3>Wind Effect</h3>
+          <div class="card-wrapper">
+            <div class="demo-block scrollcue" data-cue="wind">
+              💨
+            </div>
+          </div>
+        </div>
+
+        <div class="animation-card">
+          <h3>Ripple Effect</h3>
+          <div class="card-wrapper">
+            <div class="demo-block scrollcue" data-cue="ripple">
+              💧
+            </div>
+          </div>
+        </div>
+
+        <div class="animation-card">
+          <h3>Storm Effect</h3>
+          <div class="card-wrapper">
+            <div class="demo-block scrollcue" data-cue="storm">
+              ⛈️
+            </div>
+          </div>
+        </div>
+
+        <div class="animation-card">
+          <h3>Breaking Wave</h3>
+          <div class="card-wrapper">
+            <div class="demo-block scrollcue" data-cue="breaking-wave">
+              🌊
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="section">
       <h2 class="section-title">Delays & Durations</h2>
       
@@ -283,8 +297,8 @@
   </div>
   <footer>
     <div class="container">
-      <p>ScrollCue.js - A lightweight scroll animation library</p>
-      <p>Created for animation enthusiasts</p>
+      <p class="scrollcue" data-cue="fade">ScrollCue.js - A lightweight scroll animation library</p>
+      <p class="scrollcue" data-cue="fade-up" data-delay="300">Created for animation enthusiasts</p>
     </div>
   </footer>
 

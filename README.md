@@ -5,7 +5,7 @@ A lightweight JavaScript scroll animation library using the Intersection Observe
 ## Features
 
 - Dependency-free (no jQuery required)
-- Lightweight (<5KB minified)
+- Lightweight
 - Uses modern Intersection Observer API
 - Multiple animation types
 - Customizable timing and easing
@@ -57,6 +57,8 @@ That's it! No initialization code needed. ScrollCue.js automatically detects ele
 
 ### Available Animations
 
+#### Basic Animations
+
 - `fade-in`: Simple fade-in effect
 - `slide-up`: Slides up from below
 - `slide-down`: Slides down from above
@@ -66,6 +68,71 @@ That's it! No initialization code needed. ScrollCue.js automatically detects ele
 - `zoom-out`: Scales down from larger size
 - `rotate-in`: Rotates and fades in
 - `flip-in`: Flips in with 3D effect
+- `bounce-in`: Bounces in with an elastic effect
+
+#### Special Effects
+
+- `wave`: Gentle wave-like motion
+- `float`: Smooth floating animation
+- `wind`: Wind sweeping effect
+- `ripple`: Water ripple effect with radial expansion
+- `boat-rock`: Realistic boat rocking motion
+- `storm`: Dynamic storm-like shaking
+- `breaking-wave`: Natural wave breaking motion
+- `typing`: Type text with cursor blink effect
+- `shake`: Quick shake animation
+- `flicker`: Light flickering effect with brightness
+- `sequential`: Animate child elements in sequence
+
+### Special Effects
+
+- `wave`: Gentle wave-like motion
+- `float`: Smooth floating animation
+- `wind`: Wind sweeping effect
+- `ripple`: Water ripple effect
+- `boat-rock`: Boat rocking motion
+- `storm`: Storm-like shaking effect
+- `breaking-wave`: Wave breaking motion
+- `typing`: Typing effect with cursor
+- `shake`: Quick shake animation
+- `flicker`: Light flickering effect
+- `sequential`: Animate children in sequence
+
+### Example Usage
+
+Basic animations:
+```html
+<div class="scrollcue" data-cue="fade-in">
+  This element will fade in when scrolled into view.
+</div>
+
+<div class="scrollcue" data-cue="slide-up" data-delay="200" data-duration="1000">
+  This element will slide up with a 200ms delay and 1000ms duration.
+</div>
+```
+
+Special effects:
+```html
+<!-- Ocean-themed effects -->
+<div class="scrollcue" data-cue="wave">
+  Wave motion effect
+</div>
+
+<div class="scrollcue" data-cue="boat-rock">
+  ⛵ Boat rocking animation
+</div>
+
+<div class="scrollcue" data-cue="ripple">
+  💧 Ripple effect
+</div>
+
+<!-- Sequential animation -->
+<div class="scrollcue" data-cue="sequential">
+  <div>First item</div>
+  <div>Second item</div>
+  <div>Third item</div>
+</div>
+```
 
 ### JavaScript API
 

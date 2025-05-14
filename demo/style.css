@@ -6,6 +6,7 @@
     --card-bg: #fef3f3;
     --card-text: #444;
     --demo-bg: #4a6cf7;
+    --ocean-bg: #2c3e50;
     --footer-bg: #fafafa;
     --footer-border: #dee2e6;
     --footer-text: #495057;
@@ -197,4 +198,32 @@
       font-size: 2rem;
     }
   }
-  
+
+  .ocean-section {
+    background: var(--ocean-bg);
+    color: white;
+    padding: 4rem 2rem;
+    margin: 2rem 0;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px var(--shadow);
+}
+
+.ocean-section .section-title {
+    color: #ecf0f1;
+    border-color: #ecf0f1;
+}
+
+.ocean-section .animation-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.ocean-section .animation-card h3 {
+    color: #ecf0f1;
+}
+
+.ocean-section .demo-block {
+    background: rgba(74, 108, 247, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}

@@ -3,9 +3,10 @@
   
   const styleElement = document.createElement('style');
   styleElement.textContent = `
-  .scrollcue{visibility:visible;opacity:1;transition:transform 0.4s ease,opacity 0.4s ease;}.scrollcue.is-inactive{visibility:hidden;opacity:0;will-change:transform,opacity;}.scrollcue.cue-in{visibility:visible;animation-fill-mode:both;}.scrollcue.fade-in.is-inactive{opacity:0;}.scrollcue.fade-in.cue-in{animation-name:fadeIn;}@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}.scrollcue.slide-up.is-inactive{transform:translateY(40px);opacity:0;}.scrollcue.slide-up.cue-in{animation-name:slideUp;}@keyframes slideUp{from{transform:translateY(40px);opacity:0;}to{transform:translateY(0);opacity:1;}}.scrollcue.slide-down.is-inactive{transform:translateY(-40px);opacity:0;}.scrollcue.slide-down.cue-in{animation-name:slideDown;}@keyframes slideDown{from{transform:translateY(-40px);opacity:0;}to{transform:translateY(0);opacity:1;}}.scrollcue.slide-left.is-inactive{transform:translateX(40px);opacity:0;}.scrollcue.slide-left.cue-in{animation-name:slideLeft;}@keyframes slideLeft{from{transform:translateX(40px);opacity:0;}to{transform:translateX(0);opacity:1;}}.scrollcue.slide-right.is-inactive{transform:translateX(-40px);opacity:0;}.scrollcue.slide-right.cue-in{animation-name:slideRight;}@keyframes slideRight{from{transform:translateX(-40px);opacity:0;}to{transform:translateX(0);opacity:1;}}.scrollcue.zoom-in.is-inactive{transform:scale(0.9);opacity:0;}.scrollcue.zoom-in.cue-in{animation-name:zoomIn;}@keyframes zoomIn{from{transform:scale(0.9);opacity:0;}to{transform:scale(1);opacity:1;}}.scrollcue.zoom-out.is-inactive{transform:scale(1.1);opacity:0;}.scrollcue.zoom-out.cue-in{animation-name:zoomOut;}@keyframes zoomOut{from{transform:scale(1.1);opacity:0;}to{transform:scale(1);opacity:1;}}.scrollcue.rotate-in.is-inactive{transform:rotate(-15deg) scale(0.9);opacity:0;}.scrollcue.rotate-in.cue-in{animation-name:rotateIn;}@keyframes rotateIn{from{transform:rotate(-15deg) scale(0.9);opacity:0;}to{transform:rotate(0) scale(1);opacity:1;}}.scrollcue.flip-in.is-inactive{transform:perspective(400px) rotateY(90deg);opacity:0;}.scrollcue.flip-in.cue-in{animation-name:flipIn;}@keyframes flipIn{from{transform:perspective(400px) rotateY(90deg);opacity:0;}to{transform:perspective(400px) rotateY(0deg);opacity:1;}}.scrollcue.bounce-in.is-inactive{transform:scale(0.3);opacity:0;}.scrollcue.bounce-in.cue-in{animation-name:bounceIn;}@keyframes bounceIn{0%{transform:scale(0.3);opacity:0;}50%{transform:scale(1.1);opacity:0.8;}70%{transform:scale(0.9);opacity:0.9;}100%{transform:scale(1);opacity:1;}}.scrollcue.wave.is-inactive{transform:translateY(0);opacity:0;}.scrollcue.wave.cue-in{opacity:1;animation:wave-animation 4s ease-in-out infinite;}@keyframes wave-animation{0%{transform:translateY(0);}20%{transform:translateY(-8px) rotate(0.5deg);}40%{transform:translateY(0) rotate(-0.25deg);}60%{transform:translateY(5px) rotate(0.5deg);}80%{transform:translateY(-3px) rotate(-0.25deg);}100%{transform:translateY(0);}}.scrollcue.float.is-inactive{transform:translateY(0);}.scrollcue.float.cue-in{animation-name:float-animation;animation-duration:3s;animation-iteration-count:infinite;animation-timing-function:ease-in-out;}@keyframes float-animation{0%{transform:translateY(0px);}50%{transform:translateY(-20px);}100%{transform:translateY(0px);}}.scrollcue.typing.is-inactive{width:0;white-space:nowrap;overflow:hidden;border-right:2px solid;}.scrollcue.typing.cue-in{animation:typing-animation 3.5s steps(40,end) forwards,blink-caret 0.75s step-end infinite;}@keyframes typing-animation{0%{width:0}100%{width:100%}}@keyframes blink-caret{from,to{border-color:transparent}50%{border-color:currentColor}}.scrollcue.shake.is-inactive{transform:translateX(0);}.scrollcue.shake.cue-in{animation:shake-animation 0.82s cubic-bezier(.36,.07,.19,.97) forwards;}@keyframes shake-animation{10%,90%{transform:translateX(-1px);}20%,80%{transform:translateX(2px);}30%,50%,70%{transform:translateX(-4px);}40%,60%{transform:translateX(4px);}}.scrollcue.flicker.is-inactive{opacity:0;transform:scale(1);filter:brightness(1);}.scrollcue.flicker.cue-in{animation:flicker-animation 3s infinite alternate;transform-origin:center center;}@keyframes flicker-animation{0%,100%{opacity:1;filter:brightness(1) contrast(1);transform:scale(1) rotate(0deg);}10%{opacity:0.8;filter:brightness(1.2) contrast(1.2);transform:scale(1.05) rotate(1deg);}15%{opacity:0.3;filter:brightness(0.9) contrast(0.8);transform:scale(0.97) rotate(-1deg);}20%{opacity:0.9;filter:brightness(1.3) contrast(1.4);transform:scale(1.08) rotate(2deg);}25%{opacity:0.6;filter:brightness(0.8) contrast(0.9);transform:scale(0.95) rotate(-2deg);}30%{opacity:1;filter:brightness(1.1) contrast(1.1);transform:scale(1.03) rotate(0deg);}50%{opacity:0.4;filter:brightness(0.7) contrast(0.7);transform:scale(0.98) rotate(-1deg);}55%{opacity:0.9;filter:brightness(1.4) contrast(1.3);transform:scale(1.06) rotate(1deg);}70%{opacity:1;filter:brightness(1.2) contrast(1.2);transform:scale(1.04) rotate(-0.5deg);}85%{opacity:0.7;filter:brightness(0.9) contrast(0.8);transform:scale(0.96) rotate(0.5deg);}}.scrollcue.boat-rock.is-inactive{transform-origin:center bottom;opacity:0;}.scrollcue.boat-rock.cue-in{opacity:1;animation:boat-rock-animation 6s cubic-bezier(0.445,0.05,0.55,0.95) infinite;}@keyframes boat-rock-animation{0%{transform:rotate(0);}15%{transform:rotate(3deg) translateY(-2px);}30%{transform:rotate(-1deg) translateY(1px);}45%{transform:rotate(2deg) translateY(-1px);}60%{transform:rotate(-2deg) translateY(2px);}75%{transform:rotate(1deg) translateY(-1px);}90%{transform:rotate(-0.5deg) translateY(1px);}100%{transform:rotate(0) translateY(0);}}.scrollcue.ripple.is-inactive{position:relative;overflow:hidden;}.scrollcue.ripple.cue-in::before,.scrollcue.ripple.cue-in::after{content:'';position:absolute;top:50%;left:50%;width:0;height:0;border-radius:50%;transform:translate(-50%,-50%);}.scrollcue.ripple.cue-in::before{background:radial-gradient(circle,rgba(255,255,255,0.3) 0%,rgba(255,255,255,0.2) 45%,rgba(255,255,255,0.1) 65%,transparent 100%);animation:ripple-animation 3s cubic-bezier(0.25,0.46,0.45,0.94) infinite;}.scrollcue.ripple.cue-in::after{background:radial-gradient(circle,rgba(255,255,255,0.25) 0%,rgba(255,255,255,0.15) 45%,rgba(255,255,255,0.05) 65%,transparent 100%);animation:ripple-animation 3s cubic-bezier(0.25,0.46,0.45,0.94) infinite;animation-delay:-1.5s;}@keyframes ripple-animation{0%{width:0;height:0;opacity:1;}50%{opacity:0.5;}100%{width:250%;height:250%;opacity:0;}}.scrollcue.wind.is-inactive{overflow:hidden;position:relative;}.scrollcue.wind.cue-in::before,.scrollcue.wind.cue-in::after{content:"";position:absolute;top:0;left:-100%;width:200%;height:100%;animation:wind-animation 4s cubic-bezier(0.4,0,0.2,1) infinite;}.scrollcue.wind.cue-in::before{background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,0.05) 45%,rgba(255,255,255,0.1) 50%,rgba(255,255,255,0.05) 55%,transparent 100%);}.scrollcue.wind.cue-in::after{background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,0.08) 48%,rgba(255,255,255,0.15) 50%,rgba(255,255,255,0.08) 52%,transparent 100%);animation-delay:-2s;}@keyframes wind-animation{0%{transform:translateX(0) skewX(0deg);}25%{transform:translateX(25%) skewX(-2deg);}75%{transform:translateX(75%) skewX(2deg);}100%{transform:translateX(100%) skewX(0deg);}}.scrollcue.storm.is-inactive{transform:scale(0.95);opacity:0;}.scrollcue.storm.cue-in{animation:storm-shake 0.5s ease-in-out infinite alternate;opacity:1;}@keyframes storm-shake{0%{transform:translateX(-3px) rotate(-1deg) scale(1);}100%{transform:translateX(3px) rotate(1deg) scale(0.98);}}.scrollcue.breaking-wave.is-inactive{transform:translateY(20px) scale(0.95);opacity:0;}.scrollcue.breaking-wave.cue-in{animation:wave-motion 3s ease-in-out infinite;opacity:1;}@keyframes wave-motion{0%{transform:translateY(0) rotate(0);}25%{transform:translateY(-10px) rotate(2deg);}50%{transform:translateY(0) rotate(0);}75%{transform:translateY(-5px) rotate(-1deg);}100%{transform:translateY(0) rotate(0);}}.scrollcue.sequential.is-inactive > *{opacity:0;transform:translateY(20px);transition:opacity 0.5s ease,transform 0.5s ease;}.scrollcue.sequential.cue-in > *{opacity:1;transform:translateY(0);}.scrollcue.sequential.cue-in > *:nth-child(1){transition-delay:0.1s;}.scrollcue.sequential.cue-in > *:nth-child(2){transition-delay:0.2s;}.scrollcue.sequential.cue-in > *:nth-child(3){transition-delay:0.3s;}.scrollcue.sequential.cue-in > *:nth-child(4){transition-delay:0.4s;}.scrollcue.sequential.cue-in > *:nth-child(5){transition-delay:0.5s;}.scrollcue.sequential.cue-in > *:nth-child(6){transition-delay:0.6s;}.scrollcue.sequential.cue-in > *:nth-child(7){transition-delay:0.7s;}.scrollcue.sequential.cue-in > *:nth-child(8){transition-delay:0.8s;}.scrollcue.sequential.cue-in > *:nth-child(9){transition-delay:0.9s;}.scrollcue.sequential.cue-in > *:nth-child(10){transition-delay:1.0s;}
+  .scrollcue{visibility:visible;opacity:1;transition:transform 0.4s cubic-bezier(0.25,0.1,0.25,1.0),opacity 0.4s cubic-bezier(0.25,0.1,0.25,1.0);will-change:transform,opacity;}.scrollcue.is-inactive{visibility:hidden;opacity:0;will-change:transform,opacity;backface-visibility:hidden;perspective:1000px;transform-style:preserve-3d;}.scrollcue.cue-in{visibility:visible;animation-fill-mode:both;}:root{--scrollcue-distance-sm:20px;--scrollcue-distance-md:40px;--scrollcue-distance-lg:80px;--scrollcue-scale-sm:0.95;--scrollcue-scale-md:0.9;--scrollcue-scale-lg:0.8;--scrollcue-rotate-sm:5deg;--scrollcue-rotate-md:15deg;--scrollcue-rotate-lg:30deg;}.scrollcue.fade-in.is-inactive{opacity:0;}.scrollcue.fade-in.cue-in{animation-name:fadeIn;}@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}.scrollcue.slide-up.is-inactive{transform:translateY(var(--scrollcue-distance-md));opacity:0;}.scrollcue.slide-up.cue-in{animation-name:slideUp;}@keyframes slideUp{0%{transform:translateY(var(--scrollcue-distance-md));opacity:0;}6%{opacity:0.05;}15%{transform:translateY(var(--scrollcue-distance-sm));}30%{opacity:0.5;}100%{transform:translateY(0);opacity:1;}}.scrollcue.slide-down.is-inactive{transform:translateY(calc(-1 * var(--scrollcue-distance-md)));opacity:0;}.scrollcue.slide-down.cue-in{animation-name:slideDown;}@keyframes slideDown{0%{transform:translateY(calc(-1 * var(--scrollcue-distance-md)));opacity:0;}6%{opacity:0.05;}15%{transform:translateY(calc(-1 * var(--scrollcue-distance-sm)));}30%{opacity:0.5;}100%{transform:translateY(0);opacity:1;}}.scrollcue.slide-left.is-inactive{transform:translateX(var(--scrollcue-distance-md));opacity:0;}.scrollcue.slide-left.cue-in{animation-name:slideLeft;}@keyframes slideLeft{0%{transform:translateX(var(--scrollcue-distance-md));opacity:0;}6%{opacity:0.05;}15%{transform:translateX(var(--scrollcue-distance-sm));}30%{opacity:0.5;}100%{transform:translateX(0);opacity:1;}}.scrollcue.slide-right.is-inactive{transform:translateX(calc(-1 * var(--scrollcue-distance-md)));opacity:0;}.scrollcue.slide-right.cue-in{animation-name:slideRight;}@keyframes slideRight{0%{transform:translateX(calc(-1 * var(--scrollcue-distance-md)));opacity:0;}6%{opacity:0.05;}15%{transform:translateX(calc(-1 * var(--scrollcue-distance-sm)));}30%{opacity:0.5;}100%{transform:translateX(0);opacity:1;}}.scrollcue.zoom-in.is-inactive{transform:scale(var(--scrollcue-scale-md));opacity:0;}.scrollcue.zoom-in.cue-in{animation-name:zoomIn;}@keyframes zoomIn{0%{transform:scale(var(--scrollcue-scale-md));opacity:0;}40%{opacity:0.6;}60%{transform:scale(1.03);}80%{opacity:0.9;transform:scale(0.97);}100%{transform:scale(1);opacity:1;}}.scrollcue.zoom-out.is-inactive{transform:scale(1.1);opacity:0;}.scrollcue.zoom-out.cue-in{animation-name:zoomOut;}@keyframes zoomOut{0%{transform:scale(1.1);opacity:0;}40%{opacity:0.6;}60%{transform:scale(0.97);}80%{opacity:0.9;transform:scale(1.03);}100%{transform:scale(1);opacity:1;}}.scrollcue.rotate-in.is-inactive{transform:rotate(calc(-1 * var(--scrollcue-rotate-md))) scale(var(--scrollcue-scale-md));opacity:0;transform-origin:center;}.scrollcue.rotate-in.cue-in{animation-name:rotateIn;}@keyframes rotateIn{0%{transform:rotate(calc(-1 * var(--scrollcue-rotate-md))) scale(var(--scrollcue-scale-md));opacity:0;}30%{opacity:0.5;}60%{transform:rotate(calc(var(--scrollcue-rotate-sm) * 0.3)) scale(1.02);}80%{opacity:0.9;transform:rotate(calc(-1 * var(--scrollcue-rotate-sm) * 0.1)) scale(0.98);}100%{transform:rotate(0) scale(1);opacity:1;}}.scrollcue.flip-in.is-inactive{transform:perspective(1200px) rotateY(90deg);opacity:0;transform-origin:center;}.scrollcue.flip-in.cue-in{animation-name:flipIn;}@keyframes flipIn{0%{transform:perspective(1200px) rotateY(90deg);opacity:0;}40%{transform:perspective(1200px) rotateY(15deg);opacity:0.7;}60%{transform:perspective(1200px) rotateY(-5deg);}80%{transform:perspective(1200px) rotateY(2deg);opacity:0.9;}100%{transform:perspective(1200px) rotateY(0);opacity:1;}}.scrollcue.flip-x.is-inactive{transform:perspective(1200px) rotateX(90deg);opacity:0;transform-origin:center;}.scrollcue.flip-x.cue-in{animation-name:flipX;}@keyframes flipX{0%{transform:perspective(1200px) rotateX(90deg);opacity:0;}40%{transform:perspective(1200px) rotateX(15deg);opacity:0.7;}60%{transform:perspective(1200px) rotateX(-5deg);}80%{transform:perspective(1200px) rotateX(2deg);opacity:0.9;}100%{transform:perspective(1200px) rotateX(0);opacity:1;}}.scrollcue.bounce-in.is-inactive{transform:scale(0.3);opacity:0;}.scrollcue.bounce-in.cue-in{animation-name:bounceIn;}@keyframes bounceIn{0%{transform:scale(0.3);opacity:0;}15%{transform:scale(0.5);opacity:0.3;}30%{transform:scale(1.1);opacity:0.8;}45%{transform:scale(0.9);opacity:0.9;}70%{transform:scale(1.05);opacity:0.95;}85%{transform:scale(0.98);opacity:0.98;}100%{transform:scale(1);opacity:1;}}.scrollcue.spring.is-inactive{transform:scale(0.7);opacity:0;}.scrollcue.spring.cue-in{animation-name:springIn;}@keyframes springIn{0%{transform:scale(0.7);opacity:0;}20%{transform:scale(1.2);opacity:0.7;}40%{transform:scale(0.85);opacity:0.9;}60%{transform:scale(1.05);opacity:0.95;}75%{transform:scale(0.95);opacity:0.97;}90%{transform:scale(1.02);opacity:0.99;}100%{transform:scale(1);opacity:1;}}.scrollcue.wave.is-inactive{transform:translateY(0);opacity:0;}.scrollcue.wave.cue-in{opacity:1;animation:wave-animation 4s cubic-bezier(0.33,1,0.68,1) infinite;}@keyframes wave-animation{0%{transform:translateY(0) rotate(0deg);}10%{transform:translateY(-4px) rotate(0.5deg);}20%{transform:translateY(-8px) rotate(1deg);}30%{transform:translateY(-4px) rotate(0.25deg);}40%{transform:translateY(0) rotate(-0.25deg);}50%{transform:translateY(4px) rotate(-0.5deg);}60%{transform:translateY(5px) rotate(-0.25deg);}70%{transform:translateY(3px) rotate(0deg);}80%{transform:translateY(-3px) rotate(0.25deg);}90%{transform:translateY(-2px) rotate(0.5deg);}100%{transform:translateY(0) rotate(0deg);}}.scrollcue.float.is-inactive{transform:translateY(0);}.scrollcue.float.cue-in{animation-name:float-animation;animation-duration:4s;animation-iteration-count:infinite;animation-timing-function:cubic-bezier(0.42,0,0.58,1);}@keyframes float-animation{0%{transform:translateY(0px) rotate(0deg);}25%{transform:translateY(-10px) rotate(0.5deg);}50%{transform:translateY(-20px) rotate(1deg);}75%{transform:translateY(-10px) rotate(0.5deg);}100%{transform:translateY(0px) rotate(0deg);}}.scrollcue.flip-3d.is-inactive{transform:perspective(800px) rotateY(60deg) rotateX(-15deg) translateZ(-100px);opacity:0;}.scrollcue.flip-3d.cue-in{animation-name:flip3d;}@keyframes flip3d{0%{transform:perspective(800px) rotateY(60deg) rotateX(-15deg) translateZ(-100px);opacity:0;}40%{opacity:0.7;transform:perspective(800px) rotateY(10deg) rotateX(-5deg) translateZ(-20px);}70%{opacity:0.9;transform:perspective(800px) rotateY(-3deg) rotateX(2deg) translateZ(5px);}100%{transform:perspective(800px) rotateY(0deg) rotateX(0deg) translateZ(0);opacity:1;}}.scrollcue-child.is-inactive{opacity:0;transform:translateY(20px);}.scrollcue-child.cue-in{animation-name:staggerFadeIn;}@keyframes staggerFadeIn{0%{opacity:0;transform:translateY(20px);}100%{opacity:1;transform:translateY(0);}}.scrollcue.typing.is-inactive{width:0;white-space:nowrap;overflow:hidden;border-right:3px solid transparent;}.scrollcue.typing.cue-in{animation:typing-animation 3.5s steps(40,end) forwards,blink-caret 0.75s cubic-bezier(0.645,0.045,0.355,1) infinite;}@keyframes typing-animation{0%{width:0}100%{width:100%}}@keyframes blink-caret{from,to{border-color:transparent}50%{border-color:currentColor}}.scrollcue.elastic-in.is-inactive{transform:scale(0);opacity:0;}.scrollcue.elastic-in.cue-in{animation-name:elasticIn;}@keyframes elasticIn{0%{transform:scale(0);opacity:0;}25%{transform:scale(1.15);opacity:0.7;}45%{transform:scale(0.85);opacity:0.85;}65%{transform:scale(1.05);opacity:0.95;}85%{transform:scale(0.95);opacity:1;}100%{transform:scale(1);opacity:1;}}.scrollcue[data-progress]{transition:all 0.1s cubic-bezier(0.42,0,0.58,1);}.scrollcue[data-origin]{transform-origin:var(--transform-origin,center);}.scrollcue[data-parallax],.scrollcue[data-speed]{transition:transform 0.1s cubic-bezier(0.42,0,0.58,1);will-change:transform;}.scrollcue.cue-in{transition-timing-function:cubic-bezier(0.33,1,0.68,1);}.scrollcue.flicker.is-inactive{opacity:0;}.scrollcue.flicker.cue-in{animation-name:flickerAnimation;animation-duration:3s;animation-iteration-count:infinite;animation-timing-function:linear;}@keyframes flickerAnimation{0%{opacity:1;}10%{opacity:0.8;}12%{opacity:0.9;}14%{opacity:0.6;}16%{opacity:0.85;}25%{opacity:0.7;}30%{opacity:1;}50%{opacity:0.9;}60%{opacity:0.8;}70%{opacity:1;}80%{opacity:0.6;}90%{opacity:0.9;}100%{opacity:1;}}.scrollcue.shake.is-inactive{opacity:0;}.scrollcue.shake.cue-in{animation-name:shakeAnimation;animation-duration:0.8s;animation-iteration-count:1;animation-timing-function:cubic-bezier(0.36,0.07,0.19,0.97);}@keyframes shakeAnimation{0%{transform:translateX(0);}10%{transform:translateX(-5px);}20%{transform:translateX(5px);}30%{transform:translateX(-4px);}40%{transform:translateX(4px);}50%{transform:translateX(-3px);}60%{transform:translateX(3px);}70%{transform:translateX(-2px);}80%{transform:translateX(2px);}90%{transform:translateX(-1px);}100%{transform:translateX(0);}}.scrollcue.boat-rock.is-inactive{opacity:0;}.scrollcue.boat-rock.cue-in{animation-name:boatRockAnimation;animation-duration:5s;animation-iteration-count:infinite;animation-timing-function:ease-in-out;transform-origin:bottom center;}@keyframes boatRockAnimation{0%{transform:rotate(0deg);}25%{transform:rotate(5deg);}50%{transform:rotate(0deg);}75%{transform:rotate(-5deg);}100%{transform:rotate(0deg);}}.scrollcue.wind.is-inactive{opacity:0;}.scrollcue.wind.cue-in{animation-name:windAnimation;animation-duration:3s;animation-iteration-count:infinite;animation-timing-function:ease-in-out;}@keyframes windAnimation{0%{transform:translateX(0) skewX(0deg);}25%{transform:translateX(5px) skewX(-2deg);}50%{transform:translateX(10px) skewX(-5deg);}75%{transform:translateX(5px) skewX(-2deg);}100%{transform:translateX(0) skewX(0deg);}}.scrollcue.ripple.is-inactive{opacity:0;}.scrollcue.ripple.cue-in{animation-name:rippleAnimation;animation-duration:3s;animation-iteration-count:infinite;animation-timing-function:ease-out;transform-origin:center;}@keyframes rippleAnimation{0%{transform:scale(1);opacity:1;}50%{transform:scale(1.2);opacity:0.5;}100%{transform:scale(1);opacity:1;}}.scrollcue.storm.is-inactive{opacity:0;}.scrollcue.storm.cue-in{animation-name:stormAnimation;animation-duration:1s;animation-iteration-count:infinite;animation-timing-function:linear;}@keyframes stormAnimation{0%{transform:translateX(0) translateY(0);}10%{transform:translateX(-2px) translateY(1px);}20%{transform:translateX(2px) translateY(-1px);}30%{transform:translateX(-1px) translateY(-1px);}40%{transform:translateX(1px) translateY(1px);}50%{transform:translateX(-1px) translateY(-2px);}60%{transform:translateX(1px) translateY(2px);}70%{transform:translateX(-2px) translateY(1px);}80%{transform:translateX(2px) translateY(-1px);}90%{transform:translateX(-1px) translateY(1px);}100%{transform:translateX(0) translateY(0);}}.scrollcue.breaking-wave.is-inactive{opacity:0;}.scrollcue.breaking-wave.cue-in{animation-name:breakingWaveAnimation;animation-duration:4s;animation-iteration-count:infinite;animation-timing-function:ease-in-out;}@keyframes breakingWaveAnimation{0%{transform:translateY(0) rotate(0deg) scaleX(1);}25%{transform:translateY(-5px) rotate(2deg) scaleX(1.1);}50%{transform:translateY(-10px) rotate(-1deg) scaleX(0.9);}75%{transform:translateY(-5px) rotate(1deg) scaleX(1.05);}100%{transform:translateY(0) rotate(0deg) scaleX(1);}}
   `;  document.head.appendChild(styleElement);
 
+  // Enhanced default options with advanced settings
   const defaults = {
     rootMargin: '0px',
     threshold: 0.2,
@@ -13,6 +14,34 @@
     delay: 0,
     easing: 'cubic-bezier(0.25, 0.1, 0.25, 1.0)',
     once: true,
+    useRAF: true, // Use requestAnimationFrame for smoother animations
+    stagger: 0,   // Default stagger delay for child elements
+    ease: 'cubic-bezier(0.25, 0.1, 0.25, 1.0)', // Alias for easing for compatible naming
+  };
+
+  // Enhanced easing functions inspired by advanced animation libraries
+  const easingFunctions = {
+    // Standard easings
+    linear: 'linear',
+    ease: 'cubic-bezier(0.25, 0.1, 0.25, 1.0)',
+    easeIn: 'cubic-bezier(0.42, 0, 1.0, 1.0)',
+    easeOut: 'cubic-bezier(0, 0, 0.58, 1.0)',
+    easeInOut: 'cubic-bezier(0.42, 0, 0.58, 1.0)',
+    
+    // Elastic
+    easeInElastic: 'cubic-bezier(0.5, 0.25, 0.75, -0.25)',
+    easeOutElastic: 'cubic-bezier(0.25, 1.5, 0.5, 1.0)',
+    easeInOutElastic: 'cubic-bezier(0.5, -0.25, 0.5, 1.25)',
+    
+    // Back
+    easeInBack: 'cubic-bezier(0.6, -0.28, 0.735, 0.045)',
+    easeOutBack: 'cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+    easeInOutBack: 'cubic-bezier(0.68, -0.55, 0.265, 1.55)',
+    
+    // Bounce
+    easeInBounce: 'cubic-bezier(0.600, -0.280, 0.735, 0.045)',
+    easeOutBounce: 'cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+    easeInOutBounce: 'cubic-bezier(0.68, -0.55, 0.265, 1.55)',
   };
 
   class ScrollCue {
@@ -22,6 +51,11 @@
       this.observer = null;
       this.initialized = false;
       this.isParallaxEnabled = false;
+      this.rafId = null;
+      this.animations = [];
+      this.timelines = [];
+      this.customEasings = Object.assign({}, easingFunctions);
+      this.onScrollHandlers = [];
     }
 
     init() {
@@ -45,18 +79,26 @@
         const delay = parseInt(el.dataset.delay || this.options.delay, 10);
         el.style.animationDelay = `${delay}ms`;
         
-        // easing
-        el.style.animationTimingFunction = el.dataset.easing || this.options.easing;
+        // easing - use enhanced easing functions
+        const easing = el.dataset.easing || el.dataset.ease || this.options.easing;
+        el.style.animationTimingFunction = this.getEasingValue(easing);
+        
+        // transform origin
+        if (el.dataset.origin) {
+          el.style.transformOrigin = el.dataset.origin;
+        }
         
         // color
         if (el.dataset.color) {
           el.style.color = el.dataset.color;
         }
         
-        // intensity
+        // intensity with improved physics
         const intensity = parseFloat(el.dataset.intensity);
         if (!isNaN(intensity)) {
           const type = el.dataset.cue;
+          const multiplier = intensity / 100;
+          
           switch (type) {
             case 'fade-up':
             case 'fade-down':
@@ -67,10 +109,10 @@
               el.style.transform = `translateX(${type === 'fade-left' ? intensity : -intensity}px)`;
               break;
             case 'zoom-in':
-              el.style.transform = `scale(${1 - intensity/100})`;
+              el.style.transform = `scale(${Math.max(0.1, 1 - multiplier)})`;
               break;
             case 'zoom-out':
-              el.style.transform = `scale(${1 + intensity/100})`;
+              el.style.transform = `scale(${1 + multiplier})`;
               break;
             case 'rotate':
               el.style.transform = `rotate(${-intensity}deg)`;
@@ -78,10 +120,35 @@
             case 'blur':
               el.style.filter = `blur(${intensity}px)`;
               break;
+            case 'flip-x':
+              el.style.transform = `perspective(400px) rotateX(${intensity}deg)`;
+              break;
+            case 'flip-y':
+              el.style.transform = `perspective(400px) rotateY(${intensity}deg)`;
+              break;
           }
         }
 
+        // Process staggered children for sequential animations
+        if (el.dataset.cue === 'stagger' || el.dataset.stagger) {
+          const children = Array.from(el.children);
+          const staggerDelay = parseInt(el.dataset.stagger || this.options.stagger, 10);
+          const childAnimation = el.dataset.childCue || 'fade-in';
+          
+          children.forEach((child, index) => {
+            child.classList.add('scrollcue-child');
+            child.dataset.cue = child.dataset.cue || childAnimation;
+            child.dataset.delay = (parseInt(child.dataset.delay || 0, 10) + (index * staggerDelay));
+            child.classList.add('is-inactive');
+          });
+        }
+
         el.classList.add('is-inactive');
+        
+        // Store initial state for FLIP animations
+        if (el.dataset.flip === 'true') {
+          el._initialRect = el.getBoundingClientRect();
+        }
       });
 
       this.observer = new IntersectionObserver(this.onIntersection.bind(this), {
@@ -93,8 +160,12 @@
         this.observer.observe(element);
       });
 
-      // Setup parallax
+      // Setup enhanced parallax
       this.setupParallax();
+      
+      this.setupScrollProgress();
+      
+      this.setupScrollTriggers();
 
       this.initialized = true;
     }
@@ -103,6 +174,10 @@
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           this.animateElement(entry.target);
+          
+          if (entry.target.dataset.cue === 'stagger' || entry.target.dataset.stagger) {
+            this.handleStaggeredChildren(entry.target);
+          }
           
           if (this.options.once) {
             this.observer.unobserve(entry.target);
@@ -121,22 +196,107 @@
       
       element.style.animationDuration = `${duration}ms`;
       element.style.animationDelay = `${delay}ms`;
-      element.style.animationTimingFunction = element.dataset.easing || this.options.easing;
+      element.style.animationTimingFunction = this.getEasingValue(element.dataset.easing || element.dataset.ease || this.options.easing);
+      
+      let flipAnimation = null;
+      if (element.dataset.flip === 'true' && element._initialRect) {
+        flipAnimation = this.prepareFlipAnimation(element);
+      }
+      
+      if (this.options.useRAF) {
+        requestAnimationFrame(() => {
+          this.startElementAnimation(element, animationType, flipAnimation);
+        });
+      } else {
+        setTimeout(() => {
+          this.startElementAnimation(element, animationType, flipAnimation);
+        }, 10);
+      }
+      
+      const animation = {
+        element,
+        startTime: Date.now() + delay,
+        duration,
+        onComplete: () => {
+          element.dispatchEvent(new CustomEvent('scrollcue:complete', {
+            bubbles: true,
+            detail: { element }
+          }));
+          
+          const completeCallback = element.dataset.onComplete;
+          if (completeCallback && typeof window[completeCallback] === 'function') {
+            window[completeCallback](element);
+          }
+        }
+      };
+      
+      this.animations.push(animation);
       
       setTimeout(() => {
-        element.classList.remove('is-inactive');
-        element.classList.add('cue-in', animationType);
-
-        const callback = element.dataset.callback;
-        if (callback && typeof window[callback] === 'function') {
-          window[callback](element);
+        const index = this.animations.findIndex(anim => anim.element === element);
+        if (index !== -1) {
+          this.animations[index].onComplete();
+          this.animations.splice(index, 1);
         }
+      }, delay + duration);
+    }
 
-        element.dispatchEvent(new CustomEvent('scrollcue:visible', {
-          bubbles: true,
-          detail: { element }
-        }));
-      }, 10);
+    startElementAnimation(element, animationType, flipAnimation) {
+      if (flipAnimation) {
+        Object.assign(element.style, flipAnimation.initial);
+        
+        requestAnimationFrame(() => {
+          element.style.transition = `transform ${element.style.animationDuration} ${element.style.animationTimingFunction}`;
+          Object.assign(element.style, flipAnimation.final);
+        });
+      }
+      
+      element.classList.remove('is-inactive');
+      element.classList.add('cue-in', animationType);
+      
+      element.dispatchEvent(new CustomEvent('scrollcue:start', {
+        bubbles: true,
+        detail: { element }
+      }));
+      
+      const callback = element.dataset.onStart || element.dataset.callback;
+      if (callback && typeof window[callback] === 'function') {
+        window[callback](element);
+      }
+    }
+
+    handleStaggeredChildren(parent) {
+      const children = Array.from(parent.querySelectorAll('.scrollcue-child'));
+      const baseDelay = parseInt(parent.dataset.delay || 0, 10);
+      const staggerDelay = parseInt(parent.dataset.stagger || this.options.stagger, 10);
+      
+      children.forEach((child, index) => {
+        const delay = baseDelay + (index * staggerDelay);
+        
+        setTimeout(() => {
+          this.animateElement(child);
+        }, delay);
+      });
+    }
+
+    prepareFlipAnimation(element) {
+      const currentRect = element.getBoundingClientRect();
+      const initialRect = element._initialRect;
+      
+      const deltaX = initialRect.left - currentRect.left;
+      const deltaY = initialRect.top - currentRect.top;
+      const deltaW = initialRect.width / currentRect.width;
+      const deltaH = initialRect.height / currentRect.height;
+      
+      return {
+        initial: {
+          transform: `translate(${deltaX}px, ${deltaY}px) scale(${deltaW}, ${deltaH})`,
+          transformOrigin: element.dataset.origin || 'top left'
+        },
+        final: {
+          transform: 'translate(0, 0) scale(1, 1)'
+        }
+      };
     }
 
     showAllElements() {
@@ -162,10 +322,11 @@
         }
       });
 
-      // Refresh parallax 
       if (this.isParallaxEnabled) {
         this.setupParallax();
       }
+      
+      this.setupScrollTriggers();
     }
 
     destroy() {
@@ -182,49 +343,299 @@
         element.style.transform = '';
       });
 
-      // Remove parallax event listeners
       if (this.isParallaxEnabled) {
         window.removeEventListener('scroll', this.handleParallax);
         window.removeEventListener('resize', this.handleParallax);
         this.isParallaxEnabled = false;
       }
       
+      // Clean up animations
+      this.animations = [];
+      this.timelines = [];
+      
+      window.removeEventListener('scroll', this.updateScrollProgress);
+      
+      if (this.rafId) {
+        cancelAnimationFrame(this.rafId);
+        this.rafId = null;
+      }
+      
+      this.onScrollHandlers.forEach(handler => {
+        window.removeEventListener('scroll', handler);
+      });
+      this.onScrollHandlers = [];
+      
       this.initialized = false;
     }
 
     setupParallax() {
-      const parallaxElements = this.elements.filter(el => el.dataset.parallax !== undefined);
+      const parallaxElements = this.elements.filter(el => 
+        el.dataset.parallax !== undefined || el.dataset.speed !== undefined
+      );
       
       if (parallaxElements.length === 0) return;
       
       this.isParallaxEnabled = true;
+      
       this.handleParallax = () => {
-        const scrollTop = window.scrollY || document.documentElement.scrollTop;
-        const windowHeight = window.innerHeight;
-        
-        parallaxElements.forEach(el => {
-          if (!el.classList.contains('cue-in')) return;
-          
-          const rect = el.getBoundingClientRect();
-          const offsetTop = rect.top + scrollTop;
-          const elementHeight = rect.height;
-          
-          const viewportBottom = scrollTop + windowHeight;
-          const percentage = (viewportBottom - offsetTop) / (windowHeight + elementHeight);
-          
-          if (percentage >= 0 && percentage <= 1) {
-            const speed = parseFloat(el.dataset.parallaxSpeed || 0.5);
-            const offset = (percentage - 0.5) * speed * 100;
-            el.style.transform = `translateY(${offset}px)`;
-          }
-        });
+        if (!this.rafId) {
+          this.rafId = requestAnimationFrame(() => {
+            this.applyParallaxEffects(parallaxElements);
+            this.rafId = null;
+          });
+        }
       };
       
       window.addEventListener('scroll', this.handleParallax, { passive: true });
       window.addEventListener('resize', this.handleParallax, { passive: true });
       this.handleParallax();
     }
+    
+    applyParallaxEffects(elements) {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const windowHeight = window.innerHeight;
+      const windowMiddle = scrollTop + (windowHeight / 2);
+      
+      elements.forEach(el => {
+        if (!el.classList.contains('cue-in') && this.options.once) return;
+        
+        const rect = el.getBoundingClientRect();
+        const offsetTop = rect.top + scrollTop;
+        const offsetMiddle = offsetTop + (rect.height / 2);
+        
+        const distanceToMiddle = windowMiddle - offsetMiddle;
+        const speedFactor = parseFloat(el.dataset.speed || el.dataset.parallax || 0.5);
+        
+        let transform = '';
+        
+        const parallaxType = el.dataset.parallaxType || 'y';
+        
+        switch (parallaxType) {
+          case 'y':
+            const yOffset = distanceToMiddle * speedFactor;
+            transform = `translateY(${yOffset}px)`;
+            break;
+            
+          case 'x':
+            // Horizontal parallax
+            const windowWidth = window.innerWidth;
+            const windowCenter = windowWidth / 2;
+            const rectCenter = rect.left + (rect.width / 2);
+            const distanceX = (rectCenter - windowCenter) * speedFactor * -0.1;
+            transform = `translateX(${distanceX}px)`;
+            break;
+            
+          case 'rotate':
+            // Rotation parallax
+            const rotation = distanceToMiddle * speedFactor * 0.02;
+            transform = `rotate(${rotation}deg)`;
+            break;
+            
+          case 'scale':
+            // Scale parallax
+            const viewportPosition = 1 - (Math.abs(distanceToMiddle) / (windowHeight * 0.8));
+            const scale = 1 + (Math.max(0, Math.min(1, viewportPosition)) - 0.5) * speedFactor * 0.2;
+            transform = `scale(${scale})`;
+            break;
+            
+          case '3d':
+            // 3D parallax effect
+            const yMove = distanceToMiddle * speedFactor;
+            const xMove = (rect.left - (windowWidth / 2)) * speedFactor * -0.05;
+            const rotateX = distanceToMiddle * 0.01 * speedFactor;
+            transform = `perspective(1000px) translateY(${yMove}px) translateX(${xMove}px) rotateX(${rotateX}deg)`;
+            break;
+        }
+        
+        el.style.transform = transform;
+      });
+    }
 
+    setupScrollProgress() {
+      // Scroll progress tracking
+      this.updateScrollProgress = () => {
+        const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = Math.max(0, Math.min(1, window.scrollY / totalHeight));
+        
+        window.dispatchEvent(new CustomEvent('scrollcue:progress', {
+          detail: { progress }
+        }));
+        
+        document.querySelectorAll('[data-progress]').forEach(el => {
+          if (el.dataset.progressProperty) {
+            const prop = el.dataset.progressProperty;
+            const min = parseFloat(el.dataset.progressMin || 0);
+            const max = parseFloat(el.dataset.progressMax || 1);
+            const value = min + (progress * (max - min));
+            
+            if (prop === 'transform') {
+              const transformType = el.dataset.progressTransform || 'translateX';
+              const unit = el.dataset.progressUnit || '%';
+              el.style.transform = `${transformType}(${value}${unit})`;
+            } else {
+              el.style[prop] = `${value}${el.dataset.progressUnit || ''}`;
+            }
+          } else {
+            el.style.setProperty('--scroll-progress', progress);
+          }
+        });
+      };
+      
+      window.addEventListener('scroll', this.updateScrollProgress, { passive: true });
+      this.updateScrollProgress();
+    }
+    
+    setupScrollTriggers() {
+      document.querySelectorAll('[data-scroll-trigger]').forEach(el => {
+        const triggerPosition = el.dataset.triggerPosition || 'center';
+        const triggerAction = el.dataset.triggerAction || 'play';
+        
+        const scrollHandler = () => {
+          const rect = el.getBoundingClientRect();
+          const windowHeight = window.innerHeight;
+          
+          let triggerPoint;
+          switch (triggerPosition) {
+            case 'top': triggerPoint = rect.top; break;
+            case 'center': triggerPoint = rect.top + (rect.height / 2); break;
+            case 'bottom': triggerPoint = rect.bottom; break;
+            default: triggerPoint = rect.top + (rect.height / 2);
+          }
+          
+          const triggered = triggerPoint < windowHeight * 0.8;
+          
+          if (triggered) {
+            switch (triggerAction) {
+              case 'play':
+                if (!el.classList.contains('cue-in')) {
+                  this.animateElement(el);
+                }
+                break;
+              case 'toggle-class':
+                const className = el.dataset.triggerClass || 'active';
+                el.classList.toggle(className, triggered);
+                break;
+              case 'callback':
+                const callback = el.dataset.triggerCallback;
+                if (callback && typeof window[callback] === 'function') {
+                  window[callback](el, triggered);
+                }
+                break;
+            }
+          }
+        };
+        
+        this.onScrollHandlers.push(scrollHandler);
+        window.addEventListener('scroll', scrollHandler, { passive: true });
+        scrollHandler();
+      });
+    }
+
+    // Timeline implementation for more advanced animation control
+    timeline(options = {}) {
+      const timeline = {
+        id: Date.now() + Math.random().toString(36).substr(2, 5),
+        elements: [],
+        options: Object.assign({}, this.options, options),
+        paused: true,
+        currentTime: 0,
+        
+        add: (selector, animOptions = {}) => {
+          const elements = typeof selector === 'string' 
+            ? Array.from(document.querySelectorAll(selector))
+            : [selector];
+          
+          elements.forEach(element => {
+            this.timeline.elements.push({
+              element,
+              options: Object.assign({}, this.timeline.options, animOptions),
+              position: animOptions.position || '+=0'
+            });
+          });
+          
+          return timeline;
+        },
+        
+        play: () => {
+          this.playTimeline(timeline);
+          return timeline;
+        },
+        
+        pause: () => {
+          timeline.paused = true;
+          return timeline;
+        },
+        
+        restart: () => {
+          timeline.currentTime = 0;
+          this.playTimeline(timeline);
+          return timeline;
+        }
+      };
+      
+      this.timelines.push(timeline);
+      return timeline;
+    }
+    
+    playTimeline(timeline) {
+      timeline.paused = false;
+      
+      const start = Date.now() - timeline.currentTime;
+      
+      let lastElementEnd = 0;
+      
+      timeline.elements.forEach((item, index) => {
+        const { element, options, position } = item;
+        
+        // Calculate delay based on position
+        let delay = 0;
+        
+        if (position.startsWith('+=')) {
+          delay = lastElementEnd + parseInt(position.substr(2), 10);
+        } else if (position.startsWith('-=')) {
+          delay = Math.max(0, lastElementEnd - parseInt(position.substr(2), 10));
+        } else if (position === '>') {
+          delay = index > 0 ? timeline.elements[index - 1].delay : 0;
+        } else if (position === '<') {
+          delay = index > 0 ? timeline.elements[index - 1].delay : 0;
+        } else {
+          // Absolute time
+          delay = parseInt(position, 10);
+        }
+        
+        item.delay = delay;
+        
+        lastElementEnd = delay + (options.duration || this.options.duration);
+        
+        // Setup element animation
+        element.dataset.cue = options.cue || 'fade-in';
+        element.style.animationDuration = `${options.duration || this.options.duration}ms`;
+        element.style.animationDelay = `${delay}ms`;
+        element.style.animationTimingFunction = this.getEasingValue(options.easing || this.options.easing);
+        
+        if (!element.classList.contains('is-inactive')) {
+          element.classList.add('is-inactive');
+        }
+        
+        // Start the animation
+        setTimeout(() => {
+          if (!timeline.paused) {
+            this.startElementAnimation(element, element.dataset.cue);
+          }
+        }, delay);
+      });
+    }
+
+    registerEasing(name, value) {
+      this.customEasings[name] = value;
+      return this;
+    }
+    
+    getEasingValue(name) {
+      return this.customEasings[name] || name;
+    }
+
+    // Add custom animation
     addAnimation(name, css) {
       const styleEl = document.createElement('style');
       styleEl.textContent = `
@@ -243,6 +654,189 @@
       `;
       document.head.appendChild(styleEl);
       this.refresh();
+      return this;
+    }
+    
+    // Create a sequence of animations
+    sequence(selector, options = {}) {
+      const container = typeof selector === 'string' 
+        ? document.querySelector(selector) 
+        : selector;
+      
+      if (!container) return null;
+      
+      const sequence = {
+        container,
+        elements: [],
+        options: Object.assign({}, this.options, options),
+        
+        add: (childSelector, animOptions = {}) => {
+          const children = container.querySelectorAll(childSelector);
+          
+          Array.from(children).forEach((child, index) => {
+            const delay = animOptions.delay || 0;
+            const stagger = animOptions.stagger || this.options.stagger;
+            
+            child.classList.add('scrollcue');
+            child.dataset.cue = animOptions.cue || 'fade-in';
+            child.dataset.delay = delay + (index * stagger);
+            child.dataset.duration = animOptions.duration || this.options.duration;
+            child.dataset.easing = animOptions.easing || this.options.easing;
+            
+            sequence.elements.push(child);
+          });
+          
+          return sequence;
+        },
+        
+        play: () => {
+          sequence.elements.forEach(element => {
+            this.animateElement(element);
+          });
+          return sequence;
+        }
+      };
+      
+      return sequence;
+    }
+    
+    // Add a scroll-linked animation
+    scrollTween(selector, options = {}) {
+      const elements = typeof selector === 'string'
+        ? document.querySelectorAll(selector)
+        : [selector];
+        
+      const defaults = {
+        start: 'top bottom', // Element top crosses bottom of viewport
+        end: 'bottom top',   // Element bottom crosses top of viewport
+        scrub: false,        // Whether to tie animation progress directly to scroll position
+        markers: false,      // Show markers for debugging (dev only)
+        properties: {}       // CSS properties to animate
+      };
+      
+      const config = Object.assign({}, defaults, options);
+      
+      Array.from(elements).forEach(element => {
+        // Add markers if requested (development feature)
+        if (config.markers) {
+          this.addScrollMarkers(element, config);
+        }
+        
+        // Parse start and end positions
+        const startPos = this.parseScrollPosition(config.start, element);
+        const endPos = this.parseScrollPosition(config.end, element);
+        
+        // Setup the scroll handler
+        const scrollHandler = () => {
+          const scrollY = window.scrollY || document.documentElement.scrollTop;
+          
+          // Calculate progress
+          const progress = Math.max(0, Math.min(1, 
+            (scrollY - startPos) / (endPos - startPos)
+          ));
+          
+          // Apply animation based on progress
+          this.applyScrollTweenProperties(element, config.properties, progress);
+        };
+        
+        this.onScrollHandlers.push(scrollHandler);
+        window.addEventListener('scroll', scrollHandler, { passive: true });
+        scrollHandler(); // Initial state
+      });
+      
+      return this;
+    }
+    
+    parseScrollPosition(position, element) {
+      // Parse positions like "top center", "center bottom", "+=300", etc.
+      const [elementPos, viewportPos] = position.split(' ');
+      const scrollY = window.scrollY || document.documentElement.scrollTop;
+      const rect = element.getBoundingClientRect();
+      const winHeight = window.innerHeight;
+      
+      let pos = 0;
+      
+      if (elementPos.startsWith('+=')) {
+        return scrollY + parseInt(elementPos.substr(2), 10);
+      } else if (elementPos.startsWith('-=')) {
+        return scrollY - parseInt(elementPos.substr(2), 10);
+      }
+      
+      // Element position
+      const elemY = scrollY + rect.top;
+      switch (elementPos) {
+        case 'top': pos = elemY; break;
+        case 'center': pos = elemY + (rect.height / 2); break;
+        case 'bottom': pos = elemY + rect.height; break;
+        default: pos = elemY;
+      }
+      
+      // Adjust for viewport position
+      if (viewportPos) {
+        switch (viewportPos) {
+          case 'top': /* no adjustment needed */ break;
+          case 'center': pos -= winHeight / 2; break;
+          case 'bottom': pos -= winHeight; break;
+        }
+      }
+      
+      return pos;
+    }
+    
+    applyScrollTweenProperties(element, properties, progress) {
+      let transform = '';
+      
+      Object.entries(properties).forEach(([prop, values]) => {
+        const from = values.from || 0;
+        const to = values.to || 1;
+        const value = from + (progress * (to - from));
+        const unit = values.unit || '';
+        
+        // Handle transform properties separately
+        if (['x', 'y', 'rotate', 'rotateX', 'rotateY', 'rotateZ', 'scale', 'scaleX', 'scaleY'].includes(prop)) {
+          switch (prop) {
+            case 'x': transform += ` translateX(${value}${unit})`; break;
+            case 'y': transform += ` translateY(${value}${unit})`; break;
+            case 'rotate':
+            case 'rotateZ': transform += ` rotate(${value}${unit})`; break;
+            case 'rotateX': transform += ` rotateX(${value}${unit})`; break;
+            case 'rotateY': transform += ` rotateY(${value}${unit})`; break;
+            case 'scale': transform += ` scale(${value})`; break;
+            case 'scaleX': transform += ` scaleX(${value})`; break;
+            case 'scaleY': transform += ` scaleY(${value})`; break;
+          }
+        } else {
+          // Regular CSS properties
+          element.style[prop] = `${value}${unit}`;
+        }
+      });
+      
+      if (transform) {
+        element.style.transform = transform;
+      }
+    }
+    
+    addScrollMarkers(element, config) {
+      const marker = document.createElement('div');
+      marker.style.position = 'fixed';
+      marker.style.right = '0';
+      marker.style.background = 'rgba(255, 0, 0, 0.5)';
+      marker.style.color = 'white';
+      marker.style.fontSize = '12px';
+      marker.style.padding = '2px 5px';
+      marker.style.zIndex = '9999';
+      marker.style.pointerEvents = 'none';
+      
+      const startMarker = marker.cloneNode();
+      startMarker.textContent = 'Start: ' + config.start;
+      startMarker.style.top = (this.parseScrollPosition(config.start, element) / document.documentElement.scrollHeight * 100) + '%';
+      
+      const endMarker = marker.cloneNode();
+      endMarker.textContent = 'End: ' + config.end;
+      endMarker.style.top = (this.parseScrollPosition(config.end, element) / document.documentElement.scrollHeight * 100) + '%';
+      
+      document.body.appendChild(startMarker);
+      document.body.appendChild(endMarker);
     }
   }
 

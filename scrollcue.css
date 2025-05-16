@@ -1,13 +1,17 @@
 .scrollcue {
   visibility: visible;
   opacity: 1;
-  transition: transform 0.4s ease, opacity 0.4s ease;
+  transition: transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1.0), opacity 0.4s cubic-bezier(0.25, 0.1, 0.25, 1.0);
+  will-change: transform, opacity;
 }
 
 .scrollcue.is-inactive {
   visibility: hidden;
   opacity: 0;
   will-change: transform, opacity;
+  backface-visibility: hidden;
+  perspective: 1000px;
+  transform-style: preserve-3d;
 }
 
 .scrollcue.cue-in {
@@ -15,7 +19,19 @@
   animation-fill-mode: both;
 }
 
-/* Animation: Fade In */
+:root {
+  --scrollcue-distance-sm: 20px;
+  --scrollcue-distance-md: 40px;
+  --scrollcue-distance-lg: 80px;
+  --scrollcue-scale-sm: 0.95;
+  --scrollcue-scale-md: 0.9;
+  --scrollcue-scale-lg: 0.8;
+  --scrollcue-rotate-sm: 5deg;
+  --scrollcue-rotate-md: 15deg;
+  --scrollcue-rotate-lg: 30deg;
+}
+
+/* Fade In */
 .scrollcue.fade-in.is-inactive {
   opacity: 0;
 }
@@ -33,9 +49,9 @@
   }
 }
 
-/* Animation: Slide Up */
+/* Slide Up */
 .scrollcue.slide-up.is-inactive {
-  transform: translateY(40px);
+  transform: translateY(var(--scrollcue-distance-md));
   opacity: 0;
 }
 
@@ -44,19 +60,28 @@
 }
 
 @keyframes slideUp {
-  from {
-    transform: translateY(40px);
+  0% {
+    transform: translateY(var(--scrollcue-distance-md));
     opacity: 0;
   }
-  to {
+  6% {
+    opacity: 0.05;
+  }
+  15% {
+    transform: translateY(var(--scrollcue-distance-sm));
+  }
+  30% {
+    opacity: 0.5;
+  }
+  100% {
     transform: translateY(0);
     opacity: 1;
   }
 }
 
-/* Animation: Slide Down */
+/* Slide Down */
 .scrollcue.slide-down.is-inactive {
-  transform: translateY(-40px);
+  transform: translateY(calc(-1 * var(--scrollcue-distance-md)));
   opacity: 0;
 }
 
@@ -65,19 +90,28 @@
 }
 
 @keyframes slideDown {
-  from {
-    transform: translateY(-40px);
+  0% {
+    transform: translateY(calc(-1 * var(--scrollcue-distance-md)));
     opacity: 0;
   }
-  to {
+  6% {
+    opacity: 0.05;
+  }
+  15% {
+    transform: translateY(calc(-1 * var(--scrollcue-distance-sm)));
+  }
+  30% {
+    opacity: 0.5;
+  }
+  100% {
     transform: translateY(0);
     opacity: 1;
   }
 }
 
-/* Animation: Slide Left */
+/* Slide Left */
 .scrollcue.slide-left.is-inactive {
-  transform: translateX(40px);
+  transform: translateX(var(--scrollcue-distance-md));
   opacity: 0;
 }
 
@@ -86,19 +120,28 @@
 }
 
 @keyframes slideLeft {
-  from {
-    transform: translateX(40px);
+  0% {
+    transform: translateX(var(--scrollcue-distance-md));
     opacity: 0;
   }
-  to {
+  6% {
+    opacity: 0.05;
+  }
+  15% {
+    transform: translateX(var(--scrollcue-distance-sm));
+  }
+  30% {
+    opacity: 0.5;
+  }
+  100% {
     transform: translateX(0);
     opacity: 1;
   }
 }
 
-/* Animation: Slide Right */
+/* Slide Right */
 .scrollcue.slide-right.is-inactive {
-  transform: translateX(-40px);
+  transform: translateX(calc(-1 * var(--scrollcue-distance-md)));
   opacity: 0;
 }
 
@@ -107,19 +150,28 @@
 }
 
 @keyframes slideRight {
-  from {
-    transform: translateX(-40px);
+  0% {
+    transform: translateX(calc(-1 * var(--scrollcue-distance-md)));
     opacity: 0;
   }
-  to {
+  6% {
+    opacity: 0.05;
+  }
+  15% {
+    transform: translateX(calc(-1 * var(--scrollcue-distance-sm)));
+  }
+  30% {
+    opacity: 0.5;
+  }
+  100% {
     transform: translateX(0);
     opacity: 1;
   }
 }
 
-/* Animation: Zoom In */
+/* Zoom In */
 .scrollcue.zoom-in.is-inactive {
-  transform: scale(0.9);
+  transform: scale(var(--scrollcue-scale-md));
   opacity: 0;
 }
 
@@ -128,17 +180,27 @@
 }
 
 @keyframes zoomIn {
-  from {
-    transform: scale(0.9);
+  0% {
+    transform: scale(var(--scrollcue-scale-md));
     opacity: 0;
   }
-  to {
+  40% {
+    opacity: 0.6;
+  }
+  60% {
+    transform: scale(1.03);
+  }
+  80% {
+    opacity: 0.9;
+    transform: scale(0.97);
+  }
+  100% {
     transform: scale(1);
     opacity: 1;
   }
 }
 
-/* Animation: Zoom Out */
+/* Zoom Out */
 .scrollcue.zoom-out.is-inactive {
   transform: scale(1.1);
   opacity: 0;
@@ -149,20 +211,31 @@
 }
 
 @keyframes zoomOut {
-  from {
+  0% {
     transform: scale(1.1);
     opacity: 0;
   }
-  to {
+  40% {
+    opacity: 0.6;
+  }
+  60% {
+    transform: scale(0.97);
+  }
+  80% {
+    opacity: 0.9;
+    transform: scale(1.03);
+  }
+  100% {
     transform: scale(1);
     opacity: 1;
   }
 }
 
-/* Animation: Rotate In */
+/* Rotate In */
 .scrollcue.rotate-in.is-inactive {
-  transform: rotate(-15deg) scale(0.9);
+  transform: rotate(calc(-1 * var(--scrollcue-rotate-md))) scale(var(--scrollcue-scale-md));
   opacity: 0;
+  transform-origin: center;
 }
 
 .scrollcue.rotate-in.cue-in {
@@ -170,20 +243,31 @@
 }
 
 @keyframes rotateIn {
-  from {
-    transform: rotate(-15deg) scale(0.9);
+  0% {
+    transform: rotate(calc(-1 * var(--scrollcue-rotate-md))) scale(var(--scrollcue-scale-md));
     opacity: 0;
   }
-  to {
+  30% {
+    opacity: 0.5;
+  }
+  60% {
+    transform: rotate(calc(var(--scrollcue-rotate-sm) * 0.3)) scale(1.02);
+  }
+  80% {
+    opacity: 0.9;
+    transform: rotate(calc(-1 * var(--scrollcue-rotate-sm) * 0.1)) scale(0.98);
+  }
+  100% {
     transform: rotate(0) scale(1);
     opacity: 1;
   }
 }
 
-/* Animation: Flip In */
+/* Flip In */
 .scrollcue.flip-in.is-inactive {
-  transform: perspective(400px) rotateY(90deg);
+  transform: perspective(1200px) rotateY(90deg);
   opacity: 0;
+  transform-origin: center;
 }
 
 .scrollcue.flip-in.cue-in {
@@ -191,17 +275,61 @@
 }
 
 @keyframes flipIn {
-  from {
-    transform: perspective(400px) rotateY(90deg);
+  0% {
+    transform: perspective(1200px) rotateY(90deg);
     opacity: 0;
   }
-  to {
-    transform: perspective(400px) rotateY(0deg);
+  40% {
+    transform: perspective(1200px) rotateY(15deg);
+    opacity: 0.7;
+  }
+  60% {
+    transform: perspective(1200px) rotateY(-5deg);
+  }
+  80% {
+    transform: perspective(1200px) rotateY(2deg);
+    opacity: 0.9;
+  }
+  100% {
+    transform: perspective(1200px) rotateY(0);
     opacity: 1;
   }
 }
 
-/* Animation: Bounce In */
+/* Various Flip Animations */
+.scrollcue.flip-x.is-inactive {
+  transform: perspective(1200px) rotateX(90deg);
+  opacity: 0;
+  transform-origin: center;
+}
+
+.scrollcue.flip-x.cue-in {
+  animation-name: flipX;
+}
+
+@keyframes flipX {
+  0% {
+    transform: perspective(1200px) rotateX(90deg);
+    opacity: 0;
+  }
+  40% {
+    transform: perspective(1200px) rotateX(15deg);
+    opacity: 0.7;
+  }
+  60% {
+    transform: perspective(1200px) rotateX(-5deg);
+  }
+  80% {
+    transform: perspective(1200px) rotateX(2deg);
+    opacity: 0.9;
+  }
+  100% {
+    transform: perspective(1200px) rotateX(0);
+    opacity: 1;
+  }
+}
+
+/* Bounce In */
 .scrollcue.bounce-in.is-inactive {
   transform: scale(0.3);
   opacity: 0;
@@ -216,13 +344,25 @@
     transform: scale(0.3);
     opacity: 0;
   }
-  50% {
+  15% {
+    transform: scale(0.5);
+    opacity: 0.3;
+  }
+  30% {
     transform: scale(1.1);
     opacity: 0.8;
   }
-  70% {
+  45% {
     transform: scale(0.9);
     opacity: 0.9;
+  }
+  70% {
+    transform: scale(1.05);
+    opacity: 0.95;
+  }
+  85% {
+    transform: scale(0.98);
+    opacity: 0.98;
   }
   100% {
     transform: scale(1);
@@ -230,52 +370,147 @@
   }
 }
 
-/* Wave animation */
+/* Spring */
+.scrollcue.spring.is-inactive {
+  transform: scale(0.7);
+  opacity: 0;
+}
+
+.scrollcue.spring.cue-in {
+  animation-name: springIn;
+}
+
+@keyframes springIn {
+  0% {
+    transform: scale(0.7);
+    opacity: 0;
+  }
+  20% {
+    transform: scale(1.2);
+    opacity: 0.7;
+  }
+  40% {
+    transform: scale(0.85);
+    opacity: 0.9;
+  }
+  60% {
+    transform: scale(1.05);
+    opacity: 0.95;
+  }
+  75% {
+    transform: scale(0.95);
+    opacity: 0.97;
+  }
+  90% {
+    transform: scale(1.02);
+    opacity: 0.99;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Wave */
 .scrollcue.wave.is-inactive {
   transform: translateY(0);
   opacity: 0;
 }
 .scrollcue.wave.cue-in {
   opacity: 1;
-  animation: wave-animation 4s ease-in-out infinite;
+  animation: wave-animation 4s cubic-bezier(0.33, 1, 0.68, 1) infinite;
 }
 @keyframes wave-animation {
-  0% { transform: translateY(0); }
-  20% { transform: translateY(-8px) rotate(0.5deg); }
+  0% { transform: translateY(0) rotate(0deg); }
+  10% { transform: translateY(-4px) rotate(0.5deg); }
+  20% { transform: translateY(-8px) rotate(1deg); }
+  30% { transform: translateY(-4px) rotate(0.25deg); }
   40% { transform: translateY(0) rotate(-0.25deg); }
-  60% { transform: translateY(5px) rotate(0.5deg); }
-  80% { transform: translateY(-3px) rotate(-0.25deg); }
-  100% { transform: translateY(0); }
+  50% { transform: translateY(4px) rotate(-0.5deg); }
+  60% { transform: translateY(5px) rotate(-0.25deg); }
+  70% { transform: translateY(3px) rotate(0deg); }
+  80% { transform: translateY(-3px) rotate(0.25deg); }
+  90% { transform: translateY(-2px) rotate(0.5deg); }
+  100% { transform: translateY(0) rotate(0deg); }
 }
 
-/* Float animation */
+/* Float */
 .scrollcue.float.is-inactive {
   transform: translateY(0);
 }
 .scrollcue.float.cue-in {
   animation-name: float-animation;
-  animation-duration: 3s;
+  animation-duration: 4s;
   animation-iteration-count: infinite;
-  animation-timing-function: ease-in-out;
+  animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
 }
 @keyframes float-animation {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-20px); }
-  100% { transform: translateY(0px); }
+  0% { transform: translateY(0px) rotate(0deg); }
+  25% { transform: translateY(-10px) rotate(0.5deg); }
+  50% { transform: translateY(-20px) rotate(1deg); }
+  75% { transform: translateY(-10px) rotate(0.5deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
 }
 
+/* 3D effect */
+.scrollcue.flip-3d.is-inactive {
+  transform: perspective(800px) rotateY(60deg) rotateX(-15deg) translateZ(-100px);
+  opacity: 0;
+}
 
+.scrollcue.flip-3d.cue-in {
+  animation-name: flip3d;
+}
 
-/* Typing effect */
+@keyframes flip3d {
+  0% {
+    transform: perspective(800px) rotateY(60deg) rotateX(-15deg) translateZ(-100px);
+    opacity: 0;
+  }
+  40% {
+    opacity: 0.7;
+    transform: perspective(800px) rotateY(10deg) rotateX(-5deg) translateZ(-20px);
+  }
+  70% {
+    opacity: 0.9;
+    transform: perspective(800px) rotateY(-3deg) rotateX(2deg) translateZ(5px);
+  }
+  100% {
+    transform: perspective(800px) rotateY(0deg) rotateX(0deg) translateZ(0);
+    opacity: 1;
+  }
+}
+
+.scrollcue-child.is-inactive {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.scrollcue-child.cue-in {
+  animation-name: staggerFadeIn;
+}
+
+@keyframes staggerFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Typing */
 .scrollcue.typing.is-inactive {
   width: 0;
   white-space: nowrap;
   overflow: hidden;
-  border-right: 2px solid;
+  border-right: 3px solid transparent;
 }
 .scrollcue.typing.cue-in {
   animation: typing-animation 3.5s steps(40, end) forwards,
-            blink-caret 0.75s step-end infinite;
+            blink-caret 0.75s cubic-bezier(0.645, 0.045, 0.355, 1) infinite;
 }
 @keyframes typing-animation {
   0% { width: 0 }
@@ -286,199 +521,216 @@
   50% { border-color: currentColor }
 }
 
-/* Shake animation */
-.scrollcue.shake.is-inactive {
-  transform: translateX(0);
-}
-.scrollcue.shake.cue-in {
-  animation: shake-animation 0.82s cubic-bezier(.36,.07,.19,.97) forwards;
-}
-@keyframes shake-animation {
-  10%, 90% { transform: translateX(-1px); }
-  20%, 80% { transform: translateX(2px); }
-  30%, 50%, 70% { transform: translateX(-4px); }
-  40%, 60% { transform: translateX(4px); }
+/* Elastic */
+.scrollcue.elastic-in.is-inactive {
+  transform: scale(0);
+  opacity: 0;
 }
 
-/* Flicker animation */
-.scrollcue.flicker.is-inactive {
+.scrollcue.elastic-in.cue-in {
+  animation-name: elasticIn;
+}
+
+@keyframes elasticIn {
+  0% {
+    transform: scale(0);
     opacity: 0;
+  }
+  25% {
+    transform: scale(1.15);
+    opacity: 0.7;
+  }
+  45% {
+    transform: scale(0.85);
+    opacity: 0.85;
+  }
+  65% {
+    transform: scale(1.05);
+    opacity: 0.95;
+  }
+  85% {
+    transform: scale(0.95);
+    opacity: 1;
+  }
+  100% {
     transform: scale(1);
-    filter: brightness(1);
+    opacity: 1;
+  }
+}
+
+/* Scroll Progress */
+.scrollcue[data-progress] {
+  transition: all 0.1s cubic-bezier(0.42, 0, 0.58, 1);
+}
+
+/* Transform Origin */
+.scrollcue[data-origin] {
+  transform-origin: var(--transform-origin, center);
+}
+
+/* Parallax */
+.scrollcue[data-parallax], 
+.scrollcue[data-speed] {
+  transition: transform 0.1s cubic-bezier(0.42, 0, 0.58, 1);
+  will-change: transform;
+}
+
+/* Smoother transitions */
+.scrollcue.cue-in {
+  transition-timing-function: cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+/* Flicker */
+.scrollcue.flicker.is-inactive {
+  opacity: 0;
 }
 .scrollcue.flicker.cue-in {
-    animation: flicker-animation 3s infinite alternate;
-    transform-origin: center center;
+  animation-name: flickerAnimation;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
 }
-@keyframes flicker-animation {
-    0%, 100% { opacity: 1; filter: brightness(1) contrast(1); transform: scale(1) rotate(0deg); }
-    10% { opacity: 0.8; filter: brightness(1.2) contrast(1.2); transform: scale(1.05) rotate(1deg); }
-    15% { opacity: 0.3; filter: brightness(0.9) contrast(0.8); transform: scale(0.97) rotate(-1deg); }
-    20% { opacity: 0.9; filter: brightness(1.3) contrast(1.4); transform: scale(1.08) rotate(2deg); }
-    25% { opacity: 0.6; filter: brightness(0.8) contrast(0.9); transform: scale(0.95) rotate(-2deg); }
-    30% { opacity: 1; filter: brightness(1.1) contrast(1.1); transform: scale(1.03) rotate(0deg); }
-    50% { opacity: 0.4; filter: brightness(0.7) contrast(0.7); transform: scale(0.98) rotate(-1deg); }
-    55% { opacity: 0.9; filter: brightness(1.4) contrast(1.3); transform: scale(1.06) rotate(1deg); }
-    70% { opacity: 1; filter: brightness(1.2) contrast(1.2); transform: scale(1.04) rotate(-0.5deg); }
-    85% { opacity: 0.7; filter: brightness(0.9) contrast(0.8); transform: scale(0.96) rotate(0.5deg); }
+@keyframes flickerAnimation {
+  0% { opacity: 1; }
+  10% { opacity: 0.8; }
+  12% { opacity: 0.9; }
+  14% { opacity: 0.6; }
+  16% { opacity: 0.85; }
+  25% { opacity: 0.7; }
+  30% { opacity: 1; }
+  50% { opacity: 0.9; }
+  60% { opacity: 0.8; }
+  70% { opacity: 1; }
+  80% { opacity: 0.6; }
+  90% { opacity: 0.9; }
+  100% { opacity: 1; }
 }
 
-/* Boat rocking animation */
+/* Shake */
+.scrollcue.shake.is-inactive {
+  opacity: 0;
+}
+.scrollcue.shake.cue-in {
+  animation-name: shakeAnimation;
+  animation-duration: 0.8s;
+  animation-iteration-count: 1;
+  animation-timing-function: cubic-bezier(0.36, 0.07, 0.19, 0.97);
+}
+@keyframes shakeAnimation {
+  0% { transform: translateX(0); }
+  10% { transform: translateX(-5px); }
+  20% { transform: translateX(5px); }
+  30% { transform: translateX(-4px); }
+  40% { transform: translateX(4px); }
+  50% { transform: translateX(-3px); }
+  60% { transform: translateX(3px); }
+  70% { transform: translateX(-2px); }
+  80% { transform: translateX(2px); }
+  90% { transform: translateX(-1px); }
+  100% { transform: translateX(0); }
+}
+
+/* Boat rocking */
 .scrollcue.boat-rock.is-inactive {
-  transform-origin: center bottom;
   opacity: 0;
 }
 .scrollcue.boat-rock.cue-in {
-  opacity: 1;
-  animation: boat-rock-animation 6s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite;
+  animation-name: boatRockAnimation;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  transform-origin: bottom center;
 }
-@keyframes boat-rock-animation {
-  0% { transform: rotate(0); }
-  15% { transform: rotate(3deg) translateY(-2px); }
-  30% { transform: rotate(-1deg) translateY(1px); }
-  45% { transform: rotate(2deg) translateY(-1px); }
-  60% { transform: rotate(-2deg) translateY(2px); }
-  75% { transform: rotate(1deg) translateY(-1px); }
-  90% { transform: rotate(-0.5deg) translateY(1px); }
-  100% { transform: rotate(0) translateY(0); }
-}
-
-/* Water ripple effect */
-.scrollcue.ripple.is-inactive {
-  position: relative;
-  overflow: hidden;
-}
-.scrollcue.ripple.cue-in::before,
-.scrollcue.ripple.cue-in::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-}
-.scrollcue.ripple.cue-in::before {
-  background: radial-gradient(circle, 
-    rgba(255, 255, 255, 0.3) 0%,
-    rgba(255, 255, 255, 0.2) 45%,
-    rgba(255, 255, 255, 0.1) 65%,
-    transparent 100%);
-  animation: ripple-animation 3s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
-}
-.scrollcue.ripple.cue-in::after {
-  background: radial-gradient(circle, 
-    rgba(255, 255, 255, 0.25) 0%,
-    rgba(255, 255, 255, 0.15) 45%,
-    rgba(255, 255, 255, 0.05) 65%,
-    transparent 100%);
-  animation: ripple-animation 3s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
-  animation-delay: -1.5s;
-}
-@keyframes ripple-animation {
-  0% {
-    width: 0;
-    height: 0;
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.5;
-  }
-  100% {
-    width: 250%;
-    height: 250%;
-    opacity: 0;
-  }
+@keyframes boatRockAnimation {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(5deg); }
+  50% { transform: rotate(0deg); }
+  75% { transform: rotate(-5deg); }
+  100% { transform: rotate(0deg); }
 }
 
 /* Wind effect */
 .scrollcue.wind.is-inactive {
-  overflow: hidden;
-  position: relative;
+  opacity: 0;
 }
-.scrollcue.wind.cue-in::before,
-.scrollcue.wind.cue-in::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 200%;
-  height: 100%;
-  animation: wind-animation 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+.scrollcue.wind.cue-in {
+  animation-name: windAnimation;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
 }
-.scrollcue.wind.cue-in::before {
-  background: linear-gradient(90deg, 
-    transparent 0%, 
-    rgba(255,255,255,0.05) 45%,
-    rgba(255,255,255,0.1) 50%,
-    rgba(255,255,255,0.05) 55%,
-    transparent 100%);
-}
-.scrollcue.wind.cue-in::after {
-  background: linear-gradient(90deg,
-    transparent 0%,
-    rgba(255,255,255,0.08) 48%,
-    rgba(255,255,255,0.15) 50%,
-    rgba(255,255,255,0.08) 52%,
-    transparent 100%);
-  animation-delay: -2s;
-}
-@keyframes wind-animation {
+@keyframes windAnimation {
   0% { transform: translateX(0) skewX(0deg); }
-  25% { transform: translateX(25%) skewX(-2deg); }
-  75% { transform: translateX(75%) skewX(2deg); }
-  100% { transform: translateX(100%) skewX(0deg); }
+  25% { transform: translateX(5px) skewX(-2deg); }
+  50% { transform: translateX(10px) skewX(-5deg); }
+  75% { transform: translateX(5px) skewX(-2deg); }
+  100% { transform: translateX(0) skewX(0deg); }
+}
+
+/* Ripple effect */
+.scrollcue.ripple.is-inactive {
+  opacity: 0;
+}
+.scrollcue.ripple.cue-in {
+  animation-name: rippleAnimation;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-out;
+  transform-origin: center;
+}
+@keyframes rippleAnimation {
+  0% { 
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% { 
+    transform: scale(1.2);
+    opacity: 0.5;
+  }
+  100% { 
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 /* Storm effect */
 .scrollcue.storm.is-inactive {
-  transform: scale(0.95);
   opacity: 0;
 }
 .scrollcue.storm.cue-in {
-  animation: storm-shake 0.5s ease-in-out infinite alternate;
-  opacity: 1;
+  animation-name: stormAnimation;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
 }
-@keyframes storm-shake {
-  0% { transform: translateX(-3px) rotate(-1deg) scale(1); }
-  100% { transform: translateX(3px) rotate(1deg) scale(0.98); }
+@keyframes stormAnimation {
+  0% { transform: translateX(0) translateY(0); }
+  10% { transform: translateX(-2px) translateY(1px); }
+  20% { transform: translateX(2px) translateY(-1px); }
+  30% { transform: translateX(-1px) translateY(-1px); }
+  40% { transform: translateX(1px) translateY(1px); }
+  50% { transform: translateX(-1px) translateY(-2px); }
+  60% { transform: translateX(1px) translateY(2px); }
+  70% { transform: translateX(-2px) translateY(1px); }
+  80% { transform: translateX(2px) translateY(-1px); }
+  90% { transform: translateX(-1px) translateY(1px); }
+  100% { transform: translateX(0) translateY(0); }
 }
 
 /* Breaking wave effect */
 .scrollcue.breaking-wave.is-inactive {
-    transform: translateY(20px) scale(0.95);
-    opacity: 0;
+  opacity: 0;
 }
 .scrollcue.breaking-wave.cue-in {
-    animation: wave-motion 3s ease-in-out infinite;
-    opacity: 1;
+  animation-name: breakingWaveAnimation;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
 }
-@keyframes wave-motion {
-    0% { transform: translateY(0) rotate(0); }
-    25% { transform: translateY(-10px) rotate(2deg); }
-    50% { transform: translateY(0) rotate(0); }
-    75% { transform: translateY(-5px) rotate(-1deg); }
-    100% { transform: translateY(0) rotate(0); }
+@keyframes breakingWaveAnimation {
+  0% { transform: translateY(0) rotate(0deg) scaleX(1); }
+  25% { transform: translateY(-5px) rotate(2deg) scaleX(1.1); }
+  50% { transform: translateY(-10px) rotate(-1deg) scaleX(0.9); }
+  75% { transform: translateY(-5px) rotate(1deg) scaleX(1.05); }
+  100% { transform: translateY(0) rotate(0deg) scaleX(1); }
 }
-
-/* Sequential fade in */
-.scrollcue.sequential.is-inactive > * {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
-}
-.scrollcue.sequential.cue-in > * {
-  opacity: 1;
-  transform: translateY(0);
-}
-.scrollcue.sequential.cue-in > *:nth-child(1) { transition-delay: 0.1s; }
-.scrollcue.sequential.cue-in > *:nth-child(2) { transition-delay: 0.2s; }
-.scrollcue.sequential.cue-in > *:nth-child(3) { transition-delay: 0.3s; }
-.scrollcue.sequential.cue-in > *:nth-child(4) { transition-delay: 0.4s; }
-.scrollcue.sequential.cue-in > *:nth-child(5) { transition-delay: 0.5s; }
-.scrollcue.sequential.cue-in > *:nth-child(6) { transition-delay: 0.6s; }
-.scrollcue.sequential.cue-in > *:nth-child(7) { transition-delay: 0.7s; }
-.scrollcue.sequential.cue-in > *:nth-child(8) { transition-delay: 0.8s; }
-.scrollcue.sequential.cue-in > *:nth-child(9) { transition-delay: 0.9s; }
-.scrollcue.sequential.cue-in > *:nth-child(10) { transition-delay: 1.0s; }

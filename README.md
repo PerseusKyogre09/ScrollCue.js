@@ -1,15 +1,19 @@
 # ScrollCue.js
 
-A lightweight JavaScript scroll animation library using the Intersection Observer API. ScrollCue.js animates elements when they enter the viewport, with configurable animations, delays, and durations.
+A lightweight JavaScript scroll animation library using the Intersection Observer API. ScrollCue.js animates elements when they enter the viewport, with configurable animations, delays, and durations. Now with buttery-smooth advanced animations while remaining dependency-free!
 
 ## Features
 
 - Dependency-free (no jQuery required)
 - Lightweight
 - Uses modern Intersection Observer API
-- Multiple animation types
-- Customizable timing and easing
-- Simple implementation
+- Multiple animation types with buttery-smooth transitions
+- Physics-based animations for natural movement
+- Advanced easing functions for natural motion
+- Staggered animations for groups of elements
+- Timeline sequencing for complex animations
+- Scroll-linked animations and progress tracking
+- Transform origin controls and 3D perspective
 - **Works automatically when included** (like particles.js)
 - **Can be used directly from CDN - no downloads needed**
 - **One-line implementation available (JS + CSS together)**
@@ -60,47 +64,37 @@ That's it! No initialization code needed. ScrollCue.js automatically detects ele
 #### Basic Animations
 
 - `fade-in`: Simple fade-in effect
-- `slide-up`: Slides up from below
-- `slide-down`: Slides down from above
-- `slide-left`: Slides in from the right
-- `slide-right`: Slides in from the left
-- `zoom-in`: Scales up from smaller size
-- `zoom-out`: Scales down from larger size
-- `rotate-in`: Rotates and fades in
-- `flip-in`: Flips in with 3D effect
-- `bounce-in`: Bounces in with an elastic effect
+- `slide-up`: Slides up from below with physics-based momentum
+- `slide-down`: Slides down from above with physics-based momentum
+- `slide-left`: Slides in from the right with smooth deceleration
+- `slide-right`: Slides in from the left with smooth deceleration
+- `zoom-in`: Scales up from smaller size with slight overshoot
+- `zoom-out`: Scales down from larger size with spring-like motion
+- `rotate-in`: Rotates and fades in with natural damping
+- `flip-in`: Flips in with realistic 3D physics
+- `bounce-in`: Bounces in with enhanced elastic effect
+- `spring`: Spring-physics animation with natural oscillation
+- `elastic-in`: Elastic animation with spring-like oscillation
+- `flip-3d`: Advanced 3D flip with perspective and rotation
 
 #### Special Effects
 
-- `wave`: Gentle wave-like motion
-- `float`: Smooth floating animation
-- `wind`: Wind sweeping effect
+- `wave`: Gentle wave-like motion with improved physics
+- `float`: Smooth floating animation with subtle rotation
+- `wind`: Wind sweeping effect with natural movement
 - `ripple`: Water ripple effect with radial expansion
 - `boat-rock`: Realistic boat rocking motion
 - `storm`: Dynamic storm-like shaking
 - `breaking-wave`: Natural wave breaking motion
 - `typing`: Type text with cursor blink effect
-- `shake`: Quick shake animation
+- `shake`: Quick shake animation with physics-based damping
 - `flicker`: Light flickering effect with brightness
-- `sequential`: Animate child elements in sequence
-
-### Special Effects
-
-- `wave`: Gentle wave-like motion
-- `float`: Smooth floating animation
-- `wind`: Wind sweeping effect
-- `ripple`: Water ripple effect
-- `boat-rock`: Boat rocking motion
-- `storm`: Storm-like shaking effect
-- `breaking-wave`: Wave breaking motion
-- `typing`: Typing effect with cursor
-- `shake`: Quick shake animation
-- `flicker`: Light flickering effect
-- `sequential`: Animate children in sequence
+- `stagger`: Animate child elements in sequence with configurable delays
 
 ### Example Usage
 
 Basic animations:
+
 ```html
 <div class="scrollcue" data-cue="fade-in">
   This element will fade in when scrolled into view.
@@ -112,6 +106,7 @@ Basic animations:
 ```
 
 Special effects:
+
 ```html
 <!-- Ocean-themed effects -->
 <div class="scrollcue" data-cue="wave">
@@ -126,8 +121,8 @@ Special effects:
   💧 Ripple effect
 </div>
 
-<!-- Sequential animation -->
-<div class="scrollcue" data-cue="sequential">
+<!-- Stagger animation -->
+<div class="scrollcue" data-cue="stagger" data-stagger="100">
   <div>First item</div>
   <div>Second item</div>
   <div>Third item</div>
@@ -155,9 +150,48 @@ const myScrollCue = new ScrollCue({
   duration: 800,
   delay: 0,
   easing: 'cubic-bezier(0.25, 0.1, 0.25, 1.0)',
-  once: true
+  once: true,
+  useRAF: true,       // Use requestAnimationFrame for smoother animations
+  stagger: 150        // Default stagger delay for child elements
 });
 myScrollCue.init();
+
+// Advanced Timeline functionality
+const timeline = scrollCue.timeline()
+  .add('#first-element', {cue: 'fade-in', delay: 0})
+  .add('#second-element', {cue: 'slide-up', position: '+=200'})
+  .add('#third-element', {cue: 'zoom-in', position: '<'});
+
+timeline.play();
+
+// Create staggered animations
+scrollCue.sequence('#container')
+  .add('.item', {cue: 'fade-in', stagger: 100})
+  .play();
+
+// Register custom easing functions
+scrollCue.registerEasing('customBounce', 'cubic-bezier(0.175, 0.885, 0.32, 1.275)');
+
+// Create scroll-linked animations
+scrollCue.scrollTween('.parallax-element', {
+  start: 'top bottom',  // When element top reaches bottom of viewport
+  end: 'bottom top',    // When element bottom reaches top of viewport
+  properties: {
+    y: {from: 0, to: -100, unit: 'px'},
+    opacity: {from: 0, to: 1},
+    scale: {from: 0.8, to: 1}
+  }
+});
+
+// Add custom animations
+scrollCue.addAnimation('custom-animation', {
+  initial: 'transform: rotate(45deg); opacity: 0;',
+  visible: 'transform: rotate(0); opacity: 1;',
+  keyframes: `
+    0% { transform: rotate(45deg); opacity: 0; }
+    100% { transform: rotate(0); opacity: 1; }
+  `
+});
 ```
 
 ## Options
@@ -170,6 +204,9 @@ myScrollCue.init();
 | delay | Number | 0 | Default delay before animation starts in milliseconds. |
 | easing | String | 'cubic-bezier(0.25, 0.1, 0.25, 1.0)' | CSS timing function for animations. |
 | once | Boolean | true | Whether to animate elements only once or every time they enter the viewport. |
+| useRAF | Boolean | true | Whether to use requestAnimationFrame for smoother animations. |
+| stagger | Number | 0 | Default stagger delay for child elements in milliseconds. |
+| ease | String | 'cubic-bezier(0.25, 0.1, 0.25, 1.0)' | Alias for easing (compatible naming). |
 
 ## Browser Support
 

@@ -104,6 +104,50 @@ If you want to add new animations or features:
    - Make sure it's compatible with the existing API.
    - Document any new options or methods.
 
+## Adding New Animations
+
+When adding a new animation:
+
+1. Add the CSS for the new animation to `scrollcue.css`:
+   - Create styles for both the inactive state (`.scrollcue.animation-name.is-inactive`)
+   - Add the active animation styles (`.scrollcue.animation-name.cue-in`)
+   - Define keyframes if needed (`@keyframes animationName`)
+   - Add comments explaining the animation
+
+2. Test thoroughly in multiple browsers
+
+3. Update documentation:
+   - Add the animation to the README.md
+   - Add the animation to INSTRUCTIONS.md
+   - Include an example in the demo pages
+
+4. Generate the all-in-one files as described above
+
+## Advanced Features
+
+If you're adding more complex features like:
+
+- Timeline controls
+- Parallax effects
+- Scroll-linked animations
+
+Make sure to:
+
+1. Add appropriate methods to the ScrollCue class in `scrollcue.js`
+2. Create necessary CSS in `scrollcue.css`
+3. Document the new features thoroughly
+4. Add examples to the demo pages
+
+## Performance Considerations
+
+ScrollCue.js aims to be lightweight and performance-friendly:
+
+- Use CSS transforms and opacity for animations (hardware accelerated)
+- Avoid expensive properties like `box-shadow` for animations
+- Add `will-change` hint for animated properties
+- Use `requestAnimationFrame` for smooth animations
+- Test on lower-end devices to ensure performance
+
 ## Questions?
 
 If you have questions about contributing, please open an issue in the repository.

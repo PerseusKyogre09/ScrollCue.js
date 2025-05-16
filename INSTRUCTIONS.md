@@ -42,7 +42,7 @@
 - `typing`: Type text with cursor blink
 - `shake`: Quick shake animation
 - `flicker`: Light flickering effect
-- `sequential`: Animate children sequentially
+- `stagger`: Animate children sequentially
 
 ## Example Effects
 
@@ -70,10 +70,10 @@
 </div>
 ```
 
-### Sequential Animation
+### Staggered Animation
 
 ```html
-<div class="scrollcue" data-cue="sequential">
+<div class="scrollcue" data-cue="stagger" data-stagger="100">
   <!-- Each child will animate in sequence -->
   <div>First item (100ms delay)</div>
   <div>Second item (200ms delay)</div>

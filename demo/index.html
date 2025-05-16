@@ -12,6 +12,7 @@
     <div class="container">
       <h1 class="scrollcue" data-cue="fade-down" data-duration="1200">ScrollCue.js</h1>
       <p class="scrollcue" data-cue="fade-up" data-delay="300">A lightweight scroll animation library using Intersection Observer API</p>
+      <p class="scrollcue" data-cue="fade-in" data-delay="600">Now with buttery-smooth advanced animations!</p>
     </div>
   </header>
 
@@ -134,6 +135,57 @@
         </div>
       </div>
     </section>
+      <!-- Advanced Animation Section -->
+    <section class="section">
+      <h2 class="section-title">Advanced Animations</h2>
+      
+      <div class="animation-container">
+        <div class="animation-card">
+          <h3>Spring</h3>
+          <div class="card-wrapper">
+            <div class="demo-block scrollcue" data-cue="spring">
+              spring
+            </div>
+          </div>
+        </div>
+
+        <div class="animation-card">
+          <h3>Elastic In</h3>
+          <div class="card-wrapper">
+            <div class="demo-block scrollcue" data-cue="elastic-in">
+              elastic-in
+            </div>
+          </div>
+        </div>
+
+        <div class="animation-card">
+          <h3>Flip 3D</h3>
+          <div class="card-wrapper">
+            <div class="demo-block scrollcue" data-cue="flip-3d">
+              flip-3d
+            </div>
+          </div>
+        </div>
+        
+        <div class="animation-card">
+          <h3>Custom Origin</h3>
+          <div class="card-wrapper">
+            <div class="demo-block scrollcue" data-cue="rotate-in" data-origin="bottom left">
+              origin: bottom left
+            </div>
+          </div>
+        </div>
+
+        <div class="animation-card">
+          <h3>Flip X</h3>
+          <div class="card-wrapper">
+            <div class="demo-block scrollcue" data-cue="flip-x">
+              flip-x
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
     
     <section class="section">
       <h2 class="section-title">Dynamic Effects</h2>
@@ -191,9 +243,9 @@
         </div>
 
         <div class="animation-card">
-          <h3>Sequential</h3>
+          <h3>Staggered Items</h3>
           <div class="card-wrapper">
-            <div class="demo-block scrollcue" data-cue="sequential" style="height: auto; display: flex; flex-direction: column; gap: 10px;">
+            <div class="demo-block scrollcue" data-cue="stagger" data-stagger="100" data-child-cue="fade-in" style="height: auto; display: flex; flex-direction: column; gap: 10px;">
               <div>First item</div>
               <div>Second item</div>
               <div>Third item</div>
@@ -294,6 +346,78 @@
         </div>
       </div>
     </section>
+    
+    <!-- New Easing Functions Section -->
+    <section class="section">
+      <h2 class="section-title">Enhanced Easing Functions</h2>
+      
+      <div class="animation-container">
+        <div class="animation-card">
+          <h3>Ease Out Back</h3>
+          <div class="card-wrapper">
+            <div class="demo-block scrollcue" data-cue="slide-up" data-ease="easeOutBack">
+              easeOutBack
+            </div>
+          </div>
+        </div>
+        
+        <div class="animation-card">
+          <h3>Ease Out Elastic</h3>
+          <div class="card-wrapper">
+            <div class="demo-block scrollcue" data-cue="slide-up" data-ease="easeOutElastic">
+              easeOutElastic
+            </div>
+          </div>
+        </div>
+        
+        <div class="animation-card">
+          <h3>Ease In Out</h3>
+          <div class="card-wrapper">
+            <div class="demo-block scrollcue" data-cue="slide-up" data-ease="easeInOut">
+              easeInOut
+            </div>
+          </div>
+        </div>
+        
+        <div class="animation-card">
+          <h3>Ease Out Bounce</h3>
+          <div class="card-wrapper">
+            <div class="demo-block scrollcue" data-cue="slide-up" data-ease="easeOutBounce">
+              easeOutBounce
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Parallax Demo Section -->
+    <section class="parallax-section">
+      <h2 class="section-title">Parallax & Scroll Effects</h2>
+      
+      <div class="parallax-container">
+        <div class="parallax-item scrollcue" data-parallax="0.5" data-parallax-type="y">
+          <div class="demo-block">Y Parallax (0.5)</div>
+        </div>
+        
+        <div class="parallax-item scrollcue" data-parallax="0.2" data-parallax-type="x">
+          <div class="demo-block">X Parallax (0.2)</div>
+        </div>
+        
+        <div class="parallax-item scrollcue" data-parallax="0.3" data-parallax-type="rotate">
+          <div class="demo-block">Rotate Parallax (0.3)</div>
+        </div>
+        
+        <div class="parallax-item scrollcue" data-parallax="0.4" data-parallax-type="scale">
+          <div class="demo-block">Scale Parallax (0.4)</div>
+        </div>
+        
+        <div class="parallax-item scrollcue" data-parallax="0.6" data-parallax-type="3d">
+          <div class="demo-block">3D Parallax (0.6)</div>
+        </div>
+      </div>
+      
+      <div class="progress-bar" data-progress data-progress-property="width" data-progress-min="0" data-progress-max="100" data-progress-unit="%"></div>
+    </section>
   </div>
   <footer>
     <div class="container">
@@ -311,6 +435,116 @@
       body.classList.toggle('dark-mode');
       toggleBtn.textContent = body.classList.contains('dark-mode') ? '☀️ Light Mode' : '🌙 Dark Mode';
     });
+    
+    // Demo of timeline functionality
+    const timelineDemo = document.createElement('div');
+    timelineDemo.className = 'timeline-demo';
+    timelineDemo.innerHTML = `
+      <h3>Timeline Animation</h3>
+      <div id="timeline-container">
+        <div id="timeline-item-1" class="timeline-item">First</div>
+        <div id="timeline-item-2" class="timeline-item">Second</div>
+        <div id="timeline-item-3" class="timeline-item">Third</div>
+        <div id="timeline-item-4" class="timeline-item">Fourth</div>
+      </div>
+      <button id="play-timeline">Play Timeline</button>
+    `;
+    
+    document.querySelector('.section:last-of-type').after(timelineDemo);
+    
+    document.getElementById('play-timeline').addEventListener('click', () => {
+      // Create and play an advanced timeline
+      const timeline = scrollCue.timeline()
+        .add('#timeline-item-1', {cue: 'fade-in', delay: 0})
+        .add('#timeline-item-2', {cue: 'slide-up', position: '+=200'})
+        .add('#timeline-item-3', {cue: 'zoom-in', position: '+=200'})
+        .add('#timeline-item-4', {cue: 'flip-in', position: '<'})
+        .play();
+    });
+    
+    // Add custom styles for new sections
+    const style = document.createElement('style');
+    style.textContent = `      .parallax-section {
+        min-height: 100vh;
+        padding: 2rem;
+        background: #f5f5f5;
+        border-radius: 10px;
+        margin-bottom: 3rem;
+      }
+      
+      .parallax-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        justify-content: center;
+        margin: 2rem 0;
+      }
+      
+      .parallax-item {
+        height: 200px;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .parallax-item .demo-block {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        font-weight: bold;
+      }
+      
+      .progress-bar {
+        height: 10px;
+        background: #4caf50;
+        border-radius: 5px;
+        margin-top: 2rem;
+        width: 0%;
+        transition: width 0.1s;
+      }
+      
+      .timeline-demo {
+        padding: 2rem;
+        background: #f5f5f5;
+        border-radius: 10px;
+        margin-bottom: 3rem;
+        text-align: center;
+      }
+      
+      #timeline-container {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        max-width: 400px;
+        margin: 0 auto;
+      }
+      
+      .timeline-item {
+        padding: 1rem;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      }
+      
+      #play-timeline {
+        margin-top: 1rem;
+        padding: 0.5rem 1rem;
+        background: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      
+      #play-timeline:hover {
+        background: #3e8e41;
+      }
+    `;
+    document.head.appendChild(style);
   </script>
   
 </body>

@@ -59,6 +59,8 @@ That's it! No initialization code needed. ScrollCue.js automatically detects ele
 </div>
 ```
 
+For advanced configuration and customization options, check out the [instructions](INSTRUCTIONS.md) file.
+
 ### Available Animations
 
 #### Basic Animations

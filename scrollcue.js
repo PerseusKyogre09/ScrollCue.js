@@ -667,7 +667,6 @@
       return this;
     }
     
-    // Get easing function value (returns cubic-bezier or other valid CSS timing)
     getEasingValue(name) {
       return this.customEasings[name] || name;
     }

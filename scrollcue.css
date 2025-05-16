@@ -716,7 +716,6 @@
   90% { transform: translateX(-1px) translateY(1px); }
   100% { transform: translateX(0) translateY(0); }
 }
-
 /* Breaking wave effect */
 .scrollcue.breaking-wave.is-inactive {
   opacity: 0;

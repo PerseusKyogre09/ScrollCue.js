@@ -163,8 +163,10 @@
       // Setup enhanced parallax
       this.setupParallax();
       
+      // Setup scroll progress tracking
       this.setupScrollProgress();
       
+      // Setup advanced scrollTrigger functionality
       this.setupScrollTriggers();
 
       this.initialized = true;
@@ -175,6 +177,7 @@
         if (entry.isIntersecting) {
           this.animateElement(entry.target);
           
+          // Handle staggered children when parent becomes visible
           if (entry.target.dataset.cue === 'stagger' || entry.target.dataset.stagger) {
             this.handleStaggeredChildren(entry.target);
           }
@@ -194,15 +197,18 @@
       const delay = parseInt(element.dataset.delay || this.options.delay, 10);
       const duration = parseInt(element.dataset.duration || this.options.duration, 10);
       
+      // Prepare animation
       element.style.animationDuration = `${duration}ms`;
       element.style.animationDelay = `${delay}ms`;
       element.style.animationTimingFunction = this.getEasingValue(element.dataset.easing || element.dataset.ease || this.options.easing);
       
+      // FLIP animation prep
       let flipAnimation = null;
       if (element.dataset.flip === 'true' && element._initialRect) {
         flipAnimation = this.prepareFlipAnimation(element);
       }
       
+      // Use RAF for smoother animation start
       if (this.options.useRAF) {
         requestAnimationFrame(() => {
           this.startElementAnimation(element, animationType, flipAnimation);
@@ -213,16 +219,19 @@
         }, 10);
       }
       
+      // Register animation for timeline functionality
       const animation = {
         element,
         startTime: Date.now() + delay,
         duration,
         onComplete: () => {
+          // Dispatch animation complete event
           element.dispatchEvent(new CustomEvent('scrollcue:complete', {
             bubbles: true,
             detail: { element }
           }));
           
+          // Execute callback function if defined
           const completeCallback = element.dataset.onComplete;
           if (completeCallback && typeof window[completeCallback] === 'function') {
             window[completeCallback](element);
@@ -232,6 +241,7 @@
       
       this.animations.push(animation);
       
+      // Set timeout to trigger completion callback
       setTimeout(() => {
         const index = this.animations.findIndex(anim => anim.element === element);
         if (index !== -1) {
@@ -242,23 +252,29 @@
     }
 
     startElementAnimation(element, animationType, flipAnimation) {
+      // Apply FLIP animation if prepared
       if (flipAnimation) {
         Object.assign(element.style, flipAnimation.initial);
         
+        // Use RAF for smooth FLIP transition
         requestAnimationFrame(() => {
+          // Apply the transition
           element.style.transition = `transform ${element.style.animationDuration} ${element.style.animationTimingFunction}`;
           Object.assign(element.style, flipAnimation.final);
         });
       }
       
+      // Apply animation classes
       element.classList.remove('is-inactive');
       element.classList.add('cue-in', animationType);
       
+      // Dispatch start event
       element.dispatchEvent(new CustomEvent('scrollcue:start', {
         bubbles: true,
         detail: { element }
       }));
       
+      // Execute callback function if defined
       const callback = element.dataset.onStart || element.dataset.callback;
       if (callback && typeof window[callback] === 'function') {
         window[callback](element);
@@ -280,14 +296,17 @@
     }
 
     prepareFlipAnimation(element) {
+      // Get current position
       const currentRect = element.getBoundingClientRect();
       const initialRect = element._initialRect;
       
+      // Calculate differences
       const deltaX = initialRect.left - currentRect.left;
       const deltaY = initialRect.top - currentRect.top;
       const deltaW = initialRect.width / currentRect.width;
       const deltaH = initialRect.height / currentRect.height;
       
+      // Return initial and final state transforms
       return {
         initial: {
           transform: `translate(${deltaX}px, ${deltaY}px) scale(${deltaW}, ${deltaH})`,
@@ -322,10 +341,12 @@
         }
       });
 
+      // Refresh parallax 
       if (this.isParallaxEnabled) {
         this.setupParallax();
       }
       
+      // Refresh scroll triggers
       this.setupScrollTriggers();
     }
 
@@ -343,6 +364,7 @@
         element.style.transform = '';
       });
 
+      // Remove parallax event listeners
       if (this.isParallaxEnabled) {
         window.removeEventListener('scroll', this.handleParallax);
         window.removeEventListener('resize', this.handleParallax);
@@ -353,13 +375,16 @@
       this.animations = [];
       this.timelines = [];
       
+      // Remove scroll progress listeners
       window.removeEventListener('scroll', this.updateScrollProgress);
       
+      // Cancel RAF if active
       if (this.rafId) {
         cancelAnimationFrame(this.rafId);
         this.rafId = null;
       }
       
+      // Remove scroll trigger handlers
       this.onScrollHandlers.forEach(handler => {
         window.removeEventListener('scroll', handler);
       });
@@ -377,6 +402,7 @@
       
       this.isParallaxEnabled = true;
       
+      // Improved parallax with inertia and smoother transitions
       this.handleParallax = () => {
         if (!this.rafId) {
           this.rafId = requestAnimationFrame(() => {
@@ -403,15 +429,19 @@
         const offsetTop = rect.top + scrollTop;
         const offsetMiddle = offsetTop + (rect.height / 2);
         
+        // Distance from element middle to window middle
         const distanceToMiddle = windowMiddle - offsetMiddle;
         const speedFactor = parseFloat(el.dataset.speed || el.dataset.parallax || 0.5);
         
+        // More advanced parallax calculations
         let transform = '';
         
+        // Handle different parallax types
         const parallaxType = el.dataset.parallaxType || 'y';
         
         switch (parallaxType) {
           case 'y':
+            // Vertical parallax
             const yOffset = distanceToMiddle * speedFactor;
             transform = `translateY(${yOffset}px)`;
             break;
@@ -447,22 +477,26 @@
             break;
         }
         
+        // Apply with smooth transition for buttery animations
         el.style.transform = transform;
       });
     }
 
     setupScrollProgress() {
-      // Scroll progress tracking
+      // Add scroll progress tracking
       this.updateScrollProgress = () => {
         const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
         const progress = Math.max(0, Math.min(1, window.scrollY / totalHeight));
         
+        // Dispatch scroll progress event for other components to use
         window.dispatchEvent(new CustomEvent('scrollcue:progress', {
           detail: { progress }
         }));
         
+        // Find elements with data-progress attribute
         document.querySelectorAll('[data-progress]').forEach(el => {
           if (el.dataset.progressProperty) {
+            // Custom progress property (width, height, opacity, etc.)
             const prop = el.dataset.progressProperty;
             const min = parseFloat(el.dataset.progressMin || 0);
             const max = parseFloat(el.dataset.progressMax || 1);
@@ -476,16 +510,18 @@
               el.style[prop] = `${value}${el.dataset.progressUnit || ''}`;
             }
           } else {
+            // Default: update a CSS variable
             el.style.setProperty('--scroll-progress', progress);
           }
         });
       };
       
       window.addEventListener('scroll', this.updateScrollProgress, { passive: true });
-      this.updateScrollProgress();
+      this.updateScrollProgress(); // Initial call
     }
     
     setupScrollTriggers() {
+      // Advanced scroll triggers
       document.querySelectorAll('[data-scroll-trigger]').forEach(el => {
         const triggerPosition = el.dataset.triggerPosition || 'center';
         const triggerAction = el.dataset.triggerAction || 'play';
@@ -527,7 +563,7 @@
         
         this.onScrollHandlers.push(scrollHandler);
         window.addEventListener('scroll', scrollHandler, { passive: true });
-        scrollHandler();
+        scrollHandler(); // Initial check
       });
     }
 
@@ -595,8 +631,10 @@
         } else if (position.startsWith('-=')) {
           delay = Math.max(0, lastElementEnd - parseInt(position.substr(2), 10));
         } else if (position === '>') {
+          // Start after previous animation begins
           delay = index > 0 ? timeline.elements[index - 1].delay : 0;
         } else if (position === '<') {
+          // Start at the same time as previous animation
           delay = index > 0 ? timeline.elements[index - 1].delay : 0;
         } else {
           // Absolute time
@@ -605,6 +643,7 @@
         
         item.delay = delay;
         
+        // Set the end time of this animation for reference
         lastElementEnd = delay + (options.duration || this.options.duration);
         
         // Setup element animation
@@ -613,6 +652,7 @@
         element.style.animationDelay = `${delay}ms`;
         element.style.animationTimingFunction = this.getEasingValue(options.easing || this.options.easing);
         
+        // Add inactive class if not already present
         if (!element.classList.contains('is-inactive')) {
           element.classList.add('is-inactive');
         }
@@ -626,11 +666,13 @@
       });
     }
 
+    // Register custom easing function
     registerEasing(name, value) {
       this.customEasings[name] = value;
       return this;
     }
     
+    // Get easing function value (returns cubic-bezier or other valid CSS timing)
     getEasingValue(name) {
       return this.customEasings[name] || name;
     }
@@ -657,7 +699,6 @@
       return this;
     }
     
-    // Create a sequence of animations
     sequence(selector, options = {}) {
       const container = typeof selector === 'string' 
         ? document.querySelector(selector) 
@@ -700,18 +741,18 @@
       return sequence;
     }
     
-    // Add a scroll-linked animation
+    // Scroll-linked animation
     scrollTween(selector, options = {}) {
       const elements = typeof selector === 'string'
         ? document.querySelectorAll(selector)
         : [selector];
         
       const defaults = {
-        start: 'top bottom', // Element top crosses bottom of viewport
-        end: 'bottom top',   // Element bottom crosses top of viewport
-        scrub: false,        // Whether to tie animation progress directly to scroll position
-        markers: false,      // Show markers for debugging (dev only)
-        properties: {}       // CSS properties to animate
+        start: 'top bottom', // element top crosses bottom of viewport
+        end: 'bottom top',   // element bottom crosses top of viewport
+        scrub: false,        // whether to tie animation progress directly to scroll position
+        markers: false,      // show markers for debugging (dev only)
+        properties: {}       // css properties to animate
       };
       
       const config = Object.assign({}, defaults, options);
@@ -722,7 +763,6 @@
           this.addScrollMarkers(element, config);
         }
         
-        // Parse start and end positions
         const startPos = this.parseScrollPosition(config.start, element);
         const endPos = this.parseScrollPosition(config.end, element);
         
@@ -735,20 +775,18 @@
             (scrollY - startPos) / (endPos - startPos)
           ));
           
-          // Apply animation based on progress
           this.applyScrollTweenProperties(element, config.properties, progress);
         };
         
         this.onScrollHandlers.push(scrollHandler);
         window.addEventListener('scroll', scrollHandler, { passive: true });
-        scrollHandler(); // Initial state
+        scrollHandler();
       });
       
       return this;
     }
     
     parseScrollPosition(position, element) {
-      // Parse positions like "top center", "center bottom", "+=300", etc.
       const [elementPos, viewportPos] = position.split(' ');
       const scrollY = window.scrollY || document.documentElement.scrollTop;
       const rect = element.getBoundingClientRect();
@@ -771,10 +809,10 @@
         default: pos = elemY;
       }
       
-      // Adjust for viewport position
+      // Viewport position
       if (viewportPos) {
         switch (viewportPos) {
-          case 'top': /* no adjustment needed */ break;
+          case 'top': break;
           case 'center': pos -= winHeight / 2; break;
           case 'bottom': pos -= winHeight; break;
         }
@@ -792,7 +830,6 @@
         const value = from + (progress * (to - from));
         const unit = values.unit || '';
         
-        // Handle transform properties separately
         if (['x', 'y', 'rotate', 'rotateX', 'rotateY', 'rotateZ', 'scale', 'scaleX', 'scaleY'].includes(prop)) {
           switch (prop) {
             case 'x': transform += ` translateX(${value}${unit})`; break;
@@ -806,7 +843,6 @@
             case 'scaleY': transform += ` scaleY(${value})`; break;
           }
         } else {
-          // Regular CSS properties
           element.style[prop] = `${value}${unit}`;
         }
       });

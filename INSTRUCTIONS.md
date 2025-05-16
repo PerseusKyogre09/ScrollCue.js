@@ -89,6 +89,7 @@ Add delay (milliseconds before animation starts):
 <div class="scrollcue" data-cue="fade-in" data-delay="500">Delayed fade</div>
 ```
 
+
 Set duration (milliseconds animation takes to complete):
 
 ```html

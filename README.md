@@ -28,9 +28,9 @@ The simplest way to use ScrollCue.js is with the all-in-one version that include
 
 ```html
 <!-- From npm -->
-<script src="https://cdn.jsdelivr.net/npm/scrollcue.js@latest/scrollcue.all-in-one.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/scrollcue.js@latest/scrollcue.all-in-one.js"></script>
 <!-- Or -->
-<script src="https://unpkg.com/scrollcue.js@latest/scrollcue.all-in-one.min.js"></script>
+<script src="https://unpkg.com/scrollcue.js@latest/scrollcue.all-in-one.js"></script>
 ```
 
 ### Direct Download

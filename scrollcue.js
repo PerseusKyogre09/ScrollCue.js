@@ -210,6 +210,19 @@
         }
       }
       
+      // Handle skew animations
+      if (animationType.startsWith('skew')) {
+        // Store original transform if not set
+        if (!element.dataset.originalTransform) {
+          element.dataset.originalTransform = window.getComputedStyle(element).transform;
+        }
+        
+        // Add scroll-based skew effect if enabled
+        if (element.dataset.skewScroll === 'true') {
+          this.setupSkewScroll(element);
+        }
+      }
+      
       // FLIP animation prep
       let flipAnimation = null;
       if (element.dataset.flip === 'true' && element._initialRect) {
@@ -365,6 +378,11 @@
       this.observer = null;
       
       this.elements.forEach(element => {
+        // Clean up skew scroll effects
+        if (element._skewScrollCleanup) {
+          element._skewScrollCleanup();
+        }
+        
         element.classList.remove('cue-in', 'is-inactive');
         element.style.animationDuration = '';
         element.style.animationDelay = '';
@@ -880,6 +898,34 @@
       
       document.body.appendChild(startMarker);
       document.body.appendChild(endMarker);
+    }
+
+    setupSkewScroll(element) {
+      let lastScrollY = window.scrollY;
+      let scrollDirection = 0;
+      let scrollSpeed = 0;
+      
+      const handleScroll = () => {
+        const currentScrollY = window.scrollY;
+        const delta = currentScrollY - lastScrollY;
+        scrollDirection = Math.sign(delta);
+        scrollSpeed = Math.min(Math.abs(delta) * 0.1, 10); // Limit maximum skew
+        
+        // Apply skew based on scroll direction and speed
+        const skewAmount = scrollDirection * scrollSpeed;
+        element.style.transform = `skew(${skewAmount}deg)`;
+        
+        lastScrollY = currentScrollY;
+      };
+      
+      // Add scroll event listener
+      window.addEventListener('scroll', handleScroll, { passive: true });
+      
+      // Store cleanup function
+      element._skewScrollCleanup = () => {
+        window.removeEventListener('scroll', handleScroll);
+        element.style.transform = element.dataset.originalTransform || '';
+      };
     }
   }
 

@@ -66,6 +66,24 @@
       
       // Process custom attributes
       this.elements.forEach(el => {
+        // --- BEGIN: Combo support for data-cue="combo" ---
+        if (el.dataset.cue === 'combo' && el.dataset.combo) {
+          const effects = el.dataset.combo.split(',').map(e => e.trim());
+          this.combo(el, effects);
+        }
+        // --- END: Combo support ---
+
+        // --- BEGIN: Auto-combo for scroll-based effects ---
+        const autoComboEffects = [];
+        if (el.dataset.parallax !== undefined || el.dataset.speed !== undefined) autoComboEffects.push('parallax');
+        if (el.dataset.skewScroll === 'true') autoComboEffects.push('skew');
+        if (el.dataset.stretchScroll === 'true') autoComboEffects.push('stretch');
+        // Only auto-combo if not already handled by combo above
+        if (autoComboEffects.length && !(el.dataset.cue === 'combo' && el.dataset.combo)) {
+          this.combo(el, autoComboEffects);
+        }
+        // --- END: Auto-combo for scroll-based effects ---
+
         // --- BEGIN: Consistency for fade-split (data-cue and class) ---
         if (el.dataset.cue === 'fade-split' && !el.classList.contains('fade-split')) {
           el.classList.add('fade-split');
@@ -88,6 +106,11 @@
           }
         }
         // --- END: Fade Split content wrapping ---
+        // --- BEGIN: Consistency for zoom-path (data-cue and class) ---
+        if (el.dataset.cue === 'zoom-path' && !el.classList.contains('zoom-path')) {
+          el.classList.add('zoom-path');
+        }
+        // --- END: Consistency for zoom-path ---
         // duration
         const duration = parseInt(el.dataset.duration || this.options.duration, 10);
         el.style.animationDuration = `${duration}ms`;
@@ -177,9 +200,6 @@
         this.observer.observe(element);
       });
 
-      // Setup enhanced parallax
-      this.setupParallax();
-      
       // Setup scroll progress tracking
       this.setupScrollProgress();
       
@@ -397,11 +417,6 @@
         }
       });
 
-      // Refresh parallax 
-      if (this.isParallaxEnabled) {
-        this.setupParallax();
-      }
-      
       // Refresh scroll triggers
       this.setupScrollTriggers();
     }
@@ -429,13 +444,6 @@
         element.style.animationTimingFunction = '';
         element.style.transform = '';
       });
-
-      // Remove parallax event listeners
-      if (this.isParallaxEnabled) {
-        window.removeEventListener('scroll', this.handleParallax);
-        window.removeEventListener('resize', this.handleParallax);
-        this.isParallaxEnabled = false;
-      }
       
       // Clean up animations
       this.animations = [];
@@ -457,95 +465,6 @@
       this.onScrollHandlers = [];
       
       this.initialized = false;
-    }
-
-    setupParallax() {
-      const parallaxElements = this.elements.filter(el => 
-        el.dataset.parallax !== undefined || el.dataset.speed !== undefined
-      );
-      
-      if (parallaxElements.length === 0) return;
-      
-      this.isParallaxEnabled = true;
-      
-      // Improved parallax with inertia and smoother transitions
-      this.handleParallax = () => {
-        if (!this.rafId) {
-          this.rafId = requestAnimationFrame(() => {
-            this.applyParallaxEffects(parallaxElements);
-            this.rafId = null;
-          });
-        }
-      };
-      
-      window.addEventListener('scroll', this.handleParallax, { passive: true });
-      window.addEventListener('resize', this.handleParallax, { passive: true });
-      this.handleParallax();
-    }
-    
-    applyParallaxEffects(elements) {
-      const scrollTop = window.scrollY || document.documentElement.scrollTop;
-      const windowHeight = window.innerHeight;
-      const windowMiddle = scrollTop + (windowHeight / 2);
-      
-      elements.forEach(el => {
-        if (!el.classList.contains('cue-in') && this.options.once) return;
-        
-        const rect = el.getBoundingClientRect();
-        const offsetTop = rect.top + scrollTop;
-        const offsetMiddle = offsetTop + (rect.height / 2);
-        
-        // Distance from element middle to window middle
-        const distanceToMiddle = windowMiddle - offsetMiddle;
-        const speedFactor = parseFloat(el.dataset.speed || el.dataset.parallax || 0.5);
-        
-        // More advanced parallax calculations
-        let transform = '';
-        
-        // Handle different parallax types
-        const parallaxType = el.dataset.parallaxType || 'y';
-        
-        switch (parallaxType) {
-          case 'y':
-            // Vertical parallax
-            const yOffset = distanceToMiddle * speedFactor;
-            transform = `translateY(${yOffset}px)`;
-            break;
-            
-          case 'x':
-            // Horizontal parallax
-            const windowWidth = window.innerWidth;
-            const windowCenter = windowWidth / 2;
-            const rectCenter = rect.left + (rect.width / 2);
-            const distanceX = (rectCenter - windowCenter) * speedFactor * -0.1;
-            transform = `translateX(${distanceX}px)`;
-            break;
-            
-          case 'rotate':
-            // Rotation parallax
-            const rotation = distanceToMiddle * speedFactor * 0.02;
-            transform = `rotate(${rotation}deg)`;
-            break;
-            
-          case 'scale':
-            // Scale parallax
-            const viewportPosition = 1 - (Math.abs(distanceToMiddle) / (windowHeight * 0.8));
-            const scale = 1 + (Math.max(0, Math.min(1, viewportPosition)) - 0.5) * speedFactor * 0.2;
-            transform = `scale(${scale})`;
-            break;
-            
-          case '3d':
-            // 3D parallax effect
-            const yMove = distanceToMiddle * speedFactor;
-            const xMove = (rect.left - (windowWidth / 2)) * speedFactor * -0.05;
-            const rotateX = distanceToMiddle * 0.01 * speedFactor;
-            transform = `perspective(1000px) translateY(${yMove}px) translateX(${xMove}px) rotateX(${rotateX}deg)`;
-            break;
-        }
-        
-        // Apply with smooth transition for buttery animations
-        el.style.transform = transform;
-      });
     }
 
     setupScrollProgress() {
@@ -995,6 +914,70 @@
         element.style.transform = element.dataset.originalTransform || '';
       };
     }
+
+    // --- BEGIN: Combo Animation System ---
+    /**
+     * Apply multiple animations/effects to an element.
+     * Usage: scrollCue.combo(element, ['zoom-path', 'parallax', 'skew'], { parallax: 0.3 })
+     */
+    combo(element, effects = [], options = {}) {
+      if (!element) return;
+      // Add all effect classes for CSS-based effects
+      effects.forEach(effect => {
+        if (!element.classList.contains(effect)) {
+          element.classList.add(effect);
+        }
+      });
+      // For scroll-based effects, compose transforms
+      this._setupComboTransforms(element, effects, options);
+    }
+
+    _setupComboTransforms(element, effects, options) {
+      // Only set up once
+      if (element._comboScrollHandler) return;
+      let lastScrollY = window.scrollY;
+      // Compose transforms from all scroll-based effects
+      const scrollHandler = () => {
+        let transforms = [];
+        // Parallax
+        if (effects.includes('parallax') || element.dataset.parallax !== undefined || element.dataset.speed !== undefined) {
+          const speed = parseFloat(options.parallax || element.dataset.speed || element.dataset.parallax || 0.5);
+          const rect = element.getBoundingClientRect();
+          const scrollTop = window.scrollY || document.documentElement.scrollTop;
+          const windowHeight = window.innerHeight;
+          const windowMiddle = scrollTop + (windowHeight / 2);
+          const offsetTop = rect.top + scrollTop;
+          const offsetMiddle = offsetTop + (rect.height / 2);
+          const distanceToMiddle = windowMiddle - offsetMiddle;
+          transforms.push(`translateY(${distanceToMiddle * speed}px)`);
+        }
+        // Skew
+        if (effects.includes('skew') || element.dataset.skewScroll === 'true') {
+          const currentScrollY = window.scrollY;
+          const delta = currentScrollY - lastScrollY;
+          const scrollDirection = Math.sign(delta);
+          const scrollSpeed = Math.min(Math.abs(delta) * 0.1, 10);
+          const skewAmount = scrollDirection * scrollSpeed;
+          transforms.push(`skew(${skewAmount}deg)`);
+          lastScrollY = currentScrollY;
+        }
+        // Stretch
+        if (effects.includes('stretch') || element.dataset.stretchScroll === 'true') {
+          const currentScrollY = window.scrollY;
+          const delta = currentScrollY - lastScrollY;
+          const scrollDirection = Math.sign(delta);
+          const scrollSpeed = Math.min(Math.abs(delta) * 0.05, 0.2);
+          const stretchAmount = 1 + (scrollDirection * scrollSpeed);
+          transforms.push(`scaleY(${stretchAmount})`);
+          lastScrollY = currentScrollY;
+        }
+        // Compose and apply
+        element.style.transform = transforms.join(' ');
+      };
+      window.addEventListener('scroll', scrollHandler, { passive: true });
+      element._comboScrollHandler = scrollHandler;
+    }
+    // --- END: Combo Animation System ---
   }
 
   const scrollCue = new ScrollCue();

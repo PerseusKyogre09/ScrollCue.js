@@ -197,6 +197,19 @@
       element.style.animationDelay = `${delay}ms`;
       element.style.animationTimingFunction = this.getEasingValue(element.dataset.easing || element.dataset.ease || this.options.easing);
       
+      // Handle morph animations
+      if (animationType.startsWith('morph')) {
+        // Store original border radius if not set
+        if (!element.dataset.originalBorderRadius) {
+          element.dataset.originalBorderRadius = window.getComputedStyle(element).borderRadius;
+        }
+        
+        // Store original transform if not set
+        if (!element.dataset.originalTransform) {
+          element.dataset.originalTransform = window.getComputedStyle(element).transform;
+        }
+      }
+      
       // FLIP animation prep
       let flipAnimation = null;
       if (element.dataset.flip === 'true' && element._initialRect) {

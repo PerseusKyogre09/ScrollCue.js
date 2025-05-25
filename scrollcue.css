@@ -931,3 +931,132 @@
     opacity: 1;
   }
 }
+
+/* Stretch Animation */
+.scrollcue.stretch.is-inactive {
+  transform: scaleY(0.8);
+  opacity: 0;
+}
+
+.scrollcue.stretch.cue-in {
+  animation-name: stretchAnimation;
+  transform-origin: center;
+}
+
+@keyframes stretchAnimation {
+  0% {
+    transform: scaleY(0.8);
+    opacity: 0;
+  }
+  30% {
+    transform: scaleY(1.1);
+    opacity: 0.7;
+  }
+  60% {
+    transform: scaleY(0.95);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+/* Stretch Horizontal Animation */
+.scrollcue.stretch-h.is-inactive {
+  transform: scaleX(0.8);
+  opacity: 0;
+}
+
+.scrollcue.stretch-h.cue-in {
+  animation-name: stretchHorizontalAnimation;
+  transform-origin: center;
+}
+
+@keyframes stretchHorizontalAnimation {
+  0% {
+    transform: scaleX(0.8);
+    opacity: 0;
+  }
+  30% {
+    transform: scaleX(1.1);
+    opacity: 0.7;
+  }
+  60% {
+    transform: scaleX(0.95);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+
+/* Stretch Both Animation */
+.scrollcue.stretch-both.is-inactive {
+  transform: scale(0.8);
+  opacity: 0;
+}
+
+.scrollcue.stretch-both.cue-in {
+  animation-name: stretchBothAnimation;
+  transform-origin: center;
+}
+
+@keyframes stretchBothAnimation {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  30% {
+    transform: scale(1.1);
+    opacity: 0.7;
+  }
+  60% {
+    transform: scale(0.95);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Stretch Dynamic Animation */
+.scrollcue.stretch-dynamic.is-inactive {
+  transform: scale(0.8);
+  opacity: 0;
+}
+
+.scrollcue.stretch-dynamic.cue-in {
+  animation-name: stretchDynamicAnimation;
+  transform-origin: center;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes stretchDynamicAnimation {
+  0% {
+    transform: scale(0.8) scaleY(0.9);
+    opacity: 0;
+  }
+  20% {
+    transform: scale(1.05) scaleY(1.1);
+    opacity: 0.5;
+  }
+  40% {
+    transform: scale(0.95) scaleY(1.05);
+    opacity: 0.7;
+  }
+  60% {
+    transform: scale(1.02) scaleY(0.98);
+    opacity: 0.85;
+  }
+  80% {
+    transform: scale(0.98) scaleY(1.01);
+    opacity: 0.95;
+  }
+  100% {
+    transform: scale(1) scaleY(1);
+    opacity: 1;
+  }
+}

@@ -223,6 +223,19 @@
         }
       }
       
+      // Handle stretch animations
+      if (animationType.startsWith('stretch')) {
+        // Store original transform if not set
+        if (!element.dataset.originalTransform) {
+          element.dataset.originalTransform = window.getComputedStyle(element).transform;
+        }
+        
+        // Add scroll-based stretch effect if enabled
+        if (element.dataset.stretchScroll === 'true') {
+          this.setupStretchScroll(element);
+        }
+      }
+      
       // FLIP animation prep
       let flipAnimation = null;
       if (element.dataset.flip === 'true' && element._initialRect) {
@@ -381,6 +394,11 @@
         // Clean up skew scroll effects
         if (element._skewScrollCleanup) {
           element._skewScrollCleanup();
+        }
+        
+        // Clean up stretch scroll effects
+        if (element._stretchScrollCleanup) {
+          element._stretchScrollCleanup();
         }
         
         element.classList.remove('cue-in', 'is-inactive');
@@ -923,6 +941,34 @@
       
       // Store cleanup function
       element._skewScrollCleanup = () => {
+        window.removeEventListener('scroll', handleScroll);
+        element.style.transform = element.dataset.originalTransform || '';
+      };
+    }
+
+    setupStretchScroll(element) {
+      let lastScrollY = window.scrollY;
+      let scrollDirection = 0;
+      let scrollSpeed = 0;
+      
+      const handleScroll = () => {
+        const currentScrollY = window.scrollY;
+        const delta = currentScrollY - lastScrollY;
+        scrollDirection = Math.sign(delta);
+        scrollSpeed = Math.min(Math.abs(delta) * 0.05, 0.2); // Limit maximum stretch
+        
+        // Apply stretch based on scroll direction and speed
+        const stretchAmount = 1 + (scrollDirection * scrollSpeed);
+        element.style.transform = `scaleY(${stretchAmount})`;
+        
+        lastScrollY = currentScrollY;
+      };
+      
+      // Add scroll event listener
+      window.addEventListener('scroll', handleScroll, { passive: true });
+      
+      // Store cleanup function
+      element._stretchScrollCleanup = () => {
         window.removeEventListener('scroll', handleScroll);
         element.style.transform = element.dataset.originalTransform || '';
       };

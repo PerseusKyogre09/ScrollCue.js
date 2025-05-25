@@ -66,6 +66,28 @@
       
       // Process custom attributes
       this.elements.forEach(el => {
+        // --- BEGIN: Consistency for fade-split (data-cue and class) ---
+        if (el.dataset.cue === 'fade-split' && !el.classList.contains('fade-split')) {
+          el.classList.add('fade-split');
+        }
+        // --- END: Consistency for fade-split ---
+        // --- BEGIN: Fade Split content wrapping ---
+        if (el.classList.contains('fade-split')) {
+          // Only wrap if not already wrapped
+          if (!el.querySelector('.fade-split-left') && !el.querySelector('.fade-split-right')) {
+            let html = el.innerHTML.trim();
+            // Try to split at the middle of the text content
+            const text = el.textContent;
+            const mid = Math.floor(text.length / 2);
+            // Find a space near the middle for a natural split
+            let splitIdx = text.indexOf(' ', mid);
+            if (splitIdx === -1) splitIdx = mid;
+            const left = text.slice(0, splitIdx);
+            const right = text.slice(splitIdx);
+            el.innerHTML = `<span class="fade-split-left">${left}</span><span class="fade-split-right">${right}</span>`;
+          }
+        }
+        // --- END: Fade Split content wrapping ---
         // duration
         const duration = parseInt(el.dataset.duration || this.options.duration, 10);
         el.style.animationDuration = `${duration}ms`;

@@ -197,7 +197,6 @@
     }
 
     injectAnimations() {
-      // Create style element
       const styleEl = document.createElement('style');
       
       // Add only used animations

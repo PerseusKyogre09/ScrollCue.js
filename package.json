@@ -1,1 +1,57 @@
-{"name":"scrollcue.js","version":"1.2.0","description":"A lightweight scroll animation library using Intersection Observer API","main":"scrollcue.all-in-one.min.js","files":["scrollcue.js","scrollcue.css","scrollcue.all-in-one.js","scrollcue.all-in-one.min.js"],"scripts":{"test":"echo \"Error: no test specified\" && exit 1","build":"node build.js"},"keywords":["scroll","animation","intersection-observer","reveal","fade","slide","zoom","rotate","flip","wave","ripple","parallax","stagger","boat-rock","flicker","shake","wind","storm","spring","elastic","3d-animation","typing"],"author":"","license":"MIT","repository":{"type":"git","url":"git+https://github.com/PerseusKyogre09/ScrollCue.js.git"},"homepage":"https://github.com/PerseusKyogre09/ScrollCue.js#readme","bugs":{"url":"https://github.com/PerseusKyogre09/ScrollCue.js/issues"}}
+{
+  "name": "scrollcue.js",
+  "version": "1.3.0",
+  "description": "A lightweight scroll animation library using Intersection Observer API with advanced transform animations",
+  "main": "scrollcue.all-in-one.min.js",
+  "files": [
+    "scrollcue.js",
+    "scrollcue.css",
+    "scrollcue.all-in-one.js",
+    "scrollcue.all-in-one.min.js",
+    "README.md",
+    "INSTRUCTIONS.md"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "node build.js"
+  },
+  "keywords": [
+    "scroll",
+    "animation",
+    "intersection-observer",
+    "reveal",
+    "fade",
+    "slide",
+    "zoom",
+    "rotate",
+    "flip",
+    "wave",
+    "ripple",
+    "parallax",
+    "stagger",
+    "boat-rock",
+    "flicker",
+    "shake",
+    "wind",
+    "storm",
+    "spring",
+    "elastic",
+    "3d-animation",
+    "typing",
+    "morph",
+    "skew",
+    "stretch",
+    "transform",
+    "beta"
+  ],
+  "author": "PerseusKyogre09",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PerseusKyogre09/ScrollCue.js.git"
+  },
+  "homepage": "https://github.com/PerseusKyogre09/ScrollCue.js#readme",
+  "bugs": {
+    "url": "https://github.com/PerseusKyogre09/ScrollCue.js/issues"
+  }
+}

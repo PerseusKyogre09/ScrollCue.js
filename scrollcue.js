@@ -127,7 +127,6 @@
         }
       `
     }
-    // Add more animations here...
   };
 
   // Default options
@@ -193,7 +192,6 @@
     }
 
     injectAnimations() {
-      // Create style element
       const styleEl = document.createElement('style');
       
       // Add only used animations

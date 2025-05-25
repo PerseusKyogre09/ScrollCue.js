@@ -44,6 +44,28 @@
 - `flicker`: Light flickering effect
 - `stagger`: Animate children sequentially
 
+### Transform Animations
+- `morph`: Dynamic morphing transform
+- `morph-circle`: Morph with circular transformation
+- `morph-square`: Morph with square transformation
+- `skew`: Dynamic skew transformation
+- `skew-left`: Skew to the left
+- `skew-right`: Skew to the right
+- `skew-dynamic`: Dynamic skew with variable angles
+- `stretch`: Stretch animation effect
+- `stretch-h`: Horizontal stretch
+- `stretch-both`: Stretch in both directions
+- `stretch-dynamic`: Dynamic stretch with variable scaling
+
+### Advanced Animations (Beta)
+⚠️ **Beta Features - May require fixes**
+- `fade-split`: **[BETA]** Split fade effect
+- `zoom-path`: Advanced zoom with path motion
+- `parallax`: **[BETA]** Parallax scrolling effect
+- `combo-parallax`: **[BETA]** Combined parallax effects
+
+> **Note:** Beta animations are experimental and may have issues. Use with caution in production.
+
 ## Example Effects
 
 ### Ocean Effects
@@ -78,6 +100,60 @@
   <div>First item (100ms delay)</div>
   <div>Second item (200ms delay)</div>
   <div>Third item (300ms delay)</div>
+</div>
+```
+
+### Transform Animations
+
+```html
+<!-- Morphing effects -->
+<div class="scrollcue" data-cue="morph">
+  Dynamic morph transformation
+</div>
+
+<div class="scrollcue" data-cue="morph-circle">
+  🔵 Circular morph effect
+</div>
+
+<!-- Skew effects -->
+<div class="scrollcue" data-cue="skew-left">
+  ↙️ Left skew animation
+</div>
+
+<div class="scrollcue" data-cue="skew-dynamic" data-duration="1500">
+  🔄 Dynamic skew effect
+</div>
+
+<!-- Stretch effects -->
+<div class="scrollcue" data-cue="stretch-h">
+  ↔️ Horizontal stretch
+</div>
+
+<div class="scrollcue" data-cue="stretch-both">
+  📏 Stretch in both directions
+</div>
+```
+
+### Beta Animations (Use with Caution)
+
+```html
+<!-- Split fade effect (Beta) -->
+<div class="scrollcue" data-cue="fade-split">
+  ⚠️ Split fade animation (Beta)
+</div>
+
+<!-- Parallax effects (Beta) -->
+<div class="scrollcue" data-cue="parallax" data-duration="2000">
+  ⚠️ Parallax effect (Beta)
+</div>
+
+<div class="scrollcue" data-cue="combo-parallax">
+  ⚠️ Combined parallax (Beta)
+</div>
+
+<!-- Advanced path animation -->
+<div class="scrollcue" data-cue="zoom-path">
+  🛤️ Zoom with path motion
 </div>
 ```
 

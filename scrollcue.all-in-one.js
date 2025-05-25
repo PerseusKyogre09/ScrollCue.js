@@ -132,7 +132,6 @@
         }
       `
     }
-    // Add more animations here...
   };
 
   // Default options

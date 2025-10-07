@@ -481,26 +481,6 @@
   }
 }
 
-.scrollcue-child.is-inactive {
-  opacity: 0;
-  transform: translateY(20px);
-}
-
-.scrollcue-child.cue-in {
-  animation-name: staggerFadeIn;
-}
-
-@keyframes staggerFadeIn {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 /* Typing */
 .scrollcue.typing {
   position: relative;

@@ -143,7 +143,7 @@ The typing animation creates a realistic typewriter effect that reveals text cha
 ### Staggered Animation
 
 ```html
-<div class="scrollcue" data-cue="stagger" data-stagger="100">
+<div class="scrollcue" data-cue="stagger" data-stagger="100" data-child-cue="fade-in">
   <!-- Each child will animate in sequence -->
   <div>First item (100ms delay)</div>
   <div>Second item (200ms delay)</div>

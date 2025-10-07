@@ -149,7 +149,7 @@ Special effects:
 </div>
 
 <!-- Stagger animation -->
-<div class="scrollcue" data-cue="stagger" data-stagger="100">
+<div class="scrollcue" data-cue="stagger" data-stagger="100" data-child-cue="fade-in">
   <div>First item</div>
   <div>Second item</div>
   <div>Third item</div>
@@ -189,6 +189,11 @@ Typing animation:
 
 - `data-typing-speed`: Milliseconds between each character (default: 100)
 - `data-cursor`: Set to "true" to show blinking cursor (default: no cursor)
+
+**Stagger Animation Variables:**
+
+- `data-stagger`: Milliseconds delay between each child element animation (default: 100)
+- `data-child-cue`: Animation type for child elements (default: "fade-in")
 
 Transform animations:
 

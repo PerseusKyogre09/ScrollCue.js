@@ -145,6 +145,28 @@
         }
       `,
       js: true
+    },
+    'stagger': {
+      css: `
+        .scrollcue-child.is-inactive {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        .scrollcue-child.cue-in {
+          animation-name: staggerFadeIn;
+        }
+        @keyframes staggerFadeIn {
+          0% {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      `,
+      js: true
     }
   };
 
@@ -187,6 +209,12 @@
             <div class="split-right">${content}</div>
           `;
         }
+        
+        // Special handling for stagger - prepare children
+        if (animType === 'stagger') {
+          const childCue = element.dataset.childCue || 'fade-in';
+          this.usedAnimations.add(childCue); // Also add the child animation
+        }
       });
 
       // Inject only used animations
@@ -228,7 +256,10 @@
         element.classList.add('scrollcue');
       }
       
-      if (!element.classList.contains('is-inactive')) {
+      const animationType = element.dataset.cue || 'fade-in';
+      
+      // Don't add is-inactive for stagger animations (they handle children separately)
+      if (animationType !== 'stagger' && !element.classList.contains('is-inactive')) {
         element.classList.add('is-inactive');
       }
       
@@ -250,6 +281,13 @@
 
     animateElement(element) {
       const animationType = element.dataset.cue || 'fade-in';
+      
+      // For stagger animations, skip normal element animation and handle children
+      if (animationType === 'stagger') {
+        this.startElementAnimation(element, animationType);
+        return;
+      }
+      
       const delay = parseInt(element.dataset.delay || this.options.delay, 10);
       const duration = parseInt(element.dataset.duration || this.options.duration, 10);
       
@@ -269,8 +307,11 @@
     }
 
     startElementAnimation(element, animationType) {
-      element.classList.remove('is-inactive');
-      element.classList.add('cue-in', animationType);
+      // For stagger animations, don't add classes to parent element
+      if (animationType !== 'stagger') {
+        element.classList.remove('is-inactive');
+        element.classList.add('cue-in', animationType);
+      }
       
       // Handle JavaScript-based animations
       if (animations[animationType] && animations[animationType].js) {
@@ -286,6 +327,8 @@
     handleJSAnimation(element, animationType) {
       if (animationType === 'typing') {
         this.handleTypingAnimation(element);
+      } else if (animationType === 'stagger') {
+        this.handleStaggerAnimation(element);
       }
     }
 
@@ -342,6 +385,36 @@
       
       // Start typing after a brief delay
       setTimeout(typeChar, 100);
+    }
+
+    handleStaggerAnimation(element) {
+      const staggerDelay = parseInt(element.dataset.stagger || '100', 10);
+      const childCue = element.dataset.childCue || 'fade-in';
+      const children = Array.from(element.children);
+      
+      // Add scrollcue-child class to children and set them as inactive
+      children.forEach((child, index) => {
+        child.classList.add('scrollcue-child', 'is-inactive', childCue);
+        
+        // Calculate delay for this child
+        const delay = index * staggerDelay;
+        
+        // Apply animation after delay
+        setTimeout(() => {
+          child.classList.remove('is-inactive');
+          child.classList.add('cue-in');
+          
+          // Set animation duration and timing
+          const duration = parseInt(element.dataset.duration || this.options.duration, 10);
+          child.style.animationDuration = `${duration}ms`;
+          child.style.animationTimingFunction = this.options.easing;
+          
+          child.dispatchEvent(new CustomEvent('scrollcue:child-start', {
+            bubbles: true,
+            detail: { element: child, index }
+          }));
+        }, delay);
+      });
     }
 
     refresh() {

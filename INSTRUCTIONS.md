@@ -39,7 +39,7 @@
 - `boat-rock`: Boat rocking motion
 - `storm`: Storm-like shaking effect
 - `breaking-wave`: Wave breaking motion
-- `typing`: Type text with cursor blink
+- `typing`: Type text character by character with optional blinking cursor
 - `shake`: Quick shake animation
 - `flicker`: Light flickering effect
 - `stagger`: Animate children sequentially

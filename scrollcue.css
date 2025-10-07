@@ -502,23 +502,23 @@
 }
 
 /* Typing */
-.scrollcue.typing.is-inactive {
-  width: 0;
-  white-space: nowrap;
+.scrollcue.typing {
+  position: relative;
   overflow: hidden;
-  border-right: 3px solid transparent;
 }
-.scrollcue.typing.cue-in {
-  animation: typing-animation 3.5s steps(40, end) forwards,
-            blink-caret 0.75s cubic-bezier(0.645, 0.045, 0.355, 1) infinite;
-}
-@keyframes typing-animation {
-  0% { width: 0 }
-  100% { width: 100% }
+.scrollcue.typing[data-cursor="true"]::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 2px;
+  background-color: currentColor;
+  animation: blink-caret 1s infinite;
 }
 @keyframes blink-caret {
-  from, to { border-color: transparent }
-  50% { border-color: currentColor }
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
 }
 
 /* Elastic */

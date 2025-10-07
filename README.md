@@ -88,7 +88,7 @@ For advanced configuration and customization options, check out the [instruction
 - `boat-rock`: Realistic boat rocking motion
 - `storm`: Dynamic storm-like shaking
 - `breaking-wave`: Natural wave breaking motion
-- `typing`: Type text with cursor blink effect
+- `typing`: Type text character by character with blinking cursor
 - `shake`: Quick shake animation with physics-based damping
 - `flicker`: Light flickering effect with brightness
 - `stagger`: Animate child elements in sequence with configurable delays
@@ -153,6 +153,30 @@ Special effects:
   <div>First item</div>
   <div>Second item</div>
   <div>Third item</div>
+</div>
+```
+
+Typing animation:
+
+```html
+<!-- Typing with default speed (100ms per character) -->
+<div class="scrollcue" data-cue="typing">
+  Hello, this text will be typed out character by character!
+</div>
+
+<!-- Typing with custom speed (50ms per character - faster) -->
+<div class="scrollcue" data-cue="typing" data-typing-speed="50">
+  This types faster!
+</div>
+
+<!-- Typing with blinking cursor -->
+<div class="scrollcue" data-cue="typing" data-cursor="true">
+  This types with a blinking cursor!
+</div>
+
+<!-- Typing with custom speed and cursor -->
+<div class="scrollcue" data-cue="typing" data-typing-speed="75" data-cursor="true">
+  Fast typing with cursor!
 </div>
 ```
 

@@ -126,6 +126,29 @@
           }
         }
       `
+    },
+    'typing': {
+      css: `
+        .scrollcue.typing {
+          position: relative;
+          overflow: hidden;
+        }
+        .scrollcue.typing[data-cursor="true"]::after {
+          content: '';
+          position: absolute;
+          right: 0;
+          top: 0;
+          height: 100%;
+          width: 2px;
+          background-color: currentColor;
+          animation: blink-caret 1s infinite;
+        }
+        @keyframes blink-caret {
+          0%, 50% { opacity: 1; }
+          51%, 100% { opacity: 0; }
+        }
+      `,
+      js: true
     }
   };
 
@@ -253,10 +276,58 @@
       element.classList.remove('is-inactive');
       element.classList.add('cue-in', animationType);
       
+      // Handle JavaScript-based animations
+      if (animations[animationType] && animations[animationType].js) {
+        this.handleJSAnimation(element, animationType);
+      }
+      
       element.dispatchEvent(new CustomEvent('scrollcue:start', {
         bubbles: true,
         detail: { element }
       }));
+    }
+
+    handleJSAnimation(element, animationType) {
+      if (animationType === 'typing') {
+        this.handleTypingAnimation(element);
+      }
+    }
+
+    handleTypingAnimation(element) {
+      const text = element.textContent;
+      const speed = parseInt(element.dataset.typingSpeed || '100', 10); // milliseconds per character
+      const showCursor = element.dataset.cursor === 'true';
+      
+      // Store original content and clear for typing effect
+      const originalText = text;
+      element.textContent = '';
+      
+      // Ensure the element maintains its original size
+      element.style.width = element.offsetWidth + 'px';
+      element.style.overflow = 'hidden';
+      
+      // Set cursor attribute if requested
+      if (showCursor) {
+        element.setAttribute('data-cursor', 'true');
+      }
+      
+      let charIndex = 0;
+      const typeChar = () => {
+        if (charIndex < originalText.length) {
+          element.textContent = originalText.substring(0, charIndex + 1);
+          charIndex++;
+          setTimeout(typeChar, speed);
+        } else {
+          // Typing complete, dispatch event
+          element.dispatchEvent(new CustomEvent('scrollcue:typing-complete', {
+            bubbles: true,
+            detail: { element }
+          }));
+        }
+      };
+      
+      // Start typing after a brief delay
+      setTimeout(typeChar, 100);
     }
 
     refresh() {

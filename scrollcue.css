@@ -506,16 +506,6 @@
   position: relative;
   overflow: hidden;
 }
-.scrollcue.typing[data-cursor="true"]::after {
-  content: '';
-  position: absolute;
-  right: 0;
-  top: 0;
-  height: 100%;
-  width: 2px;
-  background-color: currentColor;
-  animation: blink-caret 1s infinite;
-}
 @keyframes blink-caret {
   0%, 50% { opacity: 1; }
   51%, 100% { opacity: 0; }

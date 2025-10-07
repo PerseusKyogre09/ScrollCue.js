@@ -88,7 +88,7 @@ For advanced configuration and customization options, check out the [instruction
 - `boat-rock`: Realistic boat rocking motion
 - `storm`: Dynamic storm-like shaking
 - `breaking-wave`: Natural wave breaking motion
-- `typing`: Type text character by character with blinking cursor
+- `typing`: Type text character by character with optional blinking cursor
 - `shake`: Quick shake animation with physics-based damping
 - `flicker`: Light flickering effect with brightness
 - `stagger`: Animate child elements in sequence with configurable delays
@@ -159,26 +159,36 @@ Special effects:
 Typing animation:
 
 ```html
-<!-- Typing with default speed (100ms per character) -->
+<!-- Basic typing (100ms per character, no cursor) -->
 <div class="scrollcue" data-cue="typing">
-  Hello, this text will be typed out character by character!
+  This text will be typed out character by character!
 </div>
 
-<!-- Typing with custom speed (50ms per character - faster) -->
+<!-- Fast typing (50ms per character) -->
 <div class="scrollcue" data-cue="typing" data-typing-speed="50">
-  This types faster!
+  This types much faster!
 </div>
 
-<!-- Typing with blinking cursor -->
+<!-- Slow typing (200ms per character) -->
+<div class="scrollcue" data-cue="typing" data-typing-speed="200">
+  This types slower...
+</div>
+
+<!-- With blinking cursor -->
 <div class="scrollcue" data-cue="typing" data-cursor="true">
-  This types with a blinking cursor!
+  This types with a realistic blinking cursor!
 </div>
 
-<!-- Typing with custom speed and cursor -->
+<!-- Custom speed with cursor -->
 <div class="scrollcue" data-cue="typing" data-typing-speed="75" data-cursor="true">
-  Fast typing with cursor!
+  Perfect speed with cursor effect!
 </div>
 ```
+
+**Typing Animation Variables:**
+
+- `data-typing-speed`: Milliseconds between each character (default: 100)
+- `data-cursor`: Set to "true" to show blinking cursor (default: no cursor)
 
 Transform animations:
 

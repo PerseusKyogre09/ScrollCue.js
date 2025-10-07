@@ -133,15 +133,11 @@
           position: relative;
           overflow: hidden;
         }
-        .scrollcue.typing[data-cursor="true"]::after {
-          content: '';
-          position: absolute;
-          right: 0;
-          top: 0;
-          height: 100%;
-          width: 2px;
-          background-color: currentColor;
+        .scrollcue.typing .typing-cursor {
           animation: blink-caret 1s infinite;
+          color: currentColor;
+          font-size: inherit;
+          line-height: inherit;
         }
         @keyframes blink-caret {
           0%, 50% { opacity: 1; }
@@ -306,19 +302,37 @@
       element.style.width = element.offsetWidth + 'px';
       element.style.overflow = 'hidden';
       
-      // Set cursor attribute if requested
+      // Create cursor element if needed
+      let cursorElement = null;
       if (showCursor) {
-        element.setAttribute('data-cursor', 'true');
+        cursorElement = document.createElement('span');
+        cursorElement.textContent = '|';
+        cursorElement.className = 'typing-cursor';
+        element.appendChild(cursorElement);
       }
       
       let charIndex = 0;
       const typeChar = () => {
         if (charIndex < originalText.length) {
-          element.textContent = originalText.substring(0, charIndex + 1);
+          // Update text content
+          const currentText = originalText.substring(0, charIndex + 1);
+          if (cursorElement) {
+            element.textContent = currentText;
+            element.appendChild(cursorElement);
+          } else {
+            element.textContent = currentText;
+          }
           charIndex++;
           setTimeout(typeChar, speed);
         } else {
-          // Typing complete, dispatch event
+          // Typing complete
+          if (cursorElement) {
+            element.textContent = originalText;
+            element.appendChild(cursorElement);
+          } else {
+            element.textContent = originalText;
+          }
+          
           element.dispatchEvent(new CustomEvent('scrollcue:typing-complete', {
             bubbles: true,
             detail: { element }

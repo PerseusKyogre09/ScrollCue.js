@@ -39,7 +39,7 @@
 - `boat-rock`: Boat rocking motion
 - `storm`: Storm-like shaking effect
 - `breaking-wave`: Wave breaking motion
-- `typing`: Type text character by character with optional blinking cursor
+- `typing`: Type text character by character with optional blinking cursor (GSAP-like typing effect)
 - `shake`: Quick shake animation
 - `flicker`: Light flickering effect
 - `stagger`: Animate children sequentially
@@ -57,8 +57,56 @@
 - `stretch-both`: Stretch in both directions
 - `stretch-dynamic`: Dynamic stretch with variable scaling
 
+### Typing Animation
+
+The typing animation creates a realistic typewriter effect that reveals text character by character.
+
+**Basic Usage:**
+
+```html
+<div class="scrollcue" data-cue="typing">
+  This text will be typed out character by character!
+</div>
+```
+
+**With Blinking Cursor:**
+
+```html
+<div class="scrollcue" data-cue="typing" data-cursor="true">
+  This types with a realistic blinking cursor!
+</div>
+```
+
+**Custom Speed:**
+
+```html
+<!-- Fast typing (50ms per character) -->
+<div class="scrollcue" data-cue="typing" data-typing-speed="50">
+  This types very fast!
+</div>
+
+<!-- Slow typing (200ms per character) -->
+<div class="scrollcue" data-cue="typing" data-typing-speed="200">
+  This types slowly...
+</div>
+```
+
+**Variables:**
+
+- `data-typing-speed`: Milliseconds between each character (default: 100)
+- `data-cursor`: Set to "true" to enable blinking cursor (default: false)
+
+**Notes:**
+
+- The container maintains its original size during animation
+- Text appears character by character with natural timing
+- Cursor (when enabled) moves with the typing progress
+- Works with any text content and styling
+- Compatible with all ScrollCue timing and delay options
+
 ### Advanced Animations (Beta)
 ⚠️ **Beta Features - May require fixes**
+
 - `fade-split`: **[BETA]** Split fade effect
 - `zoom-path`: Advanced zoom with path motion
 - `parallax`: **[BETA]** Parallax scrolling effect
@@ -103,7 +151,7 @@
 </div>
 ```
 
-### Transform Animations
+### Transform Animation Examples
 
 ```html
 <!-- Morphing effects -->

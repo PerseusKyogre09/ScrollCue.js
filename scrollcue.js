@@ -71,59 +71,33 @@
         .scrollcue.fade-split {
           position: relative;
           overflow: hidden;
+          display: inline-block;
         }
-        .scrollcue.fade-split .split-left,
-        .scrollcue.fade-split .split-right {
-          position: absolute;
-          top: 0;
-          width: 50%;
-          height: 100%;
-          overflow: hidden;
-          display: flex;
-          align-items: center;
-          justify-content: center;
+        .scrollcue.fade-split .fade-split-left,
+        .scrollcue.fade-split .fade-split-right {
+          display: inline-block;
+          position: relative;
+          margin: 0;
+          padding: 0;
+          transition: transform 0.7s cubic-bezier(0.33,1,0.68,1), opacity 0.7s cubic-bezier(0.33,1,0.68,1);
         }
-        .scrollcue.fade-split .split-left {
-          left: 0;
-          justify-content: flex-end;
-        }
-        .scrollcue.fade-split .split-right {
-          right: 0;
-          justify-content: flex-start;
-        }
-        .scrollcue.fade-split.is-inactive .split-left {
-          transform: translateX(-100%);
+        .scrollcue.fade-split.is-inactive .fade-split-left {
+          transform: translateX(-200%);
           opacity: 0;
         }
-        .scrollcue.fade-split.is-inactive .split-right {
-          transform: translateX(100%);
+        .scrollcue.fade-split.is-inactive .fade-split-right {
+          transform: translateX(200%);
           opacity: 0;
         }
-        .scrollcue.fade-split.cue-in .split-left {
-          animation: fadeSplitLeft 1s forwards;
+        .scrollcue.fade-split.cue-in .fade-split-left {
+          transform: translateX(0);
+          opacity: 1;
+          transition-delay: 0s;
         }
-        .scrollcue.fade-split.cue-in .split-right {
-          animation: fadeSplitRight 1s forwards;
-        }
-        @keyframes fadeSplitLeft {
-          0% {
-            transform: translateX(-100%);
-            opacity: 0;
-          }
-          100% {
-            transform: translateX(0);
-            opacity: 1;
-          }
-        }
-        @keyframes fadeSplitRight {
-          0% {
-            transform: translateX(100%);
-            opacity: 0;
-          }
-          100% {
-            transform: translateX(0);
-            opacity: 1;
-          }
+        .scrollcue.fade-split.cue-in .fade-split-right {
+          transform: translateX(0);
+          opacity: 1;
+          transition-delay: 0.1s;
         }
       `
     },
@@ -196,19 +170,10 @@
       // Find all elements with scrollcue class
       const elements = document.querySelectorAll('.scrollcue');
       
-      // Collect used animations
+      // First pass: collect used animations
       elements.forEach(element => {
         const animType = element.dataset.cue || 'fade-in';
         this.usedAnimations.add(animType);
-        
-        // Special handling for fade-split
-        if (animType === 'fade-split') {
-          const content = element.innerHTML;
-          element.innerHTML = `
-            <div class="split-left">${content}</div>
-            <div class="split-right">${content}</div>
-          `;
-        }
         
         // Special handling for stagger - prepare children
         if (animType === 'stagger') {
@@ -219,6 +184,21 @@
 
       // Inject only used animations
       this.injectAnimations();
+
+      // Second pass: process elements
+      elements.forEach(element => {
+        const animType = element.dataset.cue || 'fade-in';
+        
+        // Special handling for fade-split
+        if (animType === 'fade-split') {
+          const content = element.textContent.trim();
+          const midPoint = Math.ceil(content.length / 2);
+          const leftContent = content.substring(0, midPoint);
+          const rightContent = content.substring(midPoint);
+          
+          element.innerHTML = `<span class="fade-split-left">${leftContent}</span><span class="fade-split-right">${rightContent}</span>`;
+        }
+      });
 
       // Initialize Intersection Observer
       this.observer = new IntersectionObserver(

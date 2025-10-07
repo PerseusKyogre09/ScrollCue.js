@@ -21,6 +21,7 @@
     "intersection-observer",
     "reveal",
     "fade",
+    "fade-split",
     "slide",
     "zoom",
     "rotate",
@@ -41,8 +42,7 @@
     "morph",
     "skew",
     "stretch",
-    "transform",
-    "beta"
+    "transform"
   ],
   "author": "PerseusKyogre09",
   "license": "MIT",

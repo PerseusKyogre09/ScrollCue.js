@@ -111,7 +111,7 @@ For advanced configuration and customization options, check out the [instruction
 
 ⚠️ **Beta Features - May require fixes and improvements**
 
-- `fade-split`: **[BETA]** Split fade animation effect - may require fixes
+- `fade-split`: Split text animation effect
 - `zoom-path`: Advanced zoom with path-based motion
 - `parallax`: **[BETA]** Parallax scrolling effect - may require fixes
 - `combo-parallax`: **[BETA]** Combined parallax effects - may require fixes

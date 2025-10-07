@@ -107,7 +107,7 @@ The typing animation creates a realistic typewriter effect that reveals text cha
 ### Advanced Animations (Beta)
 ⚠️ **Beta Features - May require fixes**
 
-- `fade-split`: **[BETA]** Split fade effect
+- `fade-split`: Split text animation effect
 - `zoom-path`: Advanced zoom with path motion
 - `parallax`: **[BETA]** Parallax scrolling effect
 - `combo-parallax`: **[BETA]** Combined parallax effects
